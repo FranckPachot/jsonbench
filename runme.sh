@@ -47,12 +47,14 @@ docker compose run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgr
 
 } 2>&1 | tee $DIR/postgres.out
 
+# summary
+
 set | grep -E "^(BENCH_.*|DIR|CLIENTS)="
 awk '
 /instructions:u/{i=$1}
 /Throughput:/{sub(/.*]/,"");t=$0}
 /seconds time elapsed/{s=$1}
-/count:/{printf "%f5.1 secs %16s cpu instr. %50s - %25s\n", s, i, t, $0}
+/count:/{printf "%5d secs %16s cpu instr. %50s - %25s\n", s, i, t, $0}
 ' bench1/*.out
 
 

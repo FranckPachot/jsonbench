@@ -6,7 +6,7 @@
 
 ### Set benchmark parameters in another terminal
 
-export CLIENTS=10
+export CLIENTS=5
 export DIR=./bench1
 export BENCH_DOCS=1000 # number of documents inserted by each thread
 export BENCH_NUM=10      # number of attributes in the document
