@@ -31,7 +31,7 @@ async function insertIntoPostgres(count, stringSize, attrCount, pgConfig) {
                 const currentTime = performance.now();
                 const duration = (currentTime - startTime) / 1000;
                 const throughput = (successCount / duration).toFixed(2);
-                console.log(`[${process.env.PID}] PostgreSQL (${((successCount / count) * 100).toFixed(0)}%) - Throughput: ${throughput} docs/sec`);
+                console.log(`[${process.env.HOSTNAME}] PostgreSQL (${((successCount / count) * 100).toFixed(0)}%) - Throughput: ${throughput} docs/sec`);
             }
         }
         console.log(`✅ Inserted ${successCount} records into PostgreSQL`);
@@ -61,7 +61,7 @@ async function insertIntoMongo(count, stringSize, attrCount, mongoUri) {
                 const currentTime = performance.now();
                 const duration = (currentTime - startTime) / 1000;
                 const throughput = (successCount / duration).toFixed(2);
-                console.log(`[${process.env.PID}] MongoDB (${((successCount / count) * 100).toFixed(0)}%) - Throughput: ${throughput} docs/sec`);
+                console.log(`[${process.env.HOSTNAME}] MongoDB (${((successCount / count) * 100).toFixed(0)}%) - Throughput: ${throughput} docs/sec`);
             }
         }
         console.log(`✅ Inserted ${successCount} records into MongoDB`);

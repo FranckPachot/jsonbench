@@ -7,7 +7,7 @@ services:
    context: .
    dockerfile: Dockerfile.client
   deploy:
-   replicas: 1
+   replicas: 0
   depends_on:
    - mongodb
    - postgres
@@ -37,12 +37,4 @@ services:
    - ./bench1/init.sql:/docker-entrypoint-initdb.d/init.sql
   deploy:
    replicas: 1
-
- oracle:
-  image: ghcr.io/oracle/adb-free:latest-23ai
-  environment:
-   - ADMIN_PASSWORD=change_0N_install
-   - WALLET_PASSWORD=change_0N_install
-  deploy:
-   replicas: 0
 
