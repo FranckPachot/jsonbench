@@ -31,6 +31,7 @@ services:
 
  postgres:
   image: postgres
+  command: postgres -c shared_buffers=384MB
   environment:
    - POSTGRES_PASSWORD=xxx
   volumes :
