@@ -7,7 +7,7 @@
 ### Set benchmark parameters in another terminal
 
 export CLIENTS=10
-export DIR=./bench1
+export DIR=./${1:-bench1}
 export BENCH_DOCS=10000 # number of documents inserted by each thread
 export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=300   # size of each attributes in bytes
@@ -21,6 +21,8 @@ docker compose up -d
 
 export DB_URI=mongodb://mongodb:27017
 
+docker stats --no-stream
+
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-mongodb-1
 ) -a docker compose up client --scale client=$CLIENTS 
@@ -28,6 +30,8 @@ perf stat -e instructions:u -G docker/$(
 docker compose run -i --rm mongodb mongosh --host mongodb --eval '
  print("MongoDB count: "+db.jsonbench.countDocuments())
 '
+
+docker stats --no-stream
 
 } 2>&1 | tee $DIR/mongodb.out
 
@@ -37,6 +41,8 @@ docker compose run -i --rm mongodb mongosh --host mongodb --eval '
 
 export DB_URI=postgres://postgres:xxx@postgres:5432/postgres
 
+docker stats --no-stream
+
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-postgres-1
 ) -a docker compose up client --scale client=$CLIENTS 
@@ -44,6 +50,8 @@ perf stat -e instructions:u -G docker/$(
 docker compose run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
  select 'PostgreSQL count: ' || count(*) from jsonbench
  " 
+
+docker stats --no-stream
 
 } 2>&1 | tee $DIR/postgres.out
 
@@ -54,7 +62,7 @@ awk '
 /instructions:u/{i=$1}
 /Throughput:/{sub(/.*]/,"");t=$0}
 /seconds time elapsed/{s=$1}
-/count:/{printf "%5d secs %16s cpu instr. %50s - %25s\n", s, i, t, $0}
-' bench1/*.out
+/count:/{printf "%5d secs %16s cpu instr. %50s - %25s %s\n", s, i, t, $0, FILENAME}
+' $DIR/*.out
 
 
