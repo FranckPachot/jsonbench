@@ -1,0 +1,48 @@
+services:
+
+ # MongoDB Shell to connect to servers
+
+ client:
+  build: 
+   context: .
+   dockerfile: Dockerfile.client
+  deploy:
+   replicas: 1
+  depends_on:
+   - mongodb
+   - postgres
+  volumes:
+  - $DIR:/dir
+  environment:
+   - DB_URI=$DB_URI
+   - BENCH_DOCS=$BENCH_DOCS
+   - BENCH_NUM=$BENCH_NUM
+   - BENCH_BYTES=$BENCH_BYTES
+  command: -f /dir/lib.js
+
+ # MongoDB 
+
+ mongodb:
+  image: docker.io/mongodb/mongodb-community-server:latest
+  deploy:
+   replicas: 1
+ 
+ # PostgreSQL
+
+ postgres:
+  image: postgres
+  environment:
+   - POSTGRES_PASSWORD=xxx
+  volumes :
+   - ./bench1/init.sql:/docker-entrypoint-initdb.d/init.sql
+  deploy:
+   replicas: 1
+
+ oracle:
+  image: ghcr.io/oracle/adb-free:latest-23ai
+  environment:
+   - ADMIN_PASSWORD=change_0N_install
+   - WALLET_PASSWORD=change_0N_install
+  deploy:
+   replicas: 0
+

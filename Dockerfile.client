@@ -1,0 +1,19 @@
+# this image will be used to connect to databases in javascript
+
+# Start with the Alpine-based mongosh image
+FROM alpine/mongosh
+
+# Install npm and required packages
+RUN apk add --no-cache nodejs npm \
+    && npm install -g mongodb pg uuid
+
+# Install nvm if it's not already installed
+#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash -x
+#RUN ~/.nvm/nvm.sh && nvm install 20 && nvm use 20
+
+# Set the NODE_PATH environment variable
+ENV NODE_PATH=/usr/local/lib/node_modules
+
+# Command to run when the container starts
+ENTRYPOINT ["mongosh", "--nodb"]
+
