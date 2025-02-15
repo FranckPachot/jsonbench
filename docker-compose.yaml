@@ -26,6 +26,14 @@ services:
   image: docker.io/mongodb/mongodb-community-server:latest
   deploy:
    replicas: 1
+
+ mongodb-init:
+  image: alpine/mongosh
+  depends_on:
+   - mongodb
+  volumes:
+  - $DIR:/dir
+  command: mongosh -f /dir/init.js
  
  # PostgreSQL
 
@@ -66,19 +74,19 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
 
- node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    ports:
-      - 9100:9100
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+# node-exporter:
+#    image: prom/node-exporter:latest
+#    container_name: node-exporter
+#    ports:
+#      - 9100:9100
+#    volumes:
+#      - /proc:/host/proc:ro
+#      - /sys:/host/sys:ro
+#      - /:/rootfs:ro
+#    command:
+#      - '--path.procfs=/host/proc'
+#      - '--path.sysfs=/host/sys'
+#      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
 
  grafana:
     image: grafana/grafana-oss:latest

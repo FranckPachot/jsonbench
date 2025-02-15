@@ -9,13 +9,14 @@
 export CLIENTS=5
 export DIR=./${1:-bench1}
 export BENCH_DOCS=100000 # number of documents inserted by each thread
+export BENCH_DOCS=10000
 export BENCH_NUM=10      # number of attributes in the document
-export BENCH_BYTES=300   # size of each attributes in bytes
+export BENCH_BYTES=1000   # size of each attributes in bytes
 
 docker compose down --remove-orphans
 docker compose up -d
 
-sleep 30
+sleep 300
 
 ### Run on MongoDB whith those parameters
 
@@ -38,7 +39,7 @@ docker stats --no-stream
 } 2>&1 | tee $DIR/mongodb.out
 
 
-sleep 30
+sleep 300
 
 ### Run on PostgreSQL with those parameters
 
@@ -60,7 +61,7 @@ docker stats --no-stream
 
 } 2>&1 | tee $DIR/postgres.out
 
-sleep 30
+sleep 300
 
 # summary
 
