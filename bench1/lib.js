@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const { Client } = require('pg');
 const { v4: uuidv4 } = require('uuid');
+const { v7: uuidv7 } = require('uuid');
 const { performance } = require('perf_hooks');
 
 function getRandomString(length) {
@@ -9,7 +10,7 @@ function getRandomString(length) {
 }
 
 function generateDocument(stringSize, attrCount) {
-    const doc = { "id": uuidv4() };
+    const doc = { "id": uuidv7() };
     for (let i = 1; i <= attrCount; i++) {
         doc[`attr${i}`] = getRandomString(stringSize);
     }
