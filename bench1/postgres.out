@@ -1,58 +1,23 @@
-CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
-22d74d08c466   jsonbench-grafana-1    0.94%     85.37MiB / 27.2GiB   0.31%     1.7MB / 1.73MB    0B / 422kB    15
-ccd0850f708e   jsonbench-postgres-1   0.00%     48.37MiB / 27.2GiB   0.17%     378B / 0B         0B / 65.8MB   6
-7436c4b3c9d3   jsonbench-mongodb-1    0.35%     602.1MiB / 27.2GiB   2.16%     522MB / 9.08MB    0B / 1.51GB   33
-33acd6416de8   cadvisor               5.63%     54.24MiB / 27.2GiB   0.19%     89.7kB / 4.65MB   0B / 0B       15
-6e19d891b763   prometheus             0.00%     71.9MiB / 27.2GiB    0.26%     5.34MB / 476kB    0B / 0B       14
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O     PIDS
+6bf20e15927c   jsonbench-grafana-1    0.87%     73.15MiB / 27.2GiB   0.26%     465kB / 401kB    0B / 356kB    21
+e9a319245391   jsonbench-postgres-1   0.00%     48.05MiB / 27.2GiB   0.17%     378B / 0B        0B / 68.5MB   6
+d4c069b868bf   prometheus             0.00%     62.86MiB / 27.2GiB   0.23%     9.8MB / 266kB    0B / 0B       13
+e927b243d742   jsonbench-mongodb-1    0.33%     603.1MiB / 27.2GiB   2.17%     522MB / 9.08MB   0B / 1.48GB   33
+b3db1ae49abd   cadvisor               2.24%     53.37MiB / 27.2GiB   0.19%     183kB / 9.62MB   0B / 0B       16
  Container jsonbench-mongodb-1  Running
  Container jsonbench-postgres-1  Running
- Container jsonbench-client-3  Recreate
  Container jsonbench-client-1  Recreate
- Container jsonbench-client-5  Recreate
  Container jsonbench-client-2  Recreate
+ Container jsonbench-client-5  Recreate
  Container jsonbench-client-4  Recreate
+ Container jsonbench-client-3  Recreate
+ Container jsonbench-client-2  Recreated
  Container jsonbench-client-1  Recreated
- Container jsonbench-client-4  Recreated
  Container jsonbench-client-5  Recreated
  Container jsonbench-client-3  Recreated
- Container jsonbench-client-2  Recreated
+ Container jsonbench-client-4  Recreated
 Attaching to client-1, client-2, client-3, client-4, client-5
-client-5  | Current Mongosh Log ID:	67b0dc3943165b086ed0fe76
-client-5  | Using Mongosh:		2.0.2
-client-5  | 
-client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-5  | 
-client-5  | 
-client-5  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-5  | You can opt-out by running the disableTelemetry() command.
-client-5  | 
-client-5  | Loading file: /dir/lib.js
-client-3  | Current Mongosh Log ID:	67b0dc39effbfc6eab0b6351
-client-3  | Using Mongosh:		2.0.2
-client-3  | 
-client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-3  | 
-client-3  | 
-client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-3  | You can opt-out by running the disableTelemetry() command.
-client-3  | 
-client-3  | Loading file: /dir/lib.js
-client-2  | Current Mongosh Log ID:	67b0dc3a522b855378d8b8b9
-client-5  | 📚 lib.js loaded
-client-5  | [2025-02-15T18:26:02.864Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
-client-2  | Using Mongosh:		2.0.2
-client-2  | 
-client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-2  | 
-client-2  | 
-client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-2  | You can opt-out by running the disableTelemetry() command.
-client-2  | 
-client-2  | Loading file: /dir/lib.js
-client-4  | Current Mongosh Log ID:	67b0dc3baa7f061b46ff9617
-client-3  | 📚 lib.js loaded
-client-3  | [2025-02-15T18:26:03.524Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
-client-1  | Current Mongosh Log ID:	67b0dc3cc95d8a73cb564d79
+client-4  | Current Mongosh Log ID:	67b0efe98b9332f9dd5e806a
 client-4  | Using Mongosh:		2.0.2
 client-4  | 
 client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
@@ -62,8 +27,7 @@ client-4  | To help improve our products, anonymous usage data is collected and 
 client-4  | You can opt-out by running the disableTelemetry() command.
 client-4  | 
 client-4  | Loading file: /dir/lib.js
-client-2  | 📚 lib.js loaded
-client-2  | [2025-02-15T18:26:04.291Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-1  | Current Mongosh Log ID:	67b0efe96bec3c79325dcdcf
 client-1  | Using Mongosh:		2.0.2
 client-1  | 
 client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
@@ -73,92 +37,128 @@ client-1  | To help improve our products, anonymous usage data is collected and 
 client-1  | You can opt-out by running the disableTelemetry() command.
 client-1  | 
 client-1  | Loading file: /dir/lib.js
+client-2  | Current Mongosh Log ID:	67b0efea3b6e5d25e3b44112
 client-4  | 📚 lib.js loaded
-client-4  | [2025-02-15T18:26:05.335Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-4  | [2025-02-15T19:50:03.106Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-2  | Using Mongosh:		2.0.2
+client-2  | 
+client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-2  | 
+client-2  | 
+client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-2  | You can opt-out by running the disableTelemetry() command.
+client-2  | 
+client-2  | Loading file: /dir/lib.js
+client-5  | Current Mongosh Log ID:	67b0efebd90bcfc5a51ac2d8
 client-1  | 📚 lib.js loaded
-client-1  | [2025-02-15T18:26:05.625Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
-client-3  | [ba4054aba1b7] PostgreSQL (10%) - Throughput: 22.00 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (10%) - Throughput: 21.38 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (10%) - Throughput: 21.41 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (10%) - Throughput: 20.81 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (10%) - Throughput: 20.99 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (20%) - Throughput: 21.62 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (20%) - Throughput: 21.49 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (20%) - Throughput: 21.91 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (20%) - Throughput: 20.93 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (20%) - Throughput: 20.66 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (30%) - Throughput: 21.77 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (30%) - Throughput: 21.95 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (30%) - Throughput: 21.23 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (30%) - Throughput: 20.96 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (30%) - Throughput: 20.56 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (40%) - Throughput: 21.85 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (40%) - Throughput: 21.52 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (40%) - Throughput: 21.35 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (40%) - Throughput: 20.99 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (40%) - Throughput: 20.58 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (50%) - Throughput: 21.97 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (50%) - Throughput: 21.33 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (50%) - Throughput: 21.41 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (50%) - Throughput: 20.95 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (50%) - Throughput: 20.61 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (60%) - Throughput: 21.93 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (60%) - Throughput: 21.44 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (60%) - Throughput: 21.33 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (60%) - Throughput: 21.06 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (60%) - Throughput: 20.67 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (70%) - Throughput: 21.95 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (70%) - Throughput: 21.53 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (70%) - Throughput: 21.29 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (70%) - Throughput: 21.03 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (70%) - Throughput: 20.70 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (80%) - Throughput: 22.02 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (80%) - Throughput: 21.58 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (80%) - Throughput: 21.25 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (80%) - Throughput: 21.05 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (80%) - Throughput: 20.69 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (90%) - Throughput: 21.92 docs/sec
-client-3  | [ba4054aba1b7] PostgreSQL (90%) - Throughput: 21.58 docs/sec
-client-5  | [d785354c2d3e] PostgreSQL (90%) - Throughput: 21.35 docs/sec
-client-2  | [208d8f5a0f12] PostgreSQL (90%) - Throughput: 21.11 docs/sec
-client-4  | [128c2b3a1505] PostgreSQL (90%) - Throughput: 20.75 docs/sec
-client-1  | [8c61704a564d] PostgreSQL (100%) - Throughput: 21.83 docs/sec
-client-1  | ✅ Inserted 10000 records into PostgreSQL
-client-1  | ✅ PostgreSQL Connection closed
-client-1  | [2025-02-15T18:33:48.703Z] 🏁 Data insertion completed in 463.08 seconds
-[Kclient-1 exited with code 0
-client-3  | [ba4054aba1b7] PostgreSQL (100%) - Throughput: 21.58 docs/sec
+client-1  | [2025-02-15T19:50:03.800Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-3  | Current Mongosh Log ID:	67b0efebb92307c362c0edb9
+client-5  | Using Mongosh:		2.0.2
+client-5  | 
+client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-5  | 
+client-5  | 
+client-5  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-5  | You can opt-out by running the disableTelemetry() command.
+client-5  | 
+client-5  | Loading file: /dir/lib.js
+client-3  | Using Mongosh:		2.0.2
+client-3  | 
+client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-3  | 
+client-3  | 
+client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-3  | You can opt-out by running the disableTelemetry() command.
+client-3  | 
+client-2  | 📚 lib.js loaded
+client-2  | [2025-02-15T19:50:04.426Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-3  | Loading file: /dir/lib.js
+client-5  | 📚 lib.js loaded
+client-5  | [2025-02-15T19:50:05.207Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-3  | 📚 lib.js loaded
+client-3  | [2025-02-15T19:50:05.501Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 10000 documents of 1000 bytes * 10 fields
+client-4  | [206823d57cde] PostgreSQL (10%) - Throughput: 22.37 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (10%) - Throughput: 22.86 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (10%) - Throughput: 21.56 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (10%) - Throughput: 22.02 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (10%) - Throughput: 21.40 docs/sec
+client-4  | [206823d57cde] PostgreSQL (20%) - Throughput: 22.21 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (20%) - Throughput: 22.69 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (20%) - Throughput: 22.25 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (20%) - Throughput: 21.53 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (20%) - Throughput: 21.16 docs/sec
+client-4  | [206823d57cde] PostgreSQL (30%) - Throughput: 22.14 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (30%) - Throughput: 22.38 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (30%) - Throughput: 22.12 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (30%) - Throughput: 21.54 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (30%) - Throughput: 21.34 docs/sec
+client-4  | [206823d57cde] PostgreSQL (40%) - Throughput: 22.09 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (40%) - Throughput: 22.26 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (40%) - Throughput: 22.10 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (40%) - Throughput: 21.81 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (40%) - Throughput: 21.44 docs/sec
+client-4  | [206823d57cde] PostgreSQL (50%) - Throughput: 22.08 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (50%) - Throughput: 22.17 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (50%) - Throughput: 22.11 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (50%) - Throughput: 21.87 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (50%) - Throughput: 21.43 docs/sec
+client-4  | [206823d57cde] PostgreSQL (60%) - Throughput: 21.98 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (60%) - Throughput: 22.10 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (60%) - Throughput: 21.94 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (60%) - Throughput: 22.00 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (60%) - Throughput: 21.51 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (70%) - Throughput: 22.09 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (70%) - Throughput: 22.09 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (70%) - Throughput: 21.97 docs/sec
+client-4  | [206823d57cde] PostgreSQL (70%) - Throughput: 21.87 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (70%) - Throughput: 21.36 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (80%) - Throughput: 22.12 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (80%) - Throughput: 22.03 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (80%) - Throughput: 22.08 docs/sec
+client-4  | [206823d57cde] PostgreSQL (80%) - Throughput: 21.70 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (80%) - Throughput: 21.50 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (90%) - Throughput: 22.16 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (90%) - Throughput: 22.14 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (90%) - Throughput: 21.97 docs/sec
+client-4  | [206823d57cde] PostgreSQL (90%) - Throughput: 21.72 docs/sec
+client-2  | [369ecb4d9b40] PostgreSQL (90%) - Throughput: 21.50 docs/sec
+client-3  | [3b50f7c2ab9f] PostgreSQL (100%) - Throughput: 22.20 docs/sec
 client-3  | ✅ Inserted 10000 records into PostgreSQL
 client-3  | ✅ PostgreSQL Connection closed
-client-3  | [2025-02-15T18:33:52.315Z] 🏁 Data insertion completed in 468.79 seconds
+client-3  | [2025-02-15T19:57:41.087Z] 🏁 Data insertion completed in 455.59 seconds
 [Kclient-3 exited with code 0
-client-5  | [d785354c2d3e] PostgreSQL (100%) - Throughput: 21.46 docs/sec
+client-5  | [8d104b7054fa] PostgreSQL (100%) - Throughput: 22.06 docs/sec
 client-5  | ✅ Inserted 10000 records into PostgreSQL
 client-5  | ✅ PostgreSQL Connection closed
-client-5  | [2025-02-15T18:33:53.972Z] 🏁 Data insertion completed in 471.11 seconds
+client-5  | [2025-02-15T19:57:43.620Z] 🏁 Data insertion completed in 458.41 seconds
 [Kclient-5 exited with code 0
-client-2  | [208d8f5a0f12] PostgreSQL (100%) - Throughput: 21.25 docs/sec
-client-2  | ✅ Inserted 10000 records into PostgreSQL
-client-2  | ✅ PostgreSQL Connection closed
-client-2  | [2025-02-15T18:33:59.957Z] 🏁 Data insertion completed in 475.67 seconds
-[Kclient-2 exited with code 0
-client-4  | [128c2b3a1505] PostgreSQL (100%) - Throughput: 21.02 docs/sec
+client-1  | [57a1f1b6ccb5] PostgreSQL (100%) - Throughput: 21.97 docs/sec
+client-1  | ✅ Inserted 10000 records into PostgreSQL
+client-1  | ✅ PostgreSQL Connection closed
+client-1  | [2025-02-15T19:57:44.120Z] 🏁 Data insertion completed in 460.32 seconds
+[Kclient-1 exited with code 0
+client-4  | [206823d57cde] PostgreSQL (100%) - Throughput: 21.75 docs/sec
 client-4  | ✅ Inserted 10000 records into PostgreSQL
 client-4  | ✅ PostgreSQL Connection closed
-client-4  | [2025-02-15T18:34:06.386Z] 🏁 Data insertion completed in 481.05 seconds
+client-4  | [2025-02-15T19:57:47.916Z] 🏁 Data insertion completed in 464.81 seconds
 [Kclient-4 exited with code 0
+client-2  | [369ecb4d9b40] PostgreSQL (100%) - Throughput: 21.69 docs/sec
+client-2  | ✅ Inserted 10000 records into PostgreSQL
+client-2  | ✅ PostgreSQL Connection closed
+client-2  | [2025-02-15T19:57:50.455Z] 🏁 Data insertion completed in 466.03 seconds
+[Kclient-2 exited with code 0
 
  Performance counter stats for 'system wide':
 
-    53,049,972,492      instructions:u            docker/ccd0850f708e13a81db05ffed96b7708e42b8849e5fca21f5e69b38ae13dd98b                                   
+    53,004,082,629      instructions:u            docker/e9a31924539178662a1b50769d55577d5bb6904d2f981574700d2eaa5c71f7e2                                   
 
-     487.443327515 seconds time elapsed
+     471.390947080 seconds time elapsed
 
  PostgreSQL count: 50000 size: 596 MB
 
-CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O        PIDS
-22d74d08c466   jsonbench-grafana-1    1.07%     86.69MiB / 27.2GiB   0.31%     2.98MB / 6.34MB   4.1kB / 1.01MB   15
-ccd0850f708e   jsonbench-postgres-1   0.13%     435.2MiB / 27.2GiB   1.56%     534MB / 10.9MB    0B / 2.51GB      6
-7436c4b3c9d3   jsonbench-mongodb-1    0.41%     602.3MiB / 27.2GiB   2.16%     522MB / 9.08MB    0B / 1.51GB      33
-33acd6416de8   cadvisor               3.55%     65.16MiB / 27.2GiB   0.23%     187kB / 9.77MB    0B / 0B          16
-6e19d891b763   prometheus             0.00%     91.35MiB / 27.2GiB   0.33%     10.9MB / 936kB    0B / 0B          14
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O     PIDS
+6bf20e15927c   jsonbench-grafana-1    1.97%     73.19MiB / 27.2GiB   0.26%     471kB / 404kB    0B / 410kB    21
+e9a319245391   jsonbench-postgres-1   0.15%     435.2MiB / 27.2GiB   1.56%     534MB / 10.9MB   0B / 2.53GB   6
+d4c069b868bf   prometheus             0.00%     82.3MiB / 27.2GiB    0.30%     14.8MB / 359kB   0B / 24.6kB   13
+e927b243d742   jsonbench-mongodb-1    0.34%     603.1MiB / 27.2GiB   2.17%     522MB / 9.08MB   0B / 1.48GB   33
+b3db1ae49abd   cadvisor               21.83%    54.39MiB / 27.2GiB   0.20%     277kB / 14.6MB   0B / 0B       16

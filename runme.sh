@@ -6,17 +6,18 @@
 
 ### Set benchmark parameters in another terminal
 
+export SLEEP=600 # sleep between execution to see some deferred background activity
 export CLIENTS=5
 export DIR=./${1:-bench1}
 export BENCH_DOCS=100000 # number of documents inserted by each thread
-export BENCH_DOCS=10000
 export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
-docker compose down --remove-orphans
+docker compose down --remove-orphans client mongodb postgres
+docker volume prune -f
 docker compose up -d
 
-sleep 300
+sleep ${SLEEP}
 
 ### Run on MongoDB whith those parameters
 
@@ -39,7 +40,7 @@ docker stats --no-stream
 } 2>&1 | tee $DIR/mongodb.out
 
 
-sleep 300
+sleep ${SLEEP}
 
 ### Run on PostgreSQL with those parameters
 
@@ -61,7 +62,7 @@ docker stats --no-stream
 
 } 2>&1 | tee $DIR/postgres.out
 
-sleep 300
+sleep ${SLEEP}
 
 # summary
 
