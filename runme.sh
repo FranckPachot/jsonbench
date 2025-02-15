@@ -37,7 +37,7 @@ perf stat -e instructions:u -G docker/$(
 ) -a docker compose up client --scale client=$CLIENTS 
 
 docker compose run -i --rm mongodb mongosh --host mongodb --eval '
- print("MongoDB count: "+db.jsonbench.countDocuments()+" size: "+db.runCommand({ collStats: "jsonbench" }).size/1024/1025 + " MB")
+ print("MongoDB count: "+db.runCommand({ collStats: "jsonbench" }).count+" size: "+db.runCommand({ collStats: "jsonbench" }).size/1024/1025 + " MB")
 '
 
 docker stats --no-stream
