@@ -1,4 +1,3 @@
-# Small benchmark to run same workload on MongoDB and PostgreSQL and compare CPU usage
 
 ## example to run:
 
@@ -13,7 +12,7 @@ export BENCH_DOCS=100000 # number of documents inserted by each thread
 export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
-docker compose down --remove-orphans client mongodb postgres
+docker compose down --remove-orphans 
 docker volume prune -f
 docker compose up -d
 
@@ -26,6 +25,12 @@ sleep ${SLEEP}
 export DB_URI=mongodb://mongodb:27017
 
 docker stats --no-stream
+
+(
+perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
+pgrep -d, "mongod"
+) sleep 30 | perf script -F +pid > $DIR/perf.script
+) &
 
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-mongodb-1
@@ -49,6 +54,12 @@ sleep ${SLEEP}
 export DB_URI=postgres://postgres:xxx@postgres:5432/postgres
 
 docker stats --no-stream
+
+(
+perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
+pgrep -d, "postgres"
+) sleep 30 | perf script -F +pid > $DIR/perf.script
+) &
 
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-postgres-1
