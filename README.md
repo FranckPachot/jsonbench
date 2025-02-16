@@ -6,7 +6,7 @@ Small benchmark to run same workload on MongoDB and PostgreSQL and compare CPU u
 
 `runme.sh` contains an example
 - bench1: with uuidv4
-- bench1: with uuidv7
+- bench2: with uuidv7
 
 The thoughput is similar. This is not what I am testing with this workload that is bound by the small number of clients.
 
