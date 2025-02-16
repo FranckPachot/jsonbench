@@ -34,6 +34,11 @@ services:
   image: docker.io/mongodb/mongodb-community-server:latest
   deploy:
    replicas: 1
+   resources:
+    limits:
+      memory: 9G  
+  volumes:
+  - mongodb_data:/data/db/var/lib/postgresql/data
 
  mongodb-init:
   image: alpine/mongosh
@@ -47,16 +52,19 @@ services:
 
  postgres:
   image: postgres
-    # define memory to be similar to MongoDB (after looking at RSS on MongoDB)
-  command: postgres -c shared_buffers=384MB
-  environment:
-   - POSTGRES_PASSWORD=xxx
-    # enable checksums like the default in MongoDB - you care about data
-   #- POSTGRES_INITDB_ARGS=--data-checksums
-  volumes :
-   - postgres_data:/var/lib/postgresql
+  # define same memory and cache behavior (40% of RAM, checkpoints every 2GB)
+  command: postgres -c shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9 
   deploy:
    replicas: 1
+   resources:
+    limits:
+      memory: 9G  
+  environment:
+   - POSTGRES_PASSWORD=xxx
+     # enable checksums like the default in MongoDB so that we care about data at the same level
+   - POSTGRES_INITDB_ARGS=--data-checksums
+  volumes :
+   - postgres_data:/var/lib/postgresql
 
  postgres-init:
   image: postgres
