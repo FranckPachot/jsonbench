@@ -5,10 +5,14 @@ Small benchmark to run same workload on MongoDB and PostgreSQL and compare CPU u
 ## example
 
 `runme.sh` contains an example
-- bench1: with uuidv4
-- bench2: with uuidv7
+- bench1: with uuidv4 for the primary key
+- bench2: with uuidv7 for the primary key
 
-The thoughput is similar. This is not what I am testing with this workload that is bound by the small number of clients.
+Below are the result for inserting 1000 documents (10 attributes of 1000 characters) from 8 threads. This doesn't saturate the database because the clients are busy generating the documents and sending them to the database server. The advantage of using the same client code is to get the same thoughput when running on both databases, so that we can analyze the ressources used by those databases. Because the PostgreSQL defaults are not optimal, it was set with a memory allocation similar to the MongoDB instance, and similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. MongoDB writes with checksums to be able to detect storage failures, it is not the default in PostgreSQL but must be set when when we care about data, so it was set for this benchmark. MongoDB compresses the WAL with snappy but no compression was set for PostgreSQL as it would increase the memory usage which is already higher.
+
+Here are some results and quick analysis.
+
+The thoughput is similar. This is expected for a workload that is bound by the small number of clients.
 
 For example, MongoDB [mongodb.out](./bench1/mongodb.out):
 ```
@@ -34,16 +38,17 @@ client-5  | [deb1c3a36d9e] PostgreSQL (90%) - Throughput: 15.31 docs/sec
 client-3  | [981e044c8a41] PostgreSQL (90%) - Throughput: 15.00 docs/sec
 ```
 
-Rather than looking at the response time or throughput, I am interrested by the resource used by those similar workloads.
+Rather than looking at the response time or throughput, it is more interresting to compare the resources used by those similar workloads.
 
-I've run `perf stat -e instructions:u -G` to get the number if CPU instructions run by both. Here is a short summary showing that PostgreSQL uses more CPU instructions for the same workload:
+I've run `perf stat -e instructions:u -G` to get the number if CPU instructions run by both. Here is a short summary showing that PostgreSQL uses more 6x mroe CPU instructions for the same workload:
 
 ```
  6681 secs  141,578,546,171 cpu instr.        MongoDB (100%) - Throughput: 14.99 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench1/mongodb.out
  6598 secs  864,694,247,096 cpu instr.     PostgreSQL (100%) - Throughput: 15.18 docs/sec -  PostgreSQL count: 800000 size: 9530 MB ./bench1/postgres.out
 ```
 
-This lab is gathering container statistics via cadvisor / prometheus / grafana
+The number of instructions provides a general idea, but not all instructions are equal. Tt is better to compare the CPU time, which is gathered by the Linux kernel for the container cgroups.
+This lab is gathering those container statistics via cadvisor / prometheus / grafana
 
 CPU utilization calculated from the total seconds of CPU divided by the elapsed time:
 <img width="1498" alt="image" src="https://github.com/user-attachments/assets/729575a9-488f-4ee1-b6f7-bd2398071207" />
