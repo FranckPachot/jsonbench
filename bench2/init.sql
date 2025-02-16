@@ -4,3 +4,4 @@ create table if not exists jsonbench (
     id uuid,
     data jsonb not null
 );
+show shared_buffers;

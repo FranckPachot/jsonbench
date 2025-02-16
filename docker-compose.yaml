@@ -35,13 +35,16 @@ services:
   - $DIR:/dir
   command: mongosh -f /dir/init.js
  
- # PostgreSQL
+ # PostgreSQL 
 
  postgres:
   image: postgres
+    # define memory to be similar to MongoDB (after looking at RSS on MongoDB)
   command: postgres -c shared_buffers=384MB
   environment:
    - POSTGRES_PASSWORD=xxx
+    # enable checksums like the default in MongoDB - you care about data
+   - POSTGRES_INITDB_ARGS=--data-checksums
   volumes :
    - ./bench1/init.sql:/docker-entrypoint-initdb.d/init.sql
   deploy:

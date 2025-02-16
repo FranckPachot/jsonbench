@@ -6,7 +6,7 @@
 ### Set benchmark parameters in another terminal
 
 export SLEEP=600 # sleep between execution to see some deferred background activity
-export CLIENTS=5
+export CLIENTS=8
 export DIR=./${1:-bench1}
 export BENCH_DOCS=100000 # number of documents inserted by each thread
 export BENCH_NUM=10      # number of attributes in the document
