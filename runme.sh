@@ -15,16 +15,21 @@ export BENCH_BYTES=1000   # size of each attributes in bytes
 #export SLEEP=5
 #export BENCH_DOCS=100
 
-docker compose down --remove-orphans 
+# reset all
+docker compose -p jsonbench down --remove-orphans --volumes
 
 for dir in ${*:-bench*}
 
 do # run for each bench, cleaning the databases but not the statistics
 
 export DIR=./$dir
-docker compose down mongodb postgres
-docker volume prune -f
-docker compose up -d
+# reset databases but keep prometheus data
+docker compose -p jsonbench down mongodb postgres --volumes
+docker compose -p jsonbench up -d
+
+date
+docker ps -a
+docker volume ls
 
 sleep ${SLEEP}
 
@@ -35,19 +40,19 @@ sleep ${SLEEP}
 export DB_URI=mongodb://mongodb:27017
 
 docker stats --no-stream
-docker compose logs mongodb-init
+docker compose -p jsonbench logs mongodb-init
 
 (
 perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "mongod"
-) sleep 30 | perf script -F +pid > $DIR/perf.script
+) sleep 30 | perf script -F +pid > $DIR/mongodb.perf
 ) &
 
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-mongodb-1
-) -a docker compose up client --scale client=$CLIENTS 
+) -a docker compose -p jsonbench up client --scale client=$CLIENTS 
 
-docker compose run -i --rm mongodb mongosh --host mongodb --eval '
+docker compose -p jsonbench run -i --rm mongodb mongosh --host mongodb --eval '
  print("MongoDB count: "+db.runCommand({ collStats: "jsonbench" }).count+" size: "+Math.round(db.runCommand({ collStats: "jsonbench" }).size/1024/1024) + " MB")
 '
 
@@ -65,19 +70,19 @@ sleep ${SLEEP}
 export DB_URI=postgres://postgres:xxx@postgres:5432/postgres
 
 docker stats --no-stream
-docker compose logs postgres-init
+docker compose -p jsonbench logs postgres-init
 
 (
 perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "postgres"
-) sleep 30 | perf script -F +pid > $DIR/perf.script
+) sleep 30 | perf script -F +pid > $DIR/postgres.perf
 ) &
 
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-postgres-1
-) -a docker compose up client --scale client=$CLIENTS 
+) -a docker compose -p jsonbench up client --scale client=$CLIENTS 
 
-docker compose run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
+docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
  select 'PostgreSQL count: ' || count(*) || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from jsonbench
  " 
 
