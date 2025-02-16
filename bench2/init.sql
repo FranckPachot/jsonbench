@@ -1,7 +1,6 @@
 drop table if exists jsonbench;
 create table if not exists jsonbench (
-    "_id" bigserial primary key,
-    id uuid,
+    id uuid primary key,
     data jsonb not null
 );
 show shared_buffers;

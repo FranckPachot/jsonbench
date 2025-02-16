@@ -10,7 +10,7 @@ function getRandomString(length) {
 }
 
 function generateDocument(stringSize, attrCount) {
-    const doc = { "id": uuidv7() };
+    const doc = { "_id": uuidv7() };
     for (let i = 1; i <= attrCount; i++) {
         doc[`attr${i}`] = getRandomString(stringSize);
     }
@@ -26,7 +26,7 @@ async function insertIntoPostgres(count, stringSize, attrCount, pgConfig) {
         const startTime = performance.now();
         for (let i = 0; i < count; i++) {
             const doc = generateDocument(stringSize, attrCount);
-            await pgClient.query(insertQuery, [doc.id, JSON.stringify(doc)]);
+            await pgClient.query(insertQuery, [doc._id, JSON.stringify(doc)]);
             successCount++;
             if (successCount % Math.ceil(count / 10) === 0) {
                 const currentTime = performance.now();

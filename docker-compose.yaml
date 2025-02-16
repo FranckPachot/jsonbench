@@ -1,3 +1,9 @@
+volumes:
+
+  mongodb_data:
+  postgres_data:
+  prometheus_data:
+
 services:
 
  # MongoDB Shell to connect to servers
@@ -13,6 +19,7 @@ services:
    - postgres
   volumes:
   - $DIR:/dir
+  - postgres_data:/var/lib/postgresql/data
   environment:
    - DB_URI=$DB_URI
    - BENCH_DOCS=$BENCH_DOCS
@@ -33,7 +40,7 @@ services:
    - mongodb
   volumes:
   - $DIR:/dir
-  command: mongosh -f /dir/init.js
+  command: bash -c 'until mongosh -f /dir/init.js mongodb://mongodb:27017 ; do sleep 1 ; done'
  
  # PostgreSQL 
 
@@ -44,11 +51,22 @@ services:
   environment:
    - POSTGRES_PASSWORD=xxx
     # enable checksums like the default in MongoDB - you care about data
-   - POSTGRES_INITDB_ARGS=--data-checksums
+   #- POSTGRES_INITDB_ARGS=--data-checksums
   volumes :
-   - ./bench1/init.sql:/docker-entrypoint-initdb.d/init.sql
+   - postgres_data:/var/lib/postgresql
   deploy:
    replicas: 1
+
+ postgres-init:
+  image: postgres
+  depends_on:
+   - postgres
+  volumes:
+  - $DIR:/dir
+  environment:
+   - PGPASSWORD=xxx
+  command: bash -c 'until psql -h postgres -U postgres -ef /dir/init.sql ; do sleep 1 ; done'
+  
 
 
 # https://last9.io/blog/docker-monitoring-with-prometheus-a-step-by-step-guide/
@@ -60,6 +78,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
       - '--storage.tsdb.path=/prometheus'
@@ -76,20 +95,6 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-
-# node-exporter:
-#    image: prom/node-exporter:latest
-#    container_name: node-exporter
-#    ports:
-#      - 9100:9100
-#    volumes:
-#      - /proc:/host/proc:ro
-#      - /sys:/host/sys:ro
-#      - /:/rootfs:ro
-#    command:
-#      - '--path.procfs=/host/proc'
-#      - '--path.sysfs=/host/sys'
-#      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
 
  grafana:
     image: grafana/grafana-oss:latest
