@@ -73,5 +73,23 @@ MongoDB [flamegraph](https://share.firefox.dev/3X3PFGM) shows time spend in Wire
 PostgreSQL [flamegraph](https://share.firefox.dev/4hFWMgD) shows time spend in TOAST compression and transaction log:
 <img width="1508" alt="image" src="https://github.com/user-attachments/assets/ffe066fb-b970-49bf-8512-26d6f84bbd5d" />
 
+All benchmarks must serve to understand the differences in implementation or configuration. For example, knowing that both databases utilize B-Tree indexes, I've run the same with a primary key generated from uuidv7 instead of uuidv4, which clusters the documents that were inserted together. Here are the same figures as above, but now with the two runs.
+
+MongoDB uses more CPU than before, but not PostgreSQL:
+```
+ 6681 secs  141,578,546,171 cpu instr.        MongoDB (100%) - Throughput: 14.99 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench1/mongodb.out
+ 6598 secs  864,694,247,096 cpu instr.     PostgreSQL (100%) - Throughput: 15.18 docs/sec -  PostgreSQL count: 800000 size: 9530 MB ./bench1/postgres.out                                          
+ 6986 secs  261,344,461,947 cpu instr.        MongoDB (100%) - Throughput: 14.34 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench2/mongodb.out                                           
+ 6555 secs  868,021,329,554 cpu instr.     PostgreSQL (100%) - Throughput: 15.28 docs/sec -  PostgreSQL count: 800000 size: 9530 MB ./bench2/postgres.out     
+```
+<img width="1489" alt="image" src="https://github.com/user-attachments/assets/63f844a6-79b6-4988-919e-8d31edc41b5d" />
+<img width="1496" alt="image" src="https://github.com/user-attachments/assets/ce0f317d-5737-432d-8070-8213cf13f0c3" />
+
+
+
+
+
+
+
 
 
