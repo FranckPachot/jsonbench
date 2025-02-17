@@ -1,10 +1,10 @@
 CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
-c933f1c912bb   jsonbench-postgres-1   0.60%     129.3MiB / 9GiB      1.40%     1.49kB / 1.68kB   0B / 68.5MB   6
-2552316bfc85   jsonbench-mongodb-1    0.41%     79.46MiB / 9GiB      0.86%     5.69kB / 6.8kB    0B / 1.68MB   33
-ca9f60cde762   jsonbench-grafana-1    0.98%     80.48MiB / 27.2GiB   0.29%     2.12MB / 6.68MB   0B / 4.03MB   20
-9f7c19b54292   prometheus             0.05%     127.6MiB / 27.2GiB   0.46%     167MB / 3.96MB    0B / 11.6MB   14
-7aaca6038158   cadvisor               4.40%     55.55MiB / 27.2GiB   0.20%     3.11MB / 166MB    20.5kB / 0B   18
-mongodb-init-1  | Current Mongosh Log ID:	67b263019cf9cfc331837cec
+e45d7e01952c   jsonbench-grafana-1    0.91%     58.86MiB / 27.2GiB   0.21%     23.6kB / 7.52kB   0B / 156kB    18
+a66cb08632c6   jsonbench-postgres-1   0.05%     126.2MiB / 9GiB      1.37%     1.53kB / 1.68kB   0B / 67.2MB   6
+e64171e678b1   jsonbench-mongodb-1    0.38%     78.8MiB / 9GiB       0.86%     5.73kB / 6.8kB    0B / 594kB    34
+a315948819ca   prometheus             0.00%     17.55MiB / 27.2GiB   0.06%     126B / 0B         0B / 0B       12
+1983b780a500   cadvisor               2.72%     20MiB / 27.2GiB      0.07%     126B / 0B         0B / 0B       15
+mongodb-init-1  | Current Mongosh Log ID:	67b2e85ac2e44485c558b7d0
 mongodb-init-1  | Connecting to:		mongodb://mongodb:27017/?directConnection=true&appName=mongosh+2.0.2
 mongodb-init-1  | Using MongoDB:		7.0.16
 mongodb-init-1  | Using Mongosh:		2.0.2
@@ -17,75 +17,31 @@ mongodb-init-1  | You can opt-out by running the disableTelemetry() command.
 mongodb-init-1  | 
 mongodb-init-1  | ------
 mongodb-init-1  |    The server generated these startup warnings when booting
-mongodb-init-1  |    2025-02-16T22:13:21.173+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
-mongodb-init-1  |    2025-02-16T22:13:21.174+00:00: vm.max_map_count is too low
+mongodb-init-1  |    2025-02-17T07:42:18.344+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+mongodb-init-1  |    2025-02-17T07:42:18.344+00:00: vm.max_map_count is too low
 mongodb-init-1  | ------
 mongodb-init-1  | 
 mongodb-init-1  | Loading file: /dir/init.js
- Container jsonbench-mongodb-1  Running
  Container jsonbench-postgres-1  Running
- Container jsonbench-client-1  Creating
- Container jsonbench-client-5  Creating
- Container jsonbench-client-2  Creating
- Container jsonbench-client-3  Creating
- Container jsonbench-client-4  Creating
- Container jsonbench-client-6  Creating
- Container jsonbench-client-7  Creating
+ Container jsonbench-mongodb-1  Running
  Container jsonbench-client-8  Creating
- Container jsonbench-client-4  Created
- Container jsonbench-client-1  Created
- Container jsonbench-client-7  Created
- Container jsonbench-client-5  Created
+ Container jsonbench-client-4  Creating
+ Container jsonbench-client-1  Creating
+ Container jsonbench-client-6  Creating
+ Container jsonbench-client-2  Creating
+ Container jsonbench-client-7  Creating
+ Container jsonbench-client-3  Creating
+ Container jsonbench-client-5  Creating
  Container jsonbench-client-8  Created
+ Container jsonbench-client-4  Created
  Container jsonbench-client-3  Created
- Container jsonbench-client-2  Created
+ Container jsonbench-client-5  Created
+ Container jsonbench-client-7  Created
+ Container jsonbench-client-1  Created
  Container jsonbench-client-6  Created
+ Container jsonbench-client-2  Created
 Attaching to client-1, client-2, client-3, client-4, client-5, client-6, client-7, client-8
-client-2  | Current Mongosh Log ID:	67b2655df8c5f2a1707f625b
-client-2  | Using Mongosh:		2.0.2
-client-2  | 
-client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-2  | 
-client-2  | 
-client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-2  | You can opt-out by running the disableTelemetry() command.
-client-2  | 
-client-2  | Loading file: /dir/lib.js
-client-3  | Current Mongosh Log ID:	67b2655ea84a680bea578991
-client-3  | Using Mongosh:		2.0.2
-client-3  | 
-client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-3  | 
-client-3  | 
-client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-3  | You can opt-out by running the disableTelemetry() command.
-client-3  | 
-client-3  | Loading file: /dir/lib.js
-client-6  | Current Mongosh Log ID:	67b2655f2552d6a0ed014372
-client-2  | 📚 lib.js loaded
-client-2  | [2025-02-16T22:23:27.287Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-6  | Using Mongosh:		2.0.2
-client-6  | 
-client-6  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-6  | 
-client-6  | 
-client-6  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-6  | You can opt-out by running the disableTelemetry() command.
-client-6  | 
-client-6  | Loading file: /dir/lib.js
-client-7  | Current Mongosh Log ID:	67b2655f91c2ff10269c92d1
-client-3  | 📚 lib.js loaded
-client-3  | [2025-02-16T22:23:28.208Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-7  | Using Mongosh:		2.0.2
-client-7  | 
-client-7  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-7  | 
-client-7  | 
-client-7  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-7  | You can opt-out by running the disableTelemetry() command.
-client-7  | 
-client-5  | Current Mongosh Log ID:	67b26560f4af26a748a161b9
-client-7  | Loading file: /dir/lib.js
+client-5  | Current Mongosh Log ID:	67b2e864ee9ffa2c9718ece7
 client-5  | Using Mongosh:		2.0.2
 client-5  | 
 client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
@@ -95,10 +51,77 @@ client-5  | To help improve our products, anonymous usage data is collected and 
 client-5  | You can opt-out by running the disableTelemetry() command.
 client-5  | 
 client-5  | Loading file: /dir/lib.js
-client-8  | Current Mongosh Log ID:	67b265616f95e7d40f2ba05c
+client-3  | Current Mongosh Log ID:	67b2e8655e8fb63d022a3f60
+client-3  | Using Mongosh:		2.0.2
+client-3  | 
+client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-3  | 
+client-3  | 
+client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-3  | You can opt-out by running the disableTelemetry() command.
+client-3  | 
+client-3  | Loading file: /dir/lib.js
+client-1  | Current Mongosh Log ID:	67b2e866bc04d6d2aa61d631
+client-5  | 📚 lib.js loaded
+client-5  | [2025-02-17T07:42:30.809Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-1  | Loading file: /dir/lib.js
+client-6  | Current Mongosh Log ID:	67b2e867f1e9eebc7e87a4a4
+client-3  | 📚 lib.js loaded
+client-3  | [2025-02-17T07:42:31.556Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-6  | Using Mongosh:		2.0.2
+client-6  | 
+client-6  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-6  | 
+client-6  | 
+client-6  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-6  | You can opt-out by running the disableTelemetry() command.
+client-6  | 
+client-6  | Loading file: /dir/lib.js
+client-2  | Current Mongosh Log ID:	67b2e867843682d56ca45475
+client-2  | Using Mongosh:		2.0.2
+client-2  | 
+client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-2  | 
+client-2  | 
+client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-2  | You can opt-out by running the disableTelemetry() command.
+client-2  | 
+client-1  | 📚 lib.js loaded
+client-1  | [2025-02-17T07:42:32.570Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-2  | Loading file: /dir/lib.js
+client-7  | Current Mongosh Log ID:	67b2e868c020c451f1c2e21a
+client-7  | Using Mongosh:		2.0.2
+client-7  | 
+client-7  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-7  | 
+client-7  | 
+client-7  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-7  | You can opt-out by running the disableTelemetry() command.
+client-7  | 
+client-7  | Loading file: /dir/lib.js
 client-6  | 📚 lib.js loaded
-client-6  | [2025-02-16T22:23:29.347Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-4  | Current Mongosh Log ID:	67b2656110802f03b544f7b5
+client-6  | [2025-02-17T07:42:33.568Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-4  | Current Mongosh Log ID:	67b2e86938844bc8325947cc
+client-2  | 📚 lib.js loaded
+client-2  | [2025-02-17T07:42:34.190Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-4  | Using Mongosh:		2.0.2
+client-4  | 
+client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-4  | 
+client-4  | 
+client-4  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-4  | You can opt-out by running the disableTelemetry() command.
+client-4  | 
+client-4  | Loading file: /dir/lib.js
+client-8  | Current Mongosh Log ID:	67b2e86a18f09bac1800bc11
 client-8  | Using Mongosh:		2.0.2
 client-8  | 
 client-8  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
@@ -109,167 +132,156 @@ client-8  | You can opt-out by running the disableTelemetry() command.
 client-8  | 
 client-8  | Loading file: /dir/lib.js
 client-7  | 📚 lib.js loaded
-client-7  | [2025-02-16T22:23:30.248Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-4  | Using Mongosh:		2.0.2
-client-4  | 
-client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-4  | 
-client-4  | 
-client-4  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-4  | You can opt-out by running the disableTelemetry() command.
-client-4  | 
-client-4  | Loading file: /dir/lib.js
-client-1  | Current Mongosh Log ID:	67b2656218edee8a41a1e667
-client-5  | 📚 lib.js loaded
-client-5  | [2025-02-16T22:23:30.814Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-1  | Using Mongosh:		2.0.2
-client-1  | 
-client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-client-1  | 
-client-1  | 
-client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
-client-1  | You can opt-out by running the disableTelemetry() command.
-client-1  | 
-client-1  | Loading file: /dir/lib.js
-client-8  | 📚 lib.js loaded
-client-8  | [2025-02-16T22:23:31.355Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
+client-7  | [2025-02-17T07:42:34.980Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
 client-4  | 📚 lib.js loaded
-client-4  | [2025-02-16T22:23:31.927Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-1  | 📚 lib.js loaded
-client-1  | [2025-02-16T22:23:32.306Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100000 documents of 1000 bytes * 10 fields
-client-2  | ✅ Connected to MongoDB
-client-3  | ✅ Connected to MongoDB
-client-6  | ✅ Connected to MongoDB
-client-7  | ✅ Connected to MongoDB
+client-4  | [2025-02-17T07:42:35.464Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
 client-5  | ✅ Connected to MongoDB
-client-8  | ✅ Connected to MongoDB
-client-4  | ✅ Connected to MongoDB
+client-8  | 📚 lib.js loaded
+client-8  | [2025-02-17T07:42:35.928Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 100 documents of 1000 bytes * 10 fields
+client-5  | [1061484704dc] MongoDB (10%) - Throughput: 23.53 docs/sec
+client-3  | ✅ Connected to MongoDB
+client-5  | [1061484704dc] MongoDB (20%) - Throughput: 27.24 docs/sec
+client-5  | [1061484704dc] MongoDB (30%) - Throughput: 27.92 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (10%) - Throughput: 22.46 docs/sec
+client-5  | [1061484704dc] MongoDB (40%) - Throughput: 28.34 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (20%) - Throughput: 25.60 docs/sec
+client-5  | [1061484704dc] MongoDB (50%) - Throughput: 29.02 docs/sec
 client-1  | ✅ Connected to MongoDB
-[ perf record: Woken up 1 times to write data ]
-[ perf record: Captured and wrote 0.000 MB - ]
-client-3  | [3b7e78f960be] MongoDB (10%) - Throughput: 15.06 docs/sec
-client-5  | [1271d5168c5d] MongoDB (10%) - Throughput: 14.96 docs/sec
-client-4  | [86918a4cd239] MongoDB (10%) - Throughput: 14.77 docs/sec
-client-8  | [92d3a6169c36] MongoDB (10%) - Throughput: 14.71 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (10%) - Throughput: 14.73 docs/sec
-client-7  | [c05f22a6293d] MongoDB (10%) - Throughput: 14.66 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (10%) - Throughput: 14.48 docs/sec
-client-6  | [b5169050126e] MongoDB (10%) - Throughput: 14.47 docs/sec
-client-3  | [3b7e78f960be] MongoDB (20%) - Throughput: 15.03 docs/sec
-client-5  | [1271d5168c5d] MongoDB (20%) - Throughput: 14.94 docs/sec
-client-4  | [86918a4cd239] MongoDB (20%) - Throughput: 14.76 docs/sec
-client-7  | [c05f22a6293d] MongoDB (20%) - Throughput: 14.71 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (20%) - Throughput: 14.73 docs/sec
-client-8  | [92d3a6169c36] MongoDB (20%) - Throughput: 14.67 docs/sec
-client-6  | [b5169050126e] MongoDB (20%) - Throughput: 14.47 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (20%) - Throughput: 14.43 docs/sec
-client-3  | [3b7e78f960be] MongoDB (30%) - Throughput: 15.02 docs/sec
-client-5  | [1271d5168c5d] MongoDB (30%) - Throughput: 14.93 docs/sec
-client-4  | [86918a4cd239] MongoDB (30%) - Throughput: 14.77 docs/sec
-client-7  | [c05f22a6293d] MongoDB (30%) - Throughput: 14.68 docs/sec
-client-8  | [92d3a6169c36] MongoDB (30%) - Throughput: 14.69 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (30%) - Throughput: 14.69 docs/sec
-client-6  | [b5169050126e] MongoDB (30%) - Throughput: 14.45 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (30%) - Throughput: 14.42 docs/sec
-client-3  | [3b7e78f960be] MongoDB (40%) - Throughput: 14.99 docs/sec
-client-5  | [1271d5168c5d] MongoDB (40%) - Throughput: 14.92 docs/sec
-client-4  | [86918a4cd239] MongoDB (40%) - Throughput: 14.74 docs/sec
-client-7  | [c05f22a6293d] MongoDB (40%) - Throughput: 14.68 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (40%) - Throughput: 14.69 docs/sec
-client-8  | [92d3a6169c36] MongoDB (40%) - Throughput: 14.68 docs/sec
-client-6  | [b5169050126e] MongoDB (40%) - Throughput: 14.44 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (40%) - Throughput: 14.41 docs/sec
-client-3  | [3b7e78f960be] MongoDB (50%) - Throughput: 14.96 docs/sec
-client-5  | [1271d5168c5d] MongoDB (50%) - Throughput: 14.92 docs/sec
-client-4  | [86918a4cd239] MongoDB (50%) - Throughput: 14.73 docs/sec
-client-7  | [c05f22a6293d] MongoDB (50%) - Throughput: 14.71 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (50%) - Throughput: 14.70 docs/sec
-client-8  | [92d3a6169c36] MongoDB (50%) - Throughput: 14.66 docs/sec
-client-6  | [b5169050126e] MongoDB (50%) - Throughput: 14.45 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (50%) - Throughput: 14.40 docs/sec
-client-3  | [3b7e78f960be] MongoDB (60%) - Throughput: 14.96 docs/sec
-client-5  | [1271d5168c5d] MongoDB (60%) - Throughput: 14.93 docs/sec
-client-7  | [c05f22a6293d] MongoDB (60%) - Throughput: 14.72 docs/sec
-client-4  | [86918a4cd239] MongoDB (60%) - Throughput: 14.71 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (60%) - Throughput: 14.71 docs/sec
-client-8  | [92d3a6169c36] MongoDB (60%) - Throughput: 14.65 docs/sec
-client-6  | [b5169050126e] MongoDB (60%) - Throughput: 14.43 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (60%) - Throughput: 14.41 docs/sec
-client-3  | [3b7e78f960be] MongoDB (70%) - Throughput: 14.92 docs/sec
-client-5  | [1271d5168c5d] MongoDB (70%) - Throughput: 14.90 docs/sec
-client-7  | [c05f22a6293d] MongoDB (70%) - Throughput: 14.66 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (70%) - Throughput: 14.66 docs/sec
-client-4  | [86918a4cd239] MongoDB (70%) - Throughput: 14.61 docs/sec
-client-8  | [92d3a6169c36] MongoDB (70%) - Throughput: 14.60 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (70%) - Throughput: 14.35 docs/sec
-client-6  | [b5169050126e] MongoDB (70%) - Throughput: 14.34 docs/sec
-client-5  | [1271d5168c5d] MongoDB (80%) - Throughput: 14.81 docs/sec
-client-3  | [3b7e78f960be] MongoDB (80%) - Throughput: 14.80 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (80%) - Throughput: 14.57 docs/sec
-client-7  | [c05f22a6293d] MongoDB (80%) - Throughput: 14.55 docs/sec
-client-8  | [92d3a6169c36] MongoDB (80%) - Throughput: 14.52 docs/sec
-client-4  | [86918a4cd239] MongoDB (80%) - Throughput: 14.50 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (80%) - Throughput: 14.25 docs/sec
-client-6  | [b5169050126e] MongoDB (80%) - Throughput: 14.22 docs/sec
-client-5  | [1271d5168c5d] MongoDB (90%) - Throughput: 14.74 docs/sec
-client-3  | [3b7e78f960be] MongoDB (90%) - Throughput: 14.69 docs/sec
-client-1  | [fdacf9eab94e] MongoDB (90%) - Throughput: 14.52 docs/sec
-client-7  | [c05f22a6293d] MongoDB (90%) - Throughput: 14.47 docs/sec
-client-8  | [92d3a6169c36] MongoDB (90%) - Throughput: 14.42 docs/sec
-client-4  | [86918a4cd239] MongoDB (90%) - Throughput: 14.41 docs/sec
-client-2  | [f5db7e92a7c6] MongoDB (90%) - Throughput: 14.20 docs/sec
-client-6  | [b5169050126e] MongoDB (90%) - Throughput: 14.14 docs/sec
-client-5  | [1271d5168c5d] MongoDB (100%) - Throughput: 14.73 docs/sec
-client-5  | ✅ Inserted 100000 records into MongoDB
+client-3  | [680b7d9f6a8b] MongoDB (30%) - Throughput: 26.34 docs/sec
+client-5  | [1061484704dc] MongoDB (60%) - Throughput: 29.05 docs/sec
+client-1  | [877d7021918d] MongoDB (10%) - Throughput: 22.88 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (40%) - Throughput: 26.82 docs/sec
+client-5  | [1061484704dc] MongoDB (70%) - Throughput: 28.69 docs/sec
+client-1  | [877d7021918d] MongoDB (20%) - Throughput: 25.95 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (50%) - Throughput: 27.07 docs/sec
+client-6  | ✅ Connected to MongoDB
+client-5  | [1061484704dc] MongoDB (80%) - Throughput: 28.95 docs/sec
+client-1  | [877d7021918d] MongoDB (30%) - Throughput: 26.18 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (60%) - Throughput: 27.07 docs/sec
+client-5  | [1061484704dc] MongoDB (90%) - Throughput: 28.32 docs/sec
+client-6  | [2e0e55936286] MongoDB (10%) - Throughput: 19.66 docs/sec
+client-1  | [877d7021918d] MongoDB (40%) - Throughput: 26.37 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (70%) - Throughput: 26.64 docs/sec
+client-2  | ✅ Connected to MongoDB
+client-5  | [1061484704dc] MongoDB (100%) - Throughput: 27.97 docs/sec
+client-5  | ✅ Inserted 100 records into MongoDB
 client-5  | ✅ MongoDB Connection closed
-client-5  | [2025-02-17T00:16:45.032Z] 🏁 Data insertion completed in 6794.22 seconds
+client-5  | [2025-02-17T07:42:39.488Z] 🏁 Data insertion completed in 8.68 seconds
+client-6  | [2e0e55936286] MongoDB (20%) - Throughput: 21.94 docs/sec
+client-1  | [877d7021918d] MongoDB (50%) - Throughput: 25.12 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (80%) - Throughput: 25.85 docs/sec
 [Kclient-5 exited with code 0
-client-3  | [3b7e78f960be] MongoDB (100%) - Throughput: 14.66 docs/sec
-client-3  | ✅ Inserted 100000 records into MongoDB
+client-2  | [a0fa4043e02a] MongoDB (10%) - Throughput: 16.66 docs/sec
+client-6  | [2e0e55936286] MongoDB (30%) - Throughput: 22.83 docs/sec
+client-1  | [877d7021918d] MongoDB (60%) - Throughput: 25.67 docs/sec
+client-7  | ✅ Connected to MongoDB
+client-3  | [680b7d9f6a8b] MongoDB (90%) - Throughput: 26.07 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (20%) - Throughput: 19.68 docs/sec
+client-6  | [2e0e55936286] MongoDB (40%) - Throughput: 22.30 docs/sec
+client-3  | [680b7d9f6a8b] MongoDB (100%) - Throughput: 25.70 docs/sec
+client-3  | ✅ Inserted 100 records into MongoDB
 client-3  | ✅ MongoDB Connection closed
-client-3  | [2025-02-17T00:17:12.339Z] 🏁 Data insertion completed in 6824.13 seconds
+client-3  | [2025-02-17T07:42:40.519Z] 🏁 Data insertion completed in 8.96 seconds
+client-4  | ✅ Connected to MongoDB
+client-7  | [970547f0cb24] MongoDB (10%) - Throughput: 18.36 docs/sec
+client-1  | [877d7021918d] MongoDB (70%) - Throughput: 23.69 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (30%) - Throughput: 20.65 docs/sec
 [Kclient-3 exited with code 0
-client-1  | [fdacf9eab94e] MongoDB (100%) - Throughput: 14.56 docs/sec
-client-1  | ✅ Inserted 100000 records into MongoDB
+client-8  | ✅ Connected to MongoDB
+client-7  | [970547f0cb24] MongoDB (20%) - Throughput: 20.18 docs/sec
+client-1  | [877d7021918d] MongoDB (80%) - Throughput: 23.63 docs/sec
+client-6  | [2e0e55936286] MongoDB (50%) - Throughput: 20.75 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (40%) - Throughput: 21.52 docs/sec
+client-4  | [745a4283052f] MongoDB (10%) - Throughput: 12.97 docs/sec
+client-1  | [877d7021918d] MongoDB (90%) - Throughput: 23.87 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (50%) - Throughput: 22.33 docs/sec
+client-7  | [970547f0cb24] MongoDB (30%) - Throughput: 18.73 docs/sec
+client-6  | [2e0e55936286] MongoDB (60%) - Throughput: 19.94 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (10%) - Throughput: 12.64 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (60%) - Throughput: 22.71 docs/sec
+client-1  | [877d7021918d] MongoDB (100%) - Throughput: 23.44 docs/sec
+client-1  | ✅ Inserted 100 records into MongoDB
+client-4  | [745a4283052f] MongoDB (20%) - Throughput: 14.12 docs/sec
 client-1  | ✅ MongoDB Connection closed
-client-1  | [2025-02-17T00:18:07.003Z] 🏁 Data insertion completed in 6874.70 seconds
+client-1  | [2025-02-17T07:42:41.941Z] 🏁 Data insertion completed in 9.37 seconds
+client-6  | [2e0e55936286] MongoDB (70%) - Throughput: 20.12 docs/sec
+client-7  | [970547f0cb24] MongoDB (40%) - Throughput: 18.62 docs/sec
 [Kclient-1 exited with code 0
-client-7  | [c05f22a6293d] MongoDB (100%) - Throughput: 14.51 docs/sec
-client-7  | ✅ Inserted 100000 records into MongoDB
-client-7  | ✅ MongoDB Connection closed
-client-7  | [2025-02-17T00:18:26.302Z] 🏁 Data insertion completed in 6896.05 seconds
-[Kclient-7 exited with code 0
-client-8  | [92d3a6169c36] MongoDB (100%) - Throughput: 14.47 docs/sec
-client-8  | ✅ Inserted 100000 records into MongoDB
-client-8  | ✅ MongoDB Connection closed
-client-8  | [2025-02-17T00:18:46.484Z] 🏁 Data insertion completed in 6915.13 seconds
-[Kclient-8 exited with code 0
-client-4  | [86918a4cd239] MongoDB (100%) - Throughput: 14.47 docs/sec
-client-4  | ✅ Inserted 100000 records into MongoDB
-client-4  | ✅ MongoDB Connection closed
-client-4  | [2025-02-17T00:18:48.833Z] 🏁 Data insertion completed in 6916.91 seconds
-[Kclient-4 exited with code 0
-client-2  | [f5db7e92a7c6] MongoDB (100%) - Throughput: 14.37 docs/sec
-client-2  | ✅ Inserted 100000 records into MongoDB
-client-2  | ✅ MongoDB Connection closed
-client-2  | [2025-02-17T00:19:29.932Z] 🏁 Data insertion completed in 6962.65 seconds
-[Kclient-2 exited with code 0
-client-6  | [b5169050126e] MongoDB (100%) - Throughput: 14.34 docs/sec
-client-6  | ✅ Inserted 100000 records into MongoDB
+client-8  | [80f2f8b901fa] MongoDB (20%) - Throughput: 15.58 docs/sec
+client-6  | [2e0e55936286] MongoDB (80%) - Throughput: 20.90 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (70%) - Throughput: 21.53 docs/sec
+client-7  | [970547f0cb24] MongoDB (50%) - Throughput: 19.94 docs/sec
+client-4  | [745a4283052f] MongoDB (30%) - Throughput: 14.74 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (30%) - Throughput: 18.02 docs/sec
+client-6  | [2e0e55936286] MongoDB (90%) - Throughput: 21.50 docs/sec
+client-7  | [970547f0cb24] MongoDB (60%) - Throughput: 20.84 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (40%) - Throughput: 19.66 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (80%) - Throughput: 20.80 docs/sec
+client-4  | [745a4283052f] MongoDB (40%) - Throughput: 14.86 docs/sec
+client-6  | [2e0e55936286] MongoDB (100%) - Throughput: 21.91 docs/sec
+client-6  | ✅ Inserted 100 records into MongoDB
 client-6  | ✅ MongoDB Connection closed
-client-6  | [2025-02-17T00:19:49.518Z] 🏁 Data insertion completed in 6980.17 seconds
+client-6  | [2025-02-17T07:42:43.226Z] 🏁 Data insertion completed in 9.66 seconds
+client-7  | [970547f0cb24] MongoDB (70%) - Throughput: 21.14 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (50%) - Throughput: 20.66 docs/sec
 [Kclient-6 exited with code 0
+client-2  | [a0fa4043e02a] MongoDB (90%) - Throughput: 20.63 docs/sec
+client-4  | [745a4283052f] MongoDB (50%) - Throughput: 15.88 docs/sec
+client-7  | [970547f0cb24] MongoDB (80%) - Throughput: 21.80 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (60%) - Throughput: 21.33 docs/sec
+client-2  | [a0fa4043e02a] MongoDB (100%) - Throughput: 21.20 docs/sec
+client-2  | ✅ Inserted 100 records into MongoDB
+client-2  | ✅ MongoDB Connection closed
+client-2  | [2025-02-17T07:42:43.998Z] 🏁 Data insertion completed in 9.81 seconds
+client-4  | [745a4283052f] MongoDB (60%) - Throughput: 17.05 docs/sec
+client-7  | [970547f0cb24] MongoDB (90%) - Throughput: 22.13 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (70%) - Throughput: 21.91 docs/sec
+[Kclient-2 exited with code 0
+client-4  | [745a4283052f] MongoDB (70%) - Throughput: 17.87 docs/sec
+client-7  | [970547f0cb24] MongoDB (100%) - Throughput: 22.55 docs/sec
+client-7  | ✅ Inserted 100 records into MongoDB
+client-7  | ✅ MongoDB Connection closed
+client-7  | [2025-02-17T07:42:44.487Z] 🏁 Data insertion completed in 9.51 seconds
+client-8  | [80f2f8b901fa] MongoDB (80%) - Throughput: 22.67 docs/sec
+[Kclient-7 exited with code 0
+client-4  | [745a4283052f] MongoDB (80%) - Throughput: 18.83 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (90%) - Throughput: 23.13 docs/sec
+client-4  | [745a4283052f] MongoDB (90%) - Throughput: 19.65 docs/sec
+client-8  | [80f2f8b901fa] MongoDB (100%) - Throughput: 23.76 docs/sec
+client-8  | ✅ Inserted 100 records into MongoDB
+client-8  | ✅ MongoDB Connection closed
+client-8  | [2025-02-17T07:42:45.222Z] 🏁 Data insertion completed in 9.29 seconds
+client-4  | [745a4283052f] MongoDB (100%) - Throughput: 20.28 docs/sec
+client-4  | ✅ Inserted 100 records into MongoDB
+client-4  | ✅ MongoDB Connection closed
+client-4  | [2025-02-17T07:42:45.462Z] 🏁 Data insertion completed in 10.00 seconds
+[Kclient-8 exited with code 0
+[Kclient-4 exited with code 0
 
  Performance counter stats for 'system wide':
 
-   261,344,461,947      instructions:u            docker/2552316bfc85df79471f3155cbf3569abe8a16d19c9ba6abe7405b60cb72ff7e                                   
+       187,378,612      instructions:u            docker/e64171e678b154e87ef7bd49cbb63f387e88afd8a97b0022e8f0c2689d3cee39                                   
 
-    6986.023265056 seconds time elapsed
+      18.627419131 seconds time elapsed
 
-MongoDB count: 800000 size: 7761 MB
-CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
-c933f1c912bb   jsonbench-postgres-1   0.00%     129.9MiB / 9GiB      1.41%     1.87kB / 1.68kB   0B / 68.5MB       6
-2552316bfc85   jsonbench-mongodb-1    0.90%     5.872GiB / 9GiB      65.25%    8.35GB / 146MB    4.84GB / 57.2GB   33
-ca9f60cde762   jsonbench-grafana-1    0.80%     73.9MiB / 27.2GiB    0.27%     2.9MB / 8.32MB    0B / 5.06MB       20
-9f7c19b54292   prometheus             0.00%     97.22MiB / 27.2GiB   0.35%     240MB / 5.75MB    0B / 24MB         14
-7aaca6038158   cadvisor               27.92%    60.57MiB / 27.2GiB   0.22%     4.49MB / 239MB    20.5kB / 0B       18
+MongoDB count: 800 size: 8 MB
+[
+  { _id: '0058fee6-c7d9-4e1a-a692-f3ae2d4e45e8' },
+  { _id: '01214a25-62fa-4398-9e35-dcf436f868bd' },
+  { _id: '013e66d8-592f-44b2-99a0-e621c9c0ce75' },
+  { _id: '015e1309-0b20-48b5-ac39-52a9c2464ffb' },
+  { _id: '023a95c0-30b0-4759-a5fd-804315a56fbd' },
+  { _id: '025c3d74-0ad8-4a8a-9700-aded02eecf29' },
+  { _id: '029a09b1-25a0-44ec-b450-e66aa2fba164' },
+  { _id: '02e27df9-180a-410c-bf8e-86b460eb88a2' },
+  { _id: '0316ff04-8346-4212-afc8-56ec115da8db' },
+  { _id: '032320a9-38d5-4791-96d2-57d485355251' }
+]
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
+e45d7e01952c   jsonbench-grafana-1    0.96%     58.94MiB / 27.2GiB   0.21%     27.9kB / 9.4kB    0B / 156kB    18
+a66cb08632c6   jsonbench-postgres-1   0.04%     126.3MiB / 9GiB      1.37%     1.95kB / 1.68kB   0B / 67.3MB   6
+e64171e678b1   jsonbench-mongodb-1    1.48%     93.79MiB / 9GiB      1.02%     8.36MB / 200kB    0B / 9.63MB   33
+a315948819ca   prometheus             0.00%     58.89MiB / 27.2GiB   0.21%     279kB / 5.69kB    0B / 0B       13
+1983b780a500   cadvisor               2.14%     36.04MiB / 27.2GiB   0.13%     6.2kB / 279kB     0B / 0B       17
+[ perf record: Woken up 3 times to write data ]
+[ perf record: Captured and wrote 0.000 MB - ]

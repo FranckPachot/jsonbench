@@ -12,8 +12,8 @@ export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
 # for quick tests
-# export SLEEP=5
-# export BENCH_DOCS=100
+ # export SLEEP=5
+ # export BENCH_DOCS=100
 
 # reset all
 docker compose -p jsonbench down --remove-orphans --volumes
@@ -84,6 +84,7 @@ perf stat -e instructions:u -G docker/$(
 ) -a docker compose -p jsonbench up client --scale client=$CLIENTS 
 
 docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
+ vacuum analyze jsonbench;
  select 'PostgreSQL count: ' || count(*) || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from jsonbench;
  select id from jsonbench limit 10;
  " 
