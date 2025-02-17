@@ -147,3 +147,129 @@ client-4  | ✅ Connected to MongoDB
 client-1  | ✅ Connected to MongoDB
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 0.000 MB - ]
+client-3  | [3b7e78f960be] MongoDB (10%) - Throughput: 15.06 docs/sec
+client-5  | [1271d5168c5d] MongoDB (10%) - Throughput: 14.96 docs/sec
+client-4  | [86918a4cd239] MongoDB (10%) - Throughput: 14.77 docs/sec
+client-8  | [92d3a6169c36] MongoDB (10%) - Throughput: 14.71 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (10%) - Throughput: 14.73 docs/sec
+client-7  | [c05f22a6293d] MongoDB (10%) - Throughput: 14.66 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (10%) - Throughput: 14.48 docs/sec
+client-6  | [b5169050126e] MongoDB (10%) - Throughput: 14.47 docs/sec
+client-3  | [3b7e78f960be] MongoDB (20%) - Throughput: 15.03 docs/sec
+client-5  | [1271d5168c5d] MongoDB (20%) - Throughput: 14.94 docs/sec
+client-4  | [86918a4cd239] MongoDB (20%) - Throughput: 14.76 docs/sec
+client-7  | [c05f22a6293d] MongoDB (20%) - Throughput: 14.71 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (20%) - Throughput: 14.73 docs/sec
+client-8  | [92d3a6169c36] MongoDB (20%) - Throughput: 14.67 docs/sec
+client-6  | [b5169050126e] MongoDB (20%) - Throughput: 14.47 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (20%) - Throughput: 14.43 docs/sec
+client-3  | [3b7e78f960be] MongoDB (30%) - Throughput: 15.02 docs/sec
+client-5  | [1271d5168c5d] MongoDB (30%) - Throughput: 14.93 docs/sec
+client-4  | [86918a4cd239] MongoDB (30%) - Throughput: 14.77 docs/sec
+client-7  | [c05f22a6293d] MongoDB (30%) - Throughput: 14.68 docs/sec
+client-8  | [92d3a6169c36] MongoDB (30%) - Throughput: 14.69 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (30%) - Throughput: 14.69 docs/sec
+client-6  | [b5169050126e] MongoDB (30%) - Throughput: 14.45 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (30%) - Throughput: 14.42 docs/sec
+client-3  | [3b7e78f960be] MongoDB (40%) - Throughput: 14.99 docs/sec
+client-5  | [1271d5168c5d] MongoDB (40%) - Throughput: 14.92 docs/sec
+client-4  | [86918a4cd239] MongoDB (40%) - Throughput: 14.74 docs/sec
+client-7  | [c05f22a6293d] MongoDB (40%) - Throughput: 14.68 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (40%) - Throughput: 14.69 docs/sec
+client-8  | [92d3a6169c36] MongoDB (40%) - Throughput: 14.68 docs/sec
+client-6  | [b5169050126e] MongoDB (40%) - Throughput: 14.44 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (40%) - Throughput: 14.41 docs/sec
+client-3  | [3b7e78f960be] MongoDB (50%) - Throughput: 14.96 docs/sec
+client-5  | [1271d5168c5d] MongoDB (50%) - Throughput: 14.92 docs/sec
+client-4  | [86918a4cd239] MongoDB (50%) - Throughput: 14.73 docs/sec
+client-7  | [c05f22a6293d] MongoDB (50%) - Throughput: 14.71 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (50%) - Throughput: 14.70 docs/sec
+client-8  | [92d3a6169c36] MongoDB (50%) - Throughput: 14.66 docs/sec
+client-6  | [b5169050126e] MongoDB (50%) - Throughput: 14.45 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (50%) - Throughput: 14.40 docs/sec
+client-3  | [3b7e78f960be] MongoDB (60%) - Throughput: 14.96 docs/sec
+client-5  | [1271d5168c5d] MongoDB (60%) - Throughput: 14.93 docs/sec
+client-7  | [c05f22a6293d] MongoDB (60%) - Throughput: 14.72 docs/sec
+client-4  | [86918a4cd239] MongoDB (60%) - Throughput: 14.71 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (60%) - Throughput: 14.71 docs/sec
+client-8  | [92d3a6169c36] MongoDB (60%) - Throughput: 14.65 docs/sec
+client-6  | [b5169050126e] MongoDB (60%) - Throughput: 14.43 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (60%) - Throughput: 14.41 docs/sec
+client-3  | [3b7e78f960be] MongoDB (70%) - Throughput: 14.92 docs/sec
+client-5  | [1271d5168c5d] MongoDB (70%) - Throughput: 14.90 docs/sec
+client-7  | [c05f22a6293d] MongoDB (70%) - Throughput: 14.66 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (70%) - Throughput: 14.66 docs/sec
+client-4  | [86918a4cd239] MongoDB (70%) - Throughput: 14.61 docs/sec
+client-8  | [92d3a6169c36] MongoDB (70%) - Throughput: 14.60 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (70%) - Throughput: 14.35 docs/sec
+client-6  | [b5169050126e] MongoDB (70%) - Throughput: 14.34 docs/sec
+client-5  | [1271d5168c5d] MongoDB (80%) - Throughput: 14.81 docs/sec
+client-3  | [3b7e78f960be] MongoDB (80%) - Throughput: 14.80 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (80%) - Throughput: 14.57 docs/sec
+client-7  | [c05f22a6293d] MongoDB (80%) - Throughput: 14.55 docs/sec
+client-8  | [92d3a6169c36] MongoDB (80%) - Throughput: 14.52 docs/sec
+client-4  | [86918a4cd239] MongoDB (80%) - Throughput: 14.50 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (80%) - Throughput: 14.25 docs/sec
+client-6  | [b5169050126e] MongoDB (80%) - Throughput: 14.22 docs/sec
+client-5  | [1271d5168c5d] MongoDB (90%) - Throughput: 14.74 docs/sec
+client-3  | [3b7e78f960be] MongoDB (90%) - Throughput: 14.69 docs/sec
+client-1  | [fdacf9eab94e] MongoDB (90%) - Throughput: 14.52 docs/sec
+client-7  | [c05f22a6293d] MongoDB (90%) - Throughput: 14.47 docs/sec
+client-8  | [92d3a6169c36] MongoDB (90%) - Throughput: 14.42 docs/sec
+client-4  | [86918a4cd239] MongoDB (90%) - Throughput: 14.41 docs/sec
+client-2  | [f5db7e92a7c6] MongoDB (90%) - Throughput: 14.20 docs/sec
+client-6  | [b5169050126e] MongoDB (90%) - Throughput: 14.14 docs/sec
+client-5  | [1271d5168c5d] MongoDB (100%) - Throughput: 14.73 docs/sec
+client-5  | ✅ Inserted 100000 records into MongoDB
+client-5  | ✅ MongoDB Connection closed
+client-5  | [2025-02-17T00:16:45.032Z] 🏁 Data insertion completed in 6794.22 seconds
+[Kclient-5 exited with code 0
+client-3  | [3b7e78f960be] MongoDB (100%) - Throughput: 14.66 docs/sec
+client-3  | ✅ Inserted 100000 records into MongoDB
+client-3  | ✅ MongoDB Connection closed
+client-3  | [2025-02-17T00:17:12.339Z] 🏁 Data insertion completed in 6824.13 seconds
+[Kclient-3 exited with code 0
+client-1  | [fdacf9eab94e] MongoDB (100%) - Throughput: 14.56 docs/sec
+client-1  | ✅ Inserted 100000 records into MongoDB
+client-1  | ✅ MongoDB Connection closed
+client-1  | [2025-02-17T00:18:07.003Z] 🏁 Data insertion completed in 6874.70 seconds
+[Kclient-1 exited with code 0
+client-7  | [c05f22a6293d] MongoDB (100%) - Throughput: 14.51 docs/sec
+client-7  | ✅ Inserted 100000 records into MongoDB
+client-7  | ✅ MongoDB Connection closed
+client-7  | [2025-02-17T00:18:26.302Z] 🏁 Data insertion completed in 6896.05 seconds
+[Kclient-7 exited with code 0
+client-8  | [92d3a6169c36] MongoDB (100%) - Throughput: 14.47 docs/sec
+client-8  | ✅ Inserted 100000 records into MongoDB
+client-8  | ✅ MongoDB Connection closed
+client-8  | [2025-02-17T00:18:46.484Z] 🏁 Data insertion completed in 6915.13 seconds
+[Kclient-8 exited with code 0
+client-4  | [86918a4cd239] MongoDB (100%) - Throughput: 14.47 docs/sec
+client-4  | ✅ Inserted 100000 records into MongoDB
+client-4  | ✅ MongoDB Connection closed
+client-4  | [2025-02-17T00:18:48.833Z] 🏁 Data insertion completed in 6916.91 seconds
+[Kclient-4 exited with code 0
+client-2  | [f5db7e92a7c6] MongoDB (100%) - Throughput: 14.37 docs/sec
+client-2  | ✅ Inserted 100000 records into MongoDB
+client-2  | ✅ MongoDB Connection closed
+client-2  | [2025-02-17T00:19:29.932Z] 🏁 Data insertion completed in 6962.65 seconds
+[Kclient-2 exited with code 0
+client-6  | [b5169050126e] MongoDB (100%) - Throughput: 14.34 docs/sec
+client-6  | ✅ Inserted 100000 records into MongoDB
+client-6  | ✅ MongoDB Connection closed
+client-6  | [2025-02-17T00:19:49.518Z] 🏁 Data insertion completed in 6980.17 seconds
+[Kclient-6 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+   261,344,461,947      instructions:u            docker/2552316bfc85df79471f3155cbf3569abe8a16d19c9ba6abe7405b60cb72ff7e                                   
+
+    6986.023265056 seconds time elapsed
+
+MongoDB count: 800000 size: 7761 MB
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+c933f1c912bb   jsonbench-postgres-1   0.00%     129.9MiB / 9GiB      1.41%     1.87kB / 1.68kB   0B / 68.5MB       6
+2552316bfc85   jsonbench-mongodb-1    0.90%     5.872GiB / 9GiB      65.25%    8.35GB / 146MB    4.84GB / 57.2GB   33
+ca9f60cde762   jsonbench-grafana-1    0.80%     73.9MiB / 27.2GiB    0.27%     2.9MB / 8.32MB    0B / 5.06MB       20
+9f7c19b54292   prometheus             0.00%     97.22MiB / 27.2GiB   0.35%     240MB / 5.75MB    0B / 24MB         14
+7aaca6038158   cadvisor               27.92%    60.57MiB / 27.2GiB   0.22%     4.49MB / 239MB    20.5kB / 0B       18

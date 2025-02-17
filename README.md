@@ -5,8 +5,8 @@ Small benchmark to run same workload on MongoDB and PostgreSQL and compare CPU u
 ## example
 
 `runme.sh` contains an example
-- bench1: with uuidv4 for the primary key
-- bench2: with uuidv7 for the primary key
+- bench1: with uuidv7 for the primary key
+- bench2: with uuidv4 for the primary key
 
 Below are the result for inserting 1000 documents (10 attributes of 1000 characters) from 8 threads. This doesn't saturate the database because the clients are busy generating the documents and sending them to the database server. The advantage of using the same client code is to get the same thoughput when running on both databases, so that we can analyze the ressources used by those databases. Because the PostgreSQL defaults are not optimal, it was set with a memory allocation similar to the MongoDB instance, and similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. MongoDB writes with checksums to be able to detect storage failures, it is not the default in PostgreSQL but must be set when when we care about data, so it was set for this benchmark. MongoDB compresses the WAL with snappy but no compression was set for PostgreSQL as it would increase the memory usage which is already higher.
 
@@ -73,19 +73,19 @@ MongoDB [flamegraph](https://share.firefox.dev/3X3PFGM) shows time spend in Wire
 PostgreSQL [flamegraph](https://share.firefox.dev/4hFWMgD) shows time spend in TOAST compression and transaction log:
 <img width="1508" alt="image" src="https://github.com/user-attachments/assets/ffe066fb-b970-49bf-8512-26d6f84bbd5d" />
 
-All benchmarks must serve to understand the differences in implementation or configuration. For example, knowing that both databases utilize B-Tree indexes, I've run the same with a primary key generated from uuidv7 instead of uuidv4, which clusters the documents that were inserted together. Here are the same figures as above, but now with the two runs.
+All benchmarks must serve to understand the differences in implementation or configuration. For example, knowing that both databases utilize B-Tree indexes, I've run the same with a primary key generated from uuidv4 instead of uuidv7, which scatters the documents that were inserted together. Here are the same figures as above, but now with the two runs.
 
-MongoDB uses more CPU than before, but not PostgreSQL:
+MongoDB uses more CPU than before:
 ```
  6681 secs  141,578,546,171 cpu instr.        MongoDB (100%) - Throughput: 14.99 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench1/mongodb.out
  6986 secs  261,344,461,947 cpu instr.        MongoDB (100%) - Throughput: 14.34 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench2/mongodb.out                                           
 ```
 <img width="1498" alt="image" src="https://github.com/user-attachments/assets/fd548529-6484-44ff-831b-71bd80026c43" />
 
-Memory:
+Memory is similar, as limited by the cache settings:
 <img width="1123" alt="image" src="https://github.com/user-attachments/assets/afdb1e6b-c0a0-4569-b454-9716eb27d0f5" />
 
-Apparently it had to read more:
+There was more reads, probably because less cache hits:
 <img width="1503" alt="image" src="https://github.com/user-attachments/assets/d39a47de-f7a4-4e3f-830b-a08caa5c515a" />
 
 
