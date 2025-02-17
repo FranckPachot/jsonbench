@@ -54,6 +54,7 @@ perf stat -e instructions:u -G docker/$(
 
 docker compose -p jsonbench run -i --rm mongodb mongosh --host mongodb --eval '
  print("MongoDB count: "+db.runCommand({ collStats: "jsonbench" }).count+" size: "+Math.round(db.runCommand({ collStats: "jsonbench" }).size/1024/1024) + " MB")
+ db.jsonbench.find({},{"_id":1}).limit(10);
 '
 
 docker stats --no-stream
@@ -83,7 +84,8 @@ perf stat -e instructions:u -G docker/$(
 ) -a docker compose -p jsonbench up client --scale client=$CLIENTS 
 
 docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
- select 'PostgreSQL count: ' || count(*) || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from jsonbench
+ select 'PostgreSQL count: ' || count(*) || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from jsonbench;
+ select id from jsonbench limit 10;
  " 
 
 docker stats --no-stream
