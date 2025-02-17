@@ -78,12 +78,18 @@ All benchmarks must serve to understand the differences in implementation or con
 MongoDB uses more CPU than before, but not PostgreSQL:
 ```
  6681 secs  141,578,546,171 cpu instr.        MongoDB (100%) - Throughput: 14.99 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench1/mongodb.out
- 6598 secs  864,694,247,096 cpu instr.     PostgreSQL (100%) - Throughput: 15.18 docs/sec -  PostgreSQL count: 800000 size: 9530 MB ./bench1/postgres.out                                          
  6986 secs  261,344,461,947 cpu instr.        MongoDB (100%) - Throughput: 14.34 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench2/mongodb.out                                           
- 6555 secs  868,021,329,554 cpu instr.     PostgreSQL (100%) - Throughput: 15.28 docs/sec -  PostgreSQL count: 800000 size: 9530 MB ./bench2/postgres.out     
 ```
-<img width="1489" alt="image" src="https://github.com/user-attachments/assets/63f844a6-79b6-4988-919e-8d31edc41b5d" />
-<img width="1496" alt="image" src="https://github.com/user-attachments/assets/ce0f317d-5737-432d-8070-8213cf13f0c3" />
+<img width="1498" alt="image" src="https://github.com/user-attachments/assets/fd548529-6484-44ff-831b-71bd80026c43" />
+
+Memory:
+<img width="1123" alt="image" src="https://github.com/user-attachments/assets/afdb1e6b-c0a0-4569-b454-9716eb27d0f5" />
+
+Apparently it had to read more:
+<img width="1503" alt="image" src="https://github.com/user-attachments/assets/d39a47de-f7a4-4e3f-830b-a08caa5c515a" />
+
+
+
 
 
 
