@@ -2,7 +2,9 @@
 
 A small benchmark used to run the same workload on MongoDB and PostgreSQL and compare CPU usage and other resource usage metrics.
 
-## example
+_This is a work in progress, and the goal is to show how to compare databases on specific workloads, based on facts and knowing the context, and not to give general results. It is called JSONBench because it is a frequent question to compare storing documents in MongoDB, a document database, or in PostgreSQL, a SQL database with a JSONB datatype_
+
+## Example
 
 `runme.sh` contains an example
 - bench1: with uuidv7 for the primary key (values are sequential on time)
