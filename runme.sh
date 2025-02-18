@@ -12,8 +12,8 @@ export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
 # for quick tests
- # export SLEEP=1
- # export BENCH_DOCS=100
+  export SLEEP=1
+  export BENCH_DOCS=100
 
 # reset all
 docker compose -p jsonbench down --remove-orphans --volumes

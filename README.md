@@ -9,6 +9,8 @@ _This is a work in progress, and the goal is to show how to compare databases on
 `runme.sh` contains an example
 - bench1: with uuidv7 for the primary key (values are sequential on time)
 - bench2: with uuidv4 for the primary key (values are random)
+- bench3: with default primary key for ongoDB and a cache s100 sequence for PostgreSQL
+- bench4: same as bench2 with non-clusterd index on MongoDB (reduces the impact of random uuid?)
 
 Here are the outcomes of bench1 when inserting 1,000 documents (with 10 attributes, each 1,000 characters) across eight threads. This does not overwhelm the database, with the input being limited by the clients generating and sending documents to the server. By utilizing identical client code, we can maintain the same throughput on both databases, thus enabling an evaluation of the resources used by each. Given that the default settings in PostgreSQL are not optimal, it has been adjusted to match the memory allocations of the MongoDB instance alongside a similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. While MongoDB employs checksums during writes to identify storage failures, this feature is not enabled by default in PostgreSQL. It needs to be configured for data integrity, which was done for this benchmark. MongoDB compresses its WAL using Snappy, but PostgreSQL was not set up for compression as it would further increase CPU usage.
 
