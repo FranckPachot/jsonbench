@@ -58,7 +58,7 @@ CPU utilization is calculated from the total seconds of CPU divided by the elaps
 Here are the details of the system and user CPU seconds. The run on MongoDB was first displayed in green, with a usage of 10 minutes of CPU during those two hours of elapsed time. PostgreSQL, displayed in blue, used 15 minutes during an equivalent elapsed time:
 <img width="1502" alt="image" src="https://github.com/user-attachments/assets/4911d40b-80f2-43b5-bde0-ba7a41fe85cc" />
 
-The memory usage is all in RSS for MongoDB, 2.9 GB, and a mix of shared memory and RSS for PostgreSQL, 4.3 GB, and both use the Linux filesystem cache, 6GB for MongoDB and 9GB for MongoDB:
+The memory usage is all in RSS for MongoDB, 2.9 GB, and a mix of shared memory and RSS for PostgreSQL, 4.3 GB, and both use the Linux filesystem cache, 6GB for MongoDB and 9GB for PostgreSQL:
 <img width="1500" alt="image" src="https://github.com/user-attachments/assets/6a0eee9a-70c4-4a4f-8820-e5c3883bbdc9" />
 
 During the run, MongoDB wrote 22GB, while PostgreSQL wrote 39GB:
