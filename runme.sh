@@ -12,7 +12,7 @@ export BENCH_NUM=10      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
 # for quick tests
- # export SLEEP=5
+ # export SLEEP=1
  # export BENCH_DOCS=100
 
 # reset all
@@ -45,7 +45,7 @@ docker compose -p jsonbench logs mongodb-init
 (
 perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "mongod"
-) sleep 30 | perf script -F +pid > $DIR/mongodb.perf
+) sleep 30 | perf script -F +pid > $DIR/mongodb.perf ; sleep 30 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
@@ -76,17 +76,20 @@ docker compose -p jsonbench logs postgres-init
 (
 perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "postgres"
-) sleep 30 | perf script -F +pid > $DIR/postgres.perf
+) sleep 30 | perf script -F +pid > $DIR/postgres.perf ; sleep 30 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
  docker inspect --format="{{.Id}}"  jsonbench-postgres-1
 ) -a docker compose -p jsonbench up client --scale client=$CLIENTS 
 
-docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tc "
+docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tAc "
  vacuum analyze jsonbench;
- select 'PostgreSQL count: ' || count(*) || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from jsonbench;
+ " -c " 
+ select 'PostgreSQL count: ' || reltuples || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from pg_class where relname='jsonbench';
+ " -c " 
  select id from jsonbench limit 10;
+ select * from pg_stats where tablename='jsonbench' and attname='id';
  " 
 
 docker stats --no-stream

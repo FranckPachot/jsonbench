@@ -32,6 +32,8 @@ services:
 
  mongodb:
   image: docker.io/mongodb/mongodb-community-server:latest
+  # disable WAL compression like the default of PostgreSQL
+  command: [ "mongod", "--wiredTigerJournalCompressor", "none" ]
   deploy:
    replicas: 1
    resources:
