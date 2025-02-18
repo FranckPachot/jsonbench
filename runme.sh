@@ -43,9 +43,9 @@ docker stats --no-stream
 docker compose -p jsonbench logs mongodb-init
 
 (
-perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
+sleep 120 ; perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "mongod"
-) sleep 30 | perf script -F +pid > $DIR/mongodb.perf ; sleep 30 ; docker stats --no-stream
+) sleep 120 | perf script -F +pid > $DIR/mongodb.perf ; sleep 120 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
@@ -74,9 +74,9 @@ docker stats --no-stream
 docker compose -p jsonbench logs postgres-init
 
 (
-perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
+sleep 120 ; perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "postgres"
-) sleep 30 | perf script -F +pid > $DIR/postgres.perf ; sleep 30 ; docker stats --no-stream
+) sleep 120 | perf script -F +pid > $DIR/postgres.perf ; sleep 120 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
