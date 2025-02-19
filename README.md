@@ -4,9 +4,9 @@ This small benchmark runs the same workload with the same throughput on MongoDB 
 Branches in this repository tag a set of scripts, configurations, results, and analyses to ensure all conclusions can be verified and re-run.
 - [20250219](https://github.com/FranckPachot/jsonbench/tree/20250219---id-generation-and-clustering---10kb-docs) runs four benchmarks with different primary key options: UUIDv7, UUIDv4, ObjectID/Sequence, and non-clustered collection. 
 
-## Example
+## Example and Analysis
 
-`runme.sh` contains an example
+[runme.sh](runme.sh) runs the following
 - *bench1*: with uuidv7 for the primary key (values are sequential on time)
 - *bench2*: with uuidv4 for the primary key (values are random)
 - *bench3*: with default primary key for MongoDB and a cache 100 sequence for PostgreSQL
