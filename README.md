@@ -1,20 +1,20 @@
 # JSONBench 
 
-A small benchmark used to run the same workload on MongoDB and PostgreSQL and compare CPU usage and other resource usage metrics.
+A small benchmark is used to run the same workload on MongoDB and PostgreSQL and compare CPU usage and other resource usage metrics.
 
 _This is a work in progress, and the goal is to show how to compare databases on specific workloads, based on facts and knowing the context, and not to give general results. It is called JSONBench because it is a frequent question to compare storing documents in MongoDB, a document database, or in PostgreSQL, a SQL database with a JSONB datatype_
 
 ## Example
 
 `runme.sh` contains an example
-- bench1: with uuidv7 for the primary key (values are sequential on time)
-- bench2: with uuidv4 for the primary key (values are random)
-- bench3: with default primary key for MongoDB and a cache 100 sequence for PostgreSQL
-- bench4: same as bench2 with non-clusterd index on MongoDB (reduces the impact of random uuid?)
+- *bench1*: with uuidv7 for the primary key (values are sequential on time)
+- *bench2*: with uuidv4 for the primary key (values are random)
+- *bench3*: with default primary key for MongoDB and a cache 100 sequence for PostgreSQL
+- *bench4*: same as bench2 with non-clusterd index on MongoDB (reduces the impact of random uuid?)
 
-Here are the outcomes of bench1 when inserting 1,000 documents (with 10 attributes, each 1,000 characters) across eight threads. This does not overwhelm the database, with the input being limited by the clients generating and sending documents to the server. By utilizing identical client code, we can maintain the same throughput on both databases, thus enabling an evaluation of the resources used by each. Given that the default settings in PostgreSQL are not optimal, it has been adjusted to match the memory allocations of the MongoDB instance alongside a similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. While MongoDB employs checksums during writes to identify storage failures, this feature is not enabled by default in PostgreSQL. It needs to be configured for data integrity, which was done for this benchmark. MongoDB compresses its WAL using Snappy, but PostgreSQL was not set up for compression as it would further increase CPU usage.
+Here are the outcomes of *bench1* when inserting 1,000 documents (with 10 attributes, each 1,000 characters) across eight threads. This does not overwhelm the database, with the input being limited by the clients generating and sending documents to the server. By utilizing identical client code, we can maintain the same throughput on both databases, thus enabling an evaluation of the resources used by each. Given that the default settings in PostgreSQL are not optimal, it has been adjusted to match the memory allocations of the MongoDB instance alongside a similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. While MongoDB employs checksums during writes to identify storage failures, this feature is not enabled by default in PostgreSQL. It needs to be configured for data integrity, which was done for this benchmark. MongoDB compresses its WAL using Snappy, but PostgreSQL was not set up for compression as it would further increase CPU usage.
 
-Here are some results and a quick analysis of bench1.
+Here are some results and a quick analysis of *bench1*.
 
 The throughput is similar. This is expected for a workload bound by the small number of clients.
 
@@ -77,9 +77,11 @@ MongoDB [flamegraph](https://share.firefox.dev/3X3PFGM) shows time spend in Wire
 PostgreSQL [flamegraph](https://share.firefox.dev/4hFWMgD) shows time spent in TOAST compression and transaction log:
 <img width="1508" alt="image" src="https://github.com/user-attachments/assets/ffe066fb-b970-49bf-8512-26d6f84bbd5d" />
 
-All benchmarks must serve to understand the differences in implementation or configuration. For example, knowing that both databases utilize B-Tree indexes, I've run the same with a primary key generated from uuidv4 instead of uuidv7, which scatters the documents that were inserted together. Here are the figures as above, but now with the two runs (bench1 and bench2).
+All benchmarks must serve to understand the differences in implementation or configuration. 
 
-MongoDB uses more CPU than before:
+For example, knowing that both databases utilize B-Tree indexes, I've run the same with a primary key generated from uuidv4 instead of uuidv7, which scatters the documents that were inserted together. Here are the figures for the two runs (*bench1* and *bench2*)
+
+MongoDB uses more CPU with UUIDv4 than with UUIDv7:
 ```
  6681 secs  141,578,546,171 cpu instr.        MongoDB (100%) - Throughput: 14.99 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench1/mongodb.out
  6986 secs  261,344,461,947 cpu instr.        MongoDB (100%) - Throughput: 14.34 docs/sec -     MongoDB count: 800000 size: 7761 MB ./bench2/mongodb.out                                           
@@ -91,6 +93,33 @@ Memory is similar, as limited by the cache settings:
 
 There were more reads, probably because of cache hits:
 <img width="1503" alt="image" src="https://github.com/user-attachments/assets/d39a47de-f7a4-4e3f-830b-a08caa5c515a" />
+
+I didn't see the same difference on PostgreSQL because even if UUIDv4 scatters the values, this doesn't concern the table (PostgreSQL uses heap tables), only the primary key index, which is small and fits in memory.
+For MongoDB, I used a clustered index (`clusteredIndex: { "key": { "_id": 1 }, "unique": true`) and this scatters the whole documents.
+
+This benchmark aims to understand what happens, so I've added *bench3*, which doesn't use a UUID but the default `_id` generation for MongoDB and a sequence (with cache 100) for PostgreSQL. 
+
+I've also run *bench4* which is similar to *bench2*, with a UUIDv4 primary key, but a non-clustered collection in MongoDB to be comparable to the heap table in PostgreSQL.
+
+The CPU usage is similar when using UUIDv7, default MongoDB ID, or UUIDv4 with non-clustered collection. usage is lower than PostgreSQL
+<img width="1419" alt="image" src="https://github.com/user-attachments/assets/57137381-18b3-4705-88ec-f48b34d2ac53" />
+
+Same observation wbout memory usage
+<img width="1415" alt="image" src="https://github.com/user-attachments/assets/6030f528-81db-4d60-992a-f9d0de76f4c1" />
+
+The disk I/O reflect the cache misses when using UUIDv4 on clustered index, for this workload where the index dataset fits in memory but not with all documents.
+<img width="1404" alt="image" src="https://github.com/user-attachments/assets/c661e968-ba4b-4746-8e64-c826a7e33187" />
+
+This is also visible with the disk read IOPS (small writes are always there in both databases)
+<img width="1404" alt="image" src="https://github.com/user-attachments/assets/fb384393-d5a0-435e-bc57-1fdf67715bda" />
+
+In all cases, the size of data sent to the server is similar:
+<img width="1395" alt="image" src="https://github.com/user-attachments/assets/9c60bc69-11c0-49ac-88e3-507a24baf21d" />
+
+
+
+
+
 
 
 
