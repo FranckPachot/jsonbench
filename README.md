@@ -1,8 +1,8 @@
 # JSONBench 
 
-A small benchmark is used to run the same workload on MongoDB and PostgreSQL and compare CPU usage and other resource usage metrics.
-
-_This is a work in progress, and the goal is to show how to compare databases on specific workloads, based on facts and knowing the context, and not to give general results. It is called JSONBench because it is a frequent question to compare storing documents in MongoDB, a document database, or in PostgreSQL, a SQL database with a JSONB datatype_
+This small benchmark runs the same workload with the same throughput on MongoDB and PostgreSQL and compares CPU usage and other resource usage metrics.
+Branches in this repository tag a set of scripts, configurations, results, and analyses to ensure all conclusions can be verified and re-run.
+- [20250219](https://github.com/FranckPachot/jsonbench/tree/20250219---id-generation-and-clustering---10kb-docs) runs four benchmarks with different primary key options: UUIDv7, UUIDv4, ObjectID/Sequence, and non-clustered collection. 
 
 ## Example
 
