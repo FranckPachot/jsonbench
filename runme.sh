@@ -9,7 +9,7 @@ export SLEEP=600 # sleep between execution to see some deferred background activ
 export CLIENTS=8
 export BENCH_DOCS=100000 # number of documents inserted by each thread
 export BENCH_NUM=10      # number of attributes in the document
-export BENCH_BYTES=1000   # size of each attributes in bytes
+export BENCH_BYTES=100   # size of each attributes in bytes
 
 # for quick tests
  # export SLEEP=1
