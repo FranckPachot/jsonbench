@@ -86,7 +86,7 @@ perf stat -e instructions:u -G docker/$(
 docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postgres -U postgres -tAc "
  vacuum analyze jsonbench;
  " -c " 
- select 'PostgreSQL count: ' || reltuples || ' size: ' || pg_size_pretty(pg_table_size('jsonbench'))  from pg_class where relname='jsonbench';
+ select 'PostgreSQL count: ' || reltuples || ' size: ' || pg_size_pretty(pg_table_size('jsonbench')) || ' index: ' || pg_size_pretty(pg_indexes_size('jsonbench')) from pg_class where relname='jsonbench';
  " -c " 
  select id from jsonbench limit 10;
  select * from pg_stats where tablename='jsonbench' and attname='id';
