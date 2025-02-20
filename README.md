@@ -2,9 +2,10 @@
 
 This small benchmark runs the same workload with the same throughput on MongoDB and PostgreSQL and compares CPU usage and other resource usage metrics.
 Branches in this repository tag a set of scripts, configurations, results, and analyses to ensure all conclusions can be verified and re-run.
-- [20250219](https://github.com/FranckPachot/jsonbench/tree/20250219---id-generation-and-clustering---10kb-docs) runs four benchmarks with different primary key options: UUIDv7, UUIDv4, ObjectID/Sequence, and non-clustered collection. 
+- [20250219](https://github.com/FranckPachot/jsonbench/tree/20250219---id-generation-and-clustering---10kb-docs) runs four benchmarks with different primary key options: UUIDv7, UUIDv4, ObjectID/Sequence, and non-clustered collection, with 10KB documents (TOAST in PostgreSQL)
+- [20250220](https://github.com/FranckPachot/jsonbench/tree/20250220---id-generation-and-clustering---1kb-docs) runs four benchmarks with different primary key options: UUIDv7, UUIDv4, ObjectID/Sequence, and non-clustered collection, with 1KB documents (no TOAST but more system CPU)
 
-## Example
+## Example (Analysis of [20250219](https://github.com/FranckPachot/jsonbench/tree/20250219---id-generation-and-clustering---10kb-docs))
 
 `runme.sh` contains an example
 - *bench1*: with uuidv7 for the primary key (values are sequential on time)
@@ -117,11 +118,18 @@ In all cases, the size of data sent to the server is similar:
 <img width="1395" alt="image" src="https://github.com/user-attachments/assets/9c60bc69-11c0-49ac-88e3-507a24baf21d" />
 
 
+## Example (Analysis of [20250220](https://github.com/FranckPachot/jsonbench/tree/20250220---id-generation-and-clustering---1kb-docs))
 
+This is the same run but with 1KB documents rather than 10KB, to avoid TOAST overhead in PostgreSQL
+PostgreSQL uses less user CPU than MongoDB but more system CPU:
+<img width="1406" alt="image" src="https://github.com/user-attachments/assets/516db3b6-433f-4daa-a88b-2c9677e600da" />
+<img width="1399" alt="image" src="https://github.com/user-attachments/assets/856797cf-e868-4db2-86e0-821f4b94adaa" />
 
+This time, comparing the flame graphs for [MongoDB](https://share.firefox.dev/4350qwe) and [PostgreSQL](https://share.firefox.dev/414q2XA), it's not the overhead of TOAST in PostgreSQL, but the WAL logging of small transactions:
+<img width="1342" alt="image" src="https://github.com/user-attachments/assets/796aa04b-f443-4d64-af6b-ae6f3d6a160e" />
 
-
-
+PostgreSQL uses more memory:
+<img width="1398" alt="image" src="https://github.com/user-attachments/assets/ccb94d9a-1755-45c4-b952-df360fe7cac7" />
 
 
 
