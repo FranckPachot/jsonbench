@@ -7,13 +7,14 @@
 
 export SLEEP=600 # sleep between execution to see some deferred background activity
 export CLIENTS=8
-export BENCH_DOCS=100000 # number of documents inserted by each thread
-export BENCH_NUM=10      # number of attributes in the document
-export BENCH_BYTES=100   # size of each attributes in bytes
+export BENCH_DOCS=10000 # number of documents inserted by each thread
+export BENCH_NUM=100      # number of attributes in the document
+export BENCH_BYTES=1000   # size of each attributes in bytes
 
 # for quick tests
- # export SLEEP=1
- # export BENCH_DOCS=100
+  export SLEEP=1
+  export CLIENTS=1
+  export BENCH_DOCS=1000
 
 # reset all
 docker compose -p jsonbench down --remove-orphans --volumes
