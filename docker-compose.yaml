@@ -55,7 +55,7 @@ services:
  postgres:
   image: postgres
   # define same memory and cache behavior (40% of RAM, checkpoints every 2GB)
-  command: postgres -c shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9 
+  command: postgres -c shared_buffers=4GB -c max_wal_size=2GB -c wal_sync_method=open_datasync -c checkpoint_completion_target=0.9 
   deploy:
    replicas: 1
    resources:
