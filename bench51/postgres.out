@@ -1,0 +1,91 @@
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
+7fa846c9a121   jsonbench-grafana-1    0.92%     71.64MiB / 27.2GiB   0.26%     297kB / 3.33MB    0B / 348kB    13
+bb180ef6c39e   prometheus             0.00%     78.58MiB / 27.2GiB   0.28%     3.38MB / 118kB    0B / 0B       13
+30c9b219af2a   jsonbench-mongodb-1    0.36%     193.7MiB / 9GiB      2.10%     102MB / 314kB     0B / 342MB    33
+1afa348f0a5b   jsonbench-postgres-1   0.00%     130MiB / 9GiB        1.41%     1.79kB / 1.68kB   0B / 68.3MB   6
+fff8ce096137   cadvisor               2.53%     53.22MiB / 27.2GiB   0.19%     63.1kB / 3.27MB   0B / 0B       16
+postgres-init-1  | psql: error: connection to server at "postgres" (192.168.32.4), port 5432 failed: Connection refused
+postgres-init-1  | 	Is the server running on that host and accepting TCP/IP connections?
+postgres-init-1  | drop table if exists jsonbench;
+postgres-init-1  | psql:/dir/init.sql:1: NOTICE:  table "jsonbench" does not exist, skipping
+postgres-init-1  | DROP TABLE
+postgres-init-1  | create table if not exists jsonbench (
+postgres-init-1  |     id bigint generated always as identity ( cache 100 ) primary key,
+postgres-init-1  |     data jsonb not null
+postgres-init-1  | );
+postgres-init-1  | CREATE TABLE
+postgres-init-1  | show shared_buffers;
+postgres-init-1  |  shared_buffers 
+postgres-init-1  | ----------------
+postgres-init-1  |  4GB
+postgres-init-1  | (1 row)
+postgres-init-1  | 
+ Container jsonbench-postgres-1  Running
+ Container jsonbench-mongodb-1  Running
+ Container jsonbench-client-1  Recreate
+ Container jsonbench-client-1  Recreated
+Attaching to client-1
+client-1  | Current Mongosh Log ID:	67bbabcf0c1e69743fce2614
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-1  | Loading file: /dir/lib.js
+client-1  | 📚 lib.js loaded
+client-1  | [2025-02-23T23:14:25.131Z] 🚀 Starting data insertion into postgres://postgres:xxx@postgres:5432/postgres for 1000 documents of 1000 bytes * 100 fields
+client-1  | [1de926aaf60b] PostgreSQL (10%) - Throughput: 3.41 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (20%) - Throughput: 3.42 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (30%) - Throughput: 3.38 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (40%) - Throughput: 3.37 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (50%) - Throughput: 3.38 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (60%) - Throughput: 3.38 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (70%) - Throughput: 3.38 docs/sec
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.000 MB - ]
+runme.sh: line 22: 28108 Done                    perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
+pgrep -d, "postgres"
+) sleep 120
+     28109 Segmentation fault      (core dumped) | perf script -F +pid > $DIR/postgres.perf
+client-1  | [1de926aaf60b] PostgreSQL (80%) - Throughput: 3.36 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (90%) - Throughput: 3.31 docs/sec
+client-1  | [1de926aaf60b] PostgreSQL (100%) - Throughput: 3.32 docs/sec
+client-1  | ✅ Inserted 1000 records into PostgreSQL
+client-1  | ✅ PostgreSQL Connection closed
+client-1  | [2025-02-23T23:19:32.081Z] 🏁 Data insertion completed in 306.95 seconds
+[Kclient-1 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+    10,343,220,627      instructions:u            docker/1afa348f0a5b337c9f3615ba1755c1138da210c81b9e2b3329ffbdf6cc8751ba                                   
+
+     310.355094278 seconds time elapsed
+
+VACUUM
+PostgreSQL count: 1000 size: 101 MB index: 40 kB
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+public|jsonbench|id|f|0|8|-1|||{1,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,310,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480,490,500,510,520,530,540,550,560,570,580,590,600,610,620,630,640,650,660,670,680,690,700,710,720,730,740,750,760,770,780,790,800,810,820,830,840,850,860,870,880,890,900,910,920,930,940,950,960,970,980,990,1000}|1||||||
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O    PIDS
+7fa846c9a121   jsonbench-grafana-1    0.97%     71.03MiB / 27.2GiB   0.26%     539kB / 3.59MB   0B / 705kB   13
+bb180ef6c39e   prometheus             0.00%     76.86MiB / 27.2GiB   0.28%     6.32MB / 232kB   0B / 0B      13
+30c9b219af2a   jsonbench-mongodb-1    0.38%     193.7MiB / 9GiB      2.10%     102MB / 314kB    0B / 343MB   33
+1afa348f0a5b   jsonbench-postgres-1   0.10%     232.8MiB / 9GiB      2.53%     102MB / 248kB    0B / 411MB   6
+fff8ce096137   cadvisor               2.06%     53.31MiB / 27.2GiB   0.19%     117kB / 6.11MB   0B / 0B      16
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O    PIDS
+7fa846c9a121   jsonbench-grafana-1    0.87%     71.04MiB / 27.2GiB   0.26%     539kB / 3.59MB   0B / 705kB   13
+bb180ef6c39e   prometheus             0.00%     80.01MiB / 27.2GiB   0.29%     6.69MB / 239kB   0B / 0B      13
+30c9b219af2a   jsonbench-mongodb-1    0.36%     192.5MiB / 9GiB      2.09%     102MB / 314kB    0B / 343MB   33
+1afa348f0a5b   jsonbench-postgres-1   0.09%     233MiB / 9GiB        2.53%     102MB / 248kB    0B / 425MB   6
+fff8ce096137   cadvisor               1.97%     53.21MiB / 27.2GiB   0.19%     125kB / 6.49MB   0B / 0B      16

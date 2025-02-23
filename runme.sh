@@ -12,9 +12,9 @@ export BENCH_NUM=100      # number of attributes in the document
 export BENCH_BYTES=1000   # size of each attributes in bytes
 
 # for quick tests
-  export SLEEP=1
-  export CLIENTS=1
-  export BENCH_DOCS=1000
+  #export SLEEP=1
+  #export CLIENTS=1
+  #export BENCH_DOCS=100
 
 # reset all
 docker compose -p jsonbench down --remove-orphans --volumes
@@ -24,8 +24,9 @@ for dir in ${*:-bench*}
 do # run for each bench, cleaning the databases but not the statistics
 
 export DIR=./$dir
-# reset databases but keep prometheus data
-docker compose -p jsonbench down mongodb postgres --volumes
+# reset databases (container not not data) but keep prometheus data
+#docker compose -p jsonbench down mongodb postgres # --volumes
+docker compose -p jsonbench stop mongodb postgres 
 docker compose -p jsonbench up -d
 
 date

@@ -1,0 +1,103 @@
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
+efc18c6f3960   jsonbench-grafana-1    0.99%     62.8MiB / 27.2GiB    0.23%     23.9kB / 7.68kB   0B / 135kB    17
+d1e20331354e   jsonbench-mongodb-1    0.36%     80.87MiB / 9GiB      0.88%     6.23kB / 8.41kB   0B / 631kB    34
+ea3ae3c6fcea   prometheus             0.00%     17.33MiB / 27.2GiB   0.06%     126B / 0B         0B / 0B       12
+1e1c81e9697b   jsonbench-postgres-1   0.05%     127.2MiB / 9GiB      1.38%     1.93kB / 2.17kB   0B / 67.3MB   6
+9ac95c547bd2   cadvisor               9.17%     18.14MiB / 27.2GiB   0.07%     126B / 0B         0B / 0B       15
+mongodb-init-1  | Current Mongosh Log ID:	67bba3e5f4e41e5976d49d62
+mongodb-init-1  | Connecting to:		mongodb://mongodb:27017/?directConnection=true&appName=mongosh+2.0.2
+mongodb-init-1  | Using MongoDB:		7.0.16
+mongodb-init-1  | Using Mongosh:		2.0.2
+mongodb-init-1  | 
+mongodb-init-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+mongodb-init-1  | 
+mongodb-init-1  | 
+mongodb-init-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+mongodb-init-1  | You can opt-out by running the disableTelemetry() command.
+mongodb-init-1  | 
+mongodb-init-1  | ------
+mongodb-init-1  |    The server generated these startup warnings when booting
+mongodb-init-1  |    2025-02-23T22:40:37.062+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+mongodb-init-1  |    2025-02-23T22:40:37.062+00:00: vm.max_map_count is too low
+mongodb-init-1  | ------
+mongodb-init-1  | 
+mongodb-init-1  | Loading file: /dir/init.js
+ Container jsonbench-postgres-1  Running
+ Container jsonbench-mongodb-1  Running
+ Container jsonbench-client-1  Creating
+ Container jsonbench-client-1  Created
+Attaching to client-1
+client-1  | Current Mongosh Log ID:	67bba3ea85962d96a121922e
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-1  | Loading file: /dir/lib.js
+client-1  | 📚 lib.js loaded
+client-1  | [2025-02-23T22:40:43.898Z] 🚀 Starting data insertion into mongodb://mongodb:27017 for 1000 documents of 1000 bytes * 100 fields
+client-1  | ✅ Connected to MongoDB
+client-1  | [f06e9f4f8b56] MongoDB (10%) - insert throughput: 3.43 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (20%) - insert throughput: 3.46 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (30%) - insert throughput: 3.50 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (40%) - insert throughput: 3.49 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (50%) - insert throughput: 3.51 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (60%) - insert throughput: 3.51 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (70%) - insert throughput: 3.50 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (80%) - insert throughput: 3.49 docs/sec
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.000 MB - ]
+client-1  | [f06e9f4f8b56] MongoDB (90%) - insert throughput: 3.49 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (100%) - insert throughput: 3.48 docs/sec
+client-1  | ✅ Inserted 1000 records into MongoDB
+client-1  | ✅ MongoDB Connection closed
+client-1  | [2025-02-23T22:45:36.134Z] 🏁 Data insertion completed in 292.24 seconds
+client-1  | [2025-02-23T22:45:36.135Z] 🚀 Starting query from mongodb://mongodb:27017 for 1000 documents
+client-1  | [f06e9f4f8b56] MongoDB (10%) - query throughput: 658.89 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (20%) - query throughput: 775.47 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (30%) - query throughput: 835.02 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (40%) - query throughput: 886.83 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (50%) - query throughput: 914.24 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (60%) - query throughput: 938.44 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (70%) - query throughput: 967.61 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (80%) - query throughput: 989.96 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (90%) - query throughput: 1010.03 docs/sec
+client-1  | [f06e9f4f8b56] MongoDB (100%) - query throughput: 1021.61 docs/sec
+client-1  | 🏁 MongoDB queries completed in 0.98 seconds at 1020.41 documents/second
+client-1  | ✅ MongoDB Connection closed
+[Kclient-1 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+     1,996,854,971      instructions:u            docker/d1e20331354ec92cf50fe22dc9b4ec5422f6fd503fb0bc87cc2cad22647a596c                                   
+
+     296.611775807 seconds time elapsed
+
+MongoDB count: 1000 size: 97 MB
+[
+  { _id: ObjectId('67bba3f1d94bc5a4c43798f7') },
+  { _id: ObjectId('67bba3f1d94bc5a4c43798f8') },
+  { _id: ObjectId('67bba3f1d94bc5a4c43798f9') },
+  { _id: ObjectId('67bba3f2d94bc5a4c43798fa') },
+  { _id: ObjectId('67bba3f2d94bc5a4c43798fb') },
+  { _id: ObjectId('67bba3f2d94bc5a4c43798fc') },
+  { _id: ObjectId('67bba3f3d94bc5a4c43798fd') },
+  { _id: ObjectId('67bba3f3d94bc5a4c43798fe') },
+  { _id: ObjectId('67bba3f3d94bc5a4c43798ff') },
+  { _id: ObjectId('67bba3f3d94bc5a4c4379900') }
+]
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
+efc18c6f3960   jsonbench-grafana-1    0.91%     79.29MiB / 27.2GiB   0.28%     200kB / 1.45MB    0B / 430kB    17
+d1e20331354e   jsonbench-mongodb-1    0.39%     204.7MiB / 9GiB      2.22%     102MB / 102MB     0B / 387MB    33
+ea3ae3c6fcea   prometheus             0.00%     75.22MiB / 27.2GiB   0.27%     2.7MB / 83.4kB    0B / 0B       13
+1e1c81e9697b   jsonbench-postgres-1   0.08%     131.1MiB / 9GiB      1.42%     2.1kB / 2.17kB    0B / 67.9MB   6
+9ac95c547bd2   cadvisor               2.01%     50.48MiB / 27.2GiB   0.18%     51.5kB / 2.64MB   0B / 0B       16
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O     PIDS
+efc18c6f3960   jsonbench-grafana-1    0.88%     74.09MiB / 27.2GiB   0.27%     202kB / 1.45MB    0B / 430kB    17
+d1e20331354e   jsonbench-mongodb-1    0.34%     203.3MiB / 9GiB      2.21%     102MB / 102MB     0B / 387MB    33
+ea3ae3c6fcea   prometheus             0.00%     89.45MiB / 27.2GiB   0.32%     3.2MB / 92.8kB    0B / 0B       13
+1e1c81e9697b   jsonbench-postgres-1   0.00%     131.2MiB / 9GiB      1.42%     2.1kB / 2.17kB    0B / 68.5MB   6
+9ac95c547bd2   cadvisor               2.14%     51.14MiB / 27.2GiB   0.18%     60.9kB / 3.13MB   0B / 0B       16
