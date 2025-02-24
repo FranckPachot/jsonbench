@@ -97,7 +97,7 @@ async function queryPostgres(totalCount, pgConfig) {
         const startTime = performance.now();
         while (successCount < totalCount) {
             const remaining = totalCount - successCount;
-            const batchSize = Math.min(50, remaining);
+            const batchSize = Math.min(5000, remaining);
             const randomString = getRandomString(1);
             const query = `SELECT * FROM jsonbench WHERE data->>'attr1' > $1 ORDER BY data->>'attr1' LIMIT $2`;
             const res = await pgClient.query(query, [randomString, batchSize]);
@@ -131,7 +131,7 @@ async function queryMongo(totalCount, mongoUri) {
         const startTime = performance.now();
         while (successCount < totalCount) {
             const remaining = totalCount - successCount;
-            const batchSize = Math.min(50, remaining);
+            const batchSize = Math.min(5000, remaining);
             const randomString = getRandomString(1);
             const query = { "attr1": { $gt: randomString } };
             const options = { sort: { "attr1": 1 }, limit: batchSize };

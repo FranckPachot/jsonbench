@@ -105,9 +105,12 @@ sleep ${SLEEP}
 set | grep -E "^(BENCH_.*|DIR|CLIENTS)="
 awk '
 /instructions:u/{i=$1}
-/Throughput:/{sub(/.*]/,"");t=$0}
+/[Tt]hroughput:/{sub(/.*]/,"");t=$0}
 /seconds time elapsed/{s=$1}
-/count:/{printf "%5d secs %16s cpu instr. %50s - %25s %s\n", s, i, t, $0, FILENAME}
+/count:/{
+ printf "%5d secs %16s cpu instr. %50s - %25s %s\n", s, i, t, $0, FILENAME
+ s=0 ; i=0 ; t=0
+}
 ' $( ls -rt ./bench*/*.out )
 
 done # when run with multiple bench directories
