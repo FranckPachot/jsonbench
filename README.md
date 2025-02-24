@@ -12,6 +12,8 @@ Branches in this repository tag a set of scripts, configurations, results, and a
 - *bench2*: with uuidv4 for the primary key (values are random)
 - *bench3*: with default primary key for MongoDB and a cache 100 sequence for PostgreSQL
 - *bench4*: same as bench2 with non-clusterd index on MongoDB (reduces the impact of random uuid?)
+- *bench51*: is the same as *bench3* to insert data, but with a secondary index on `attr1` to run the query from *bench52*
+- *bench53*: reads 5000 documents from a range starting at a random `attr1`
 
 Here are the outcomes of *bench1* when inserting 1,000 documents (with 10 attributes, each 1,000 characters) across eight threads. This does not overwhelm the database, with the input being limited by the clients generating and sending documents to the server. By utilizing identical client code, we can maintain the same throughput on both databases, thus enabling an evaluation of the resources used by each. Given that the default settings in PostgreSQL are not optimal, it has been adjusted to match the memory allocations of the MongoDB instance alongside a similar checkpoint frequency: `shared_buffers=4GB -c max_wal_size=2GB --checkpoint_completion_target=0.9`. While MongoDB employs checksums during writes to identify storage failures, this feature is not enabled by default in PostgreSQL. It needs to be configured for data integrity, which was done for this benchmark. MongoDB compresses its WAL using Snappy, but PostgreSQL was not set up for compression as it would further increase CPU usage.
 
