@@ -5,6 +5,9 @@
 
 ### Set benchmark parameters in another terminal
 
+docker info || alias docker=podman
+
+
 export SLEEP=600 # sleep between execution to see some deferred background activity
 export CLIENTS=8
 export BENCH_DOCS=10000 # number of documents inserted by each thread
