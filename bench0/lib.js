@@ -1,6 +1,5 @@
 const { MongoClient } = require('mongodb');
 const { Client } = require('pg');
-const { v4: uuidv4 } = require('uuid');
 const { performance } = require('perf_hooks');
 
 function getRandomString(length) {
@@ -19,25 +18,22 @@ function generateDocument(stringSize, attrCount) {
 async function mainOperation(count, stringSize, attrCount, connectionString, operation) {
     let client, db, collection, pgClient;
     let successCount = 0;
-    let docsPerCall=0;
+    let docsPerCall = 0;
 
     try {
         if (connectionString.startsWith('postgres://')) {
             pgClient = new Client({ connectionString });
             await pgClient.connect();
-            console.log("✅ Connected to PostgreSQL");
         } else if (connectionString.startsWith('mongodb://')) {
             client = new MongoClient(connectionString);
             await client.connect();
             db = client.db();
             collection = db.collection('jsonbench');
-            console.log("✅ Connected to MongoDB");
         } else {
             console.error("❌ Unsupported protocol in connection string");
-            return;
+            return successCount;
         }
 
-        await new Promise(resolve => setTimeout(resolve, 5000));
         const startTime = performance.now();
 
         for (let i = 0; i < count; i++) {
@@ -55,7 +51,7 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
                     }
                 }
             } else if (operation === 'query') {
-                docsPerCall=5000;
+                docsPerCall = 100;
                 const randomString = getRandomString(1);
                 if (pgClient) {
                     const query = `SELECT * FROM jsonbench WHERE data->>'attr1' > $1 ORDER BY data->>'attr1' LIMIT $2`;
@@ -68,7 +64,7 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
                     successCount += res.length;
                 }
             } else if (operation === 'update') {
-                docsPerCall=1;
+                docsPerCall = 1;
                 const randomString = getRandomString(1);
                 const newString = getRandomString(stringSize);
                 if (pgClient) {
@@ -93,14 +89,14 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
                     }
                 }
             } else if (operation === 'delete') {
-                docsPerCall=1;
+                docsPerCall = 1;
                 const randomString = getRandomString(1);
                 if (pgClient) {
                     const selectQuery = `SELECT id FROM jsonbench WHERE data->>'attr1' > $1 ORDER BY data->>'attr1' LIMIT $2`;
                     const res = await pgClient.query(selectQuery, [randomString, docsPerCall]);
                     const ids = res.rows.map(row => row.id);
                     if (ids.length > 0) {
-                        const deleteQuery = `DELETE FROM jsonbench WHERE id = ANY($1::uuid[])`;
+                        const deleteQuery = `DELETE FROM jsonbench WHERE id = ANY($1)`;
                         await pgClient.query(deleteQuery, [ids]);
                         successCount += ids.length;
                     }
@@ -115,45 +111,48 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
                         successCount += deleteRes.deletedCount;
                     }
                 }
-            }
-            else {
+            } else {
                 console.error(`❌ Unknown operation: ${operation}`);
                 break;
             }
             // print progress every 10%
-            if (successCount % Math.ceil((count*docsPerCall) / 10) === 0) {
+            const progressInterval = Math.ceil(count / 10);
+            if (i % progressInterval === 0) {
                 const currentTime = performance.now();
                 const duration = (currentTime - startTime) / 1000;
                 const throughput = (successCount / duration).toFixed(2);
-                console.log(`[${process.env.HOSTNAME}] ${pgClient ? 'PostgreSQL' : 'MongoDB'} (${((successCount / count) * 100).toFixed(0)}%) - ${operation} throughput: ${throughput} docs/sec`);
+                console.log(`[${process.env.HOSTNAME}] ${pgClient ? 'PostgreSQL' : 'MongoDB'} (${((i / count) * 100).toFixed(0).padStart(3, ' ')}%) - ${operation} throughput: ${Math.round(throughput).toString().padStart(6, ' ')} docs/sec - ${successCount} documents`);
             }
         }
 
-        console.log(`✅ ${operation}: ${successCount} documents completed`);
     } catch (err) {
         console.error(`❌ ${pgClient ? 'PostgreSQL' : 'MongoDB'} Error:`, err);
     } finally {
         if (pgClient) {
             await pgClient.end();
-            console.log("✅ PostgreSQL Connection closed");
         } else if (client) {
             await client.close();
-            console.log("✅ MongoDB Connection closed");
         }
     }
+
+    return successCount;
 }
 
 (async () => {
     console.log('Environment Variables:');
     console.log(`BENCH_DOCS: ${process.env.BENCH_DOCS}`);
-    console.log(`BENCH_OPERATION: ${process.env.BENCH_OPERATION}`);
     console.log(`DB_URI: ${process.env.DB_URI}`);
     const startTime = performance.now();
-    const totalDocuments = parseInt(process.env.BENCH_DOCS, 10);
-    const operation = process.env.BENCH_OPERATION; // 'insert' or 'query'
-    console.log(`[${new Date().toISOString()}] 🚀 Starting ${operation} from ${process.env.DB_URI} for ${totalDocuments} documents`);
-    await mainOperation(totalDocuments, 10, 5, process.env.DB_URI, operation);
-    const endTime = performance.now();
-    const duration = ((endTime - startTime) / 1000).toFixed(2);
-    console.log(`[${new Date().toISOString()}] 🏁 ${operation} workload completed in ${duration} seconds`);
+    const totalCallst = parseInt(process.env.BENCH_DOCS, 10);
+    const operations = ['insert', 'query', 'update', 'delete'];
+
+    for (const operation of operations) {
+        console.log(`[${new Date().toISOString()}] 🚀 Starting ${operation} from ${process.env.DB_URI} for ${totalCallst} calls`);
+        const successCount = await mainOperation(totalCallst, 10, 5, process.env.DB_URI, operation);
+        const endTime = performance.now();
+        const duration = ((endTime - startTime) / 1000).toFixed(2);
+        console.log(`[${new Date().toISOString()}] 🏁 ${operation} workload completed in ${duration} seconds (${successCount} documents)`);
+        // wait 1 second for 100 document workloads
+        await new Promise(resolve => setTimeout(resolve, totalCallst * 1));
+    }
 })();
