@@ -41,15 +41,18 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
         const startTime = performance.now();
 
         for (let i = 0; i < count; i++) {
-
             if (operation === 'insert') {
-                docsPerCall=1;
+                docsPerCall = 1;
                 const doc = generateDocument(stringSize, attrCount);
                 if (pgClient) {
-                    const insertQuery = `INSERT INTO jsonbench (data) VALUES ($1::jsonb)`;
-                    await pgClient.query(insertQuery, [JSON.stringify(doc)]);
+                    const insertQuery = `INSERT INTO jsonbench (data) VALUES ($1::jsonb) RETURNING *`;
+                    const res = await pgClient.query(insertQuery, [JSON.stringify(doc)]);
+                    successCount += res.rowCount;
                 } else if (collection) {
-                    await collection.insertOne(doc);
+                    const res = await collection.insertOne(doc);
+                    if (res.acknowledged) {
+                        successCount += 1;
+                    }
                 }
             } else if (operation === 'query') {
                 docsPerCall=5000;
