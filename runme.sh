@@ -15,8 +15,8 @@ export BENCH_DOCS=1000000 # number of documents inserted by each thread
 export BENCH_NUM=40       # number of attributes in the document
 export BENCH_BYTES=400    # size of each attributes in bytes
 # small documents
-export BENCH_NUM=10       # number of attributes in the document
-export BENCH_BYTES=100    # size of each attributes in bytes
+export BENCH_BYTES=10    # size of each attributes in bytes
+export BENCH_NUM=5       # number of attributes in the document
 
 # for quick tests
  # export SLEEP=1

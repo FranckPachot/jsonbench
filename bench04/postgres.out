@@ -1,0 +1,282 @@
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2cf19af6c3f8   jsonbench-grafana-1    4.19%     77.85MiB / 27.2GiB   0.28%     22.8MB / 83.6MB   1.45MB / 16.1MB   23
+850a33b3c11e   prometheus             0.03%     103.2MiB / 27.2GiB   0.37%     476MB / 22.5MB    614kB / 97.2MB    14
+6fd576903404   jsonbench-postgres-1   0.00%     118.4MiB / 9GiB      1.28%     1.79kB / 1.61kB   0B / 262kB        6
+b915f2e24ef7   jsonbench-mongodb-1    0.31%     949.7MiB / 9GiB      10.30%    4.06GB / 2.44GB   160kB / 35.6GB    33
+714a14a86e94   cadvisor               1.94%     59.26MiB / 27.2GiB   0.21%     8.67MB / 472MB    0B / 0B           17
+postgres-init-1  | explain select * from jsonbench where data->>'attr1' > 'M' order by data->>'attr1' limit 20;
+postgres-init-1  |                                               QUERY PLAN                                               
+postgres-init-1  | -------------------------------------------------------------------------------------------------------
+postgres-init-1  |  Limit  (cost=0.43..4.74 rows=20 width=160)
+postgres-init-1  |    ->  Index Scan using jsonbench_expr_idx on jsonbench  (cost=0.43..776262.46 rows=3600955 width=160)
+postgres-init-1  |          Index Cond: ((data ->> 'attr1'::text) > 'M'::text)
+postgres-init-1  | (3 rows)
+postgres-init-1  | 
+ Container jsonbench-postgres-1  Running
+ Container jsonbench-mongodb-1  Running
+ Container jsonbench-client-3  Recreate
+ Container jsonbench-client-5  Recreate
+ Container jsonbench-client-1  Recreate
+ Container jsonbench-client-2  Recreate
+ Container jsonbench-client-4  Recreate
+ Container jsonbench-client-7  Recreate
+ Container jsonbench-client-6  Recreate
+ Container jsonbench-client-8  Recreate
+ Container jsonbench-client-8  Recreated
+ Container jsonbench-client-3  Recreated
+ Container jsonbench-client-7  Recreated
+ Container jsonbench-client-2  Recreated
+ Container jsonbench-client-4  Recreated
+ Container jsonbench-client-5  Recreated
+ Container jsonbench-client-1  Recreated
+ Container jsonbench-client-6  Recreated
+Attaching to client-1, client-2, client-3, client-4, client-5, client-6, client-7, client-8
+client-6  | Current Mongosh Log ID:	67bf80664d6109bbe24fac53
+client-6  | Using Mongosh:		2.0.2
+client-6  | 
+client-6  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-6  | 
+client-6  | 
+client-6  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-6  | You can opt-out by running the disableTelemetry() command.
+client-6  | 
+client-6  | Loading file: /dir/lib.js
+client-1  | Current Mongosh Log ID:	67bf806651fefac08b04da55
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-1  | Loading file: /dir/lib.js
+client-4  | Current Mongosh Log ID:	67bf8067898197095c8d7d89
+client-6  | Environment Variables:
+client-6  | BENCH_DOCS: 1000000
+client-6  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-4  | Using Mongosh:		2.0.2
+client-4  | 
+client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-4  | 
+client-4  | 
+client-4  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-4  | You can opt-out by running the disableTelemetry() command.
+client-4  | 
+client-6  | [2025-02-26T20:58:15.973Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-4  | Loading file: /dir/lib.js
+client-6  | [c3f90e4bf80a] PostgreSQL (  0%) - delete throughput:     58 docs/sec - 1 documents
+client-5  | Current Mongosh Log ID:	67bf806865bf16b9522ff693
+client-5  | Using Mongosh:		2.0.2
+client-5  | 
+client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-5  | 
+client-5  | 
+client-5  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-5  | You can opt-out by running the disableTelemetry() command.
+client-5  | 
+client-1  | Environment Variables:
+client-1  | BENCH_DOCS: 1000000
+client-1  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-1  | [2025-02-26T20:58:17.014Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-5  | Loading file: /dir/lib.js
+client-3  | Current Mongosh Log ID:	67bf806917f60c94f92e83cd
+client-1  | [3025bfe316de] PostgreSQL (  0%) - delete throughput:     86 docs/sec - 1 documents
+client-3  | Using Mongosh:		2.0.2
+client-3  | 
+client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-3  | 
+client-3  | 
+client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-3  | You can opt-out by running the disableTelemetry() command.
+client-3  | 
+client-3  | Loading file: /dir/lib.js
+client-2  | Current Mongosh Log ID:	67bf80698f11a52920a2ca88
+client-4  | Environment Variables:
+client-4  | BENCH_DOCS: 1000000
+client-4  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-4  | [2025-02-26T20:58:18.270Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-4  | [750faf2be7f4] PostgreSQL (  0%) - delete throughput:     54 docs/sec - 1 documents
+client-2  | Using Mongosh:		2.0.2
+client-2  | 
+client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-2  | 
+client-2  | 
+client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-2  | You can opt-out by running the disableTelemetry() command.
+client-2  | 
+client-2  | Loading file: /dir/lib.js
+client-7  | Current Mongosh Log ID:	67bf806ae0f7247946db857c
+client-5  | Environment Variables:
+client-5  | BENCH_DOCS: 1000000
+client-5  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-5  | [2025-02-26T20:58:19.562Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-7  | Using Mongosh:		2.0.2
+client-7  | 
+client-7  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-7  | 
+client-7  | 
+client-7  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-7  | You can opt-out by running the disableTelemetry() command.
+client-7  | 
+client-7  | Loading file: /dir/lib.js
+client-5  | [2e45dc5911f7] PostgreSQL (  0%) - delete throughput:     47 docs/sec - 1 documents
+client-8  | Current Mongosh Log ID:	67bf806b7b7ad374d07af1ae
+client-3  | Environment Variables:
+client-3  | BENCH_DOCS: 1000000
+client-3  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-3  | [2025-02-26T20:58:20.272Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-3  | [6c699e5927cf] PostgreSQL (  0%) - delete throughput:     63 docs/sec - 1 documents
+client-8  | Using Mongosh:		2.0.2
+client-8  | 
+client-8  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-8  | 
+client-8  | 
+client-8  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-8  | You can opt-out by running the disableTelemetry() command.
+client-8  | 
+client-8  | Loading file: /dir/lib.js
+client-2  | Environment Variables:
+client-2  | BENCH_DOCS: 1000000
+client-2  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-2  | [2025-02-26T20:58:21.060Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-2  | [3d0a627b0011] PostgreSQL (  0%) - delete throughput:     65 docs/sec - 1 documents
+client-7  | Environment Variables:
+client-7  | BENCH_DOCS: 1000000
+client-7  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-7  | [2025-02-26T20:58:21.975Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-7  | [4a24ee466d56] PostgreSQL (  0%) - delete throughput:     67 docs/sec - 1 documents
+client-8  | Environment Variables:
+client-8  | BENCH_DOCS: 1000000
+client-8  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-8  | [2025-02-26T20:58:22.683Z] 🚀 Starting delete from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-8  | [a1fbf32d1c33] PostgreSQL (  0%) - delete throughput:     52 docs/sec - 1 documents
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+c3f90e4bf80a   jsonbench-client-6     33.08%    100.5MiB / 27.2GiB   0.36%     29.2MB / 58.7MB   0B / 8.19kB       11
+3025bfe316de   jsonbench-client-1     33.40%    100.1MiB / 27.2GiB   0.36%     28.9MB / 58.4MB   0B / 8.19kB       11
+750faf2be7f4   jsonbench-client-4     33.46%    100.6MiB / 27.2GiB   0.36%     28.9MB / 58.3MB   0B / 8.19kB       11
+2e45dc5911f7   jsonbench-client-5     32.96%    100.1MiB / 27.2GiB   0.36%     28.8MB / 57.9MB   0B / 8.19kB       11
+6c699e5927cf   jsonbench-client-3     33.72%    99.86MiB / 27.2GiB   0.36%     28.8MB / 58MB     0B / 8.19kB       11
+3d0a627b0011   jsonbench-client-2     32.07%    99.9MiB / 27.2GiB    0.36%     28.7MB / 57.7MB   0B / 8.19kB       11
+4a24ee466d56   jsonbench-client-7     32.60%    100.2MiB / 27.2GiB   0.36%     28.6MB / 57.6MB   0B / 8.19kB       11
+a1fbf32d1c33   jsonbench-client-8     32.13%    99.81MiB / 27.2GiB   0.36%     28.6MB / 57.6MB   0B / 8.19kB       11
+2cf19af6c3f8   jsonbench-grafana-1    1.92%     77.15MiB / 27.2GiB   0.28%     22.8MB / 83.6MB   1.45MB / 16.3MB   23
+850a33b3c11e   prometheus             0.00%     133.5MiB / 27.2GiB   0.48%     479MB / 22.6MB    614kB / 112MB     14
+6fd576903404   jsonbench-postgres-1   212.17%   1.529GiB / 9GiB      16.98%    464MB / 231MB     0B / 8.52GB       14
+b915f2e24ef7   jsonbench-mongodb-1    0.66%     949.7MiB / 9GiB      10.30%    4.06GB / 2.44GB   160kB / 35.6GB    33
+714a14a86e94   cadvisor               6.34%     70.51MiB / 27.2GiB   0.25%     8.73MB / 475MB    0B / 0B           17
+client-6  | [c3f90e4bf80a] PostgreSQL ( 10%) - delete throughput:    246 docs/sec - 100001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 10%) - delete throughput:    246 docs/sec - 100001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 10%) - delete throughput:    246 docs/sec - 100001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 10%) - delete throughput:    248 docs/sec - 100001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 10%) - delete throughput:    247 docs/sec - 100001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 10%) - delete throughput:    246 docs/sec - 100001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 10%) - delete throughput:    248 docs/sec - 100001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 10%) - delete throughput:    247 docs/sec - 100001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 20%) - delete throughput:    247 docs/sec - 200001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 20%) - delete throughput:    247 docs/sec - 200001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 20%) - delete throughput:    247 docs/sec - 200001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 20%) - delete throughput:    248 docs/sec - 200001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 20%) - delete throughput:    248 docs/sec - 200001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 20%) - delete throughput:    248 docs/sec - 200001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 20%) - delete throughput:    247 docs/sec - 200001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 20%) - delete throughput:    246 docs/sec - 200001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 30%) - delete throughput:    240 docs/sec - 300001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 30%) - delete throughput:    239 docs/sec - 300001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 30%) - delete throughput:    240 docs/sec - 300001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 30%) - delete throughput:    239 docs/sec - 300001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 30%) - delete throughput:    239 docs/sec - 300001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 30%) - delete throughput:    240 docs/sec - 300001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 30%) - delete throughput:    240 docs/sec - 300001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 30%) - delete throughput:    239 docs/sec - 300001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 40%) - delete throughput:    242 docs/sec - 400001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 40%) - delete throughput:    243 docs/sec - 400001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 40%) - delete throughput:    242 docs/sec - 400001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 50%) - delete throughput:    242 docs/sec - 500001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 50%) - delete throughput:    243 docs/sec - 500001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 50%) - delete throughput:    242 docs/sec - 500001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 60%) - delete throughput:    247 docs/sec - 600001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 60%) - delete throughput:    246 docs/sec - 600001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 60%) - delete throughput:    247 docs/sec - 600001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 60%) - delete throughput:    246 docs/sec - 600001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 60%) - delete throughput:    246 docs/sec - 600001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 60%) - delete throughput:    246 docs/sec - 600001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 60%) - delete throughput:    246 docs/sec - 600001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 60%) - delete throughput:    245 docs/sec - 600001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 70%) - delete throughput:    248 docs/sec - 700001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 70%) - delete throughput:    248 docs/sec - 700001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 70%) - delete throughput:    248 docs/sec - 700001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 70%) - delete throughput:    248 docs/sec - 700001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 70%) - delete throughput:    247 docs/sec - 700001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 70%) - delete throughput:    247 docs/sec - 700001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 70%) - delete throughput:    247 docs/sec - 700001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 70%) - delete throughput:    246 docs/sec - 700001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 80%) - delete throughput:    250 docs/sec - 800001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 80%) - delete throughput:    250 docs/sec - 800001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 80%) - delete throughput:    250 docs/sec - 800001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 80%) - delete throughput:    250 docs/sec - 800001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 80%) - delete throughput:    249 docs/sec - 800001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 80%) - delete throughput:    249 docs/sec - 800001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 80%) - delete throughput:    249 docs/sec - 800001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 80%) - delete throughput:    248 docs/sec - 800001 documents
+client-2  | [3d0a627b0011] PostgreSQL ( 90%) - delete throughput:    252 docs/sec - 900001 documents
+client-3  | [6c699e5927cf] PostgreSQL ( 90%) - delete throughput:    252 docs/sec - 900001 documents
+client-8  | [a1fbf32d1c33] PostgreSQL ( 90%) - delete throughput:    252 docs/sec - 900001 documents
+client-4  | [750faf2be7f4] PostgreSQL ( 90%) - delete throughput:    251 docs/sec - 900001 documents
+client-1  | [3025bfe316de] PostgreSQL ( 90%) - delete throughput:    251 docs/sec - 900001 documents
+client-6  | [c3f90e4bf80a] PostgreSQL ( 90%) - delete throughput:    251 docs/sec - 900001 documents
+client-7  | [4a24ee466d56] PostgreSQL ( 90%) - delete throughput:    251 docs/sec - 900001 documents
+client-5  | [2e45dc5911f7] PostgreSQL ( 90%) - delete throughput:    250 docs/sec - 900001 documents
+client-2  | [2025-02-26T22:04:09.701Z] 🏁 delete workload completed in 3948.64 seconds (1000000 documents)
+client-3  | [2025-02-26T22:04:11.296Z] 🏁 delete workload completed in 3951.02 seconds (1000000 documents)
+client-8  | [2025-02-26T22:04:11.722Z] 🏁 delete workload completed in 3949.04 seconds (1000000 documents)
+client-4  | [2025-02-26T22:04:13.901Z] 🏁 delete workload completed in 3955.63 seconds (1000000 documents)
+client-1  | [2025-02-26T22:04:14.316Z] 🏁 delete workload completed in 3957.30 seconds (1000000 documents)
+client-7  | [2025-02-26T22:04:16.957Z] 🏁 delete workload completed in 3954.98 seconds (1000000 documents)
+client-6  | [2025-02-26T22:04:17.069Z] 🏁 delete workload completed in 3961.10 seconds (1000000 documents)
+client-5  | [2025-02-26T22:04:24.666Z] 🏁 delete workload completed in 3965.10 seconds (1000000 documents)
+[Kclient-2 exited with code 0
+[Kclient-3 exited with code 0
+[Kclient-8 exited with code 0
+[Kclient-4 exited with code 0
+[Kclient-1 exited with code 0
+[Kclient-7 exited with code 0
+[Kclient-6 exited with code 0
+[Kclient-5 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+ 6,614,709,829,629      instructions:u            docker/6fd576903404453e6b76a63c3bbd7c0d2ce05a76a84bca24c517b6a40bb76bb9                                   
+
+    4972.848074591 seconds time elapsed
+
+VACUUM
+PostgreSQL count: 1.08287e+06 size: 1202 MB index: 544 MB
+5
+34
+36
+37
+40
+63
+67
+71
+78
+87
+public|jsonbench|id|f|0|8|-1|||{101,83434,161206,245534,331023,398524,480972,562891,648174,733622,815998,895308,968621,1047293,1119036,1203491,1273682,1350001,1426418,1521300,1604046,1681687,1754552,1848743,1922929,2004471,2089384,2172905,2247971,2323747,2409468,2496337,2577060,2658939,2732056,2804755,2888785,2966840,3037526,3118813,3200105,3284136,3362225,3444059,3525505,3606515,3682607,3759949,3836516,3916203,3996987,4082204,4162874,4247220,4339800,4417560,4499559,4578123,4650957,4725291,4806609,4891939,4969527,5055779,5124803,5196653,5275494,5355449,5432639,5518513,5606530,5682868,5766815,5841469,5922498,6007657,6081773,6160772,6240541,6340211,6415919,6501259,6578816,6660334,6742691,6823312,6902164,6976706,7059370,7149171,7225568,7300725,7374037,7453720,7539621,7619155,7695477,7768172,7848410,7922114,7999441}|0.9999831||||||
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+a0f8c07301ab   mongo_fdw              0.01%     37.23MiB / 27.2GiB   0.13%     2.21kB / 2.38kB   180kB / 52.9MB    6
+2cf19af6c3f8   jsonbench-grafana-1    1.08%     76.79MiB / 27.2GiB   0.28%     23.2MB / 87MB     1.45MB / 19.1MB   23
+850a33b3c11e   prometheus             0.00%     105.2MiB / 27.2GiB   0.38%     534MB / 23.7MB    614kB / 112MB     14
+6fd576903404   jsonbench-postgres-1   0.01%     1.815GiB / 9GiB      20.17%    7.22GB / 3.58GB   0B / 71.5GB       6
+b915f2e24ef7   jsonbench-mongodb-1    0.40%     948.2MiB / 9GiB      10.29%    4.06GB / 2.44GB   160kB / 35.6GB    33
+714a14a86e94   cadvisor               31.53%    57.44MiB / 27.2GiB   0.21%     9.72MB / 530MB    0B / 0B           17

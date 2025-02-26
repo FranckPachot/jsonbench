@@ -26,7 +26,6 @@ services:
    - BENCH_DOCS=$BENCH_DOCS
    - BENCH_NUM=$BENCH_NUM
    - BENCH_BYTES=$BENCH_BYTES
-   - BENCH_OPERATION=$BENCH_OPERATION
   command: -f /dir/lib.js
 
  # MongoDB 

@@ -148,7 +148,7 @@ async function mainOperation(count, stringSize, attrCount, connectionString, ope
 
     for (const operation of operations) {
         console.log(`[${new Date().toISOString()}] 🚀 Starting ${operation} from ${process.env.DB_URI} for ${totalCallst} calls`);
-        const successCount = await mainOperation(totalCallst, 10, 5, process.env.DB_URI, operation);
+        const successCount = await mainOperation(totalCallst, process.env.BENCH_SIZE, process.env.BENCH_NUM, process.env.DB_URI, operation);
         const endTime = performance.now();
         const duration = ((endTime - startTime) / 1000).toFixed(2);
         console.log(`[${new Date().toISOString()}] 🏁 ${operation} workload completed in ${duration} seconds (${successCount} documents)`);

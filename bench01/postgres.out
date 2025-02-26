@@ -266,3 +266,38 @@ client-3  | [2025-02-26T10:40:55.608Z] 🏁 insert workload completed in 2897.87
 client-6  | [2025-02-26T10:40:55.677Z] 🏁 insert workload completed in 2903.56 seconds (1000000 documents)
 client-4  | [2025-02-26T10:40:56.754Z] 🏁 insert workload completed in 2902.30 seconds (1000000 documents)
 client-5  | [2025-02-26T10:41:01.887Z] 🏁 insert workload completed in 2908.85 seconds (1000000 documents)
+[Kclient-1 exited with code 0
+[Kclient-8 exited with code 0
+[Kclient-2 exited with code 0
+[Kclient-7 exited with code 0
+[Kclient-3 exited with code 0
+[Kclient-6 exited with code 0
+[Kclient-4 exited with code 0
+[Kclient-5 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+ 1,662,831,807,257      instructions:u            docker/6fd576903404453e6b76a63c3bbd7c0d2ce05a76a84bca24c517b6a40bb76bb9                                   
+
+    3914.026015294 seconds time elapsed
+
+time="2025-02-26T10:57:42Z" level=warning msg="The \"BENCH_OPERATION\" variable is not set. Defaulting to a blank string."
+VACUUM
+PostgreSQL count: 7.999883e+06 size: 1202 MB index: 544 MB
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+public|jsonbench|id|f|0|8|-1|||{158,73500,156908,229224,302614,381703,456729,532025,618056,700376,782658,864572,940487,1013036,1086873,1161537,1240913,1320603,1401178,1479335,1549083,1632787,1715696,1799173,1884535,1967484,2046184,2133692,2219865,2296449,2383668,2481935,2548038,2634026,2704389,2788413,2870028,2950506,3031941,3107879,3188244,3267144,3355334,3434350,3501792,3587781,3657393,3739007,3812846,3888547,3964901,4040214,4125104,4203272,4280724,4353244,4434847,4512908,4599917,4681344,4759528,4842092,4913406,5006573,5077616,5154414,5225419,5314152,5407887,5493678,5580438,5664325,5737413,5809663,5893539,5970020,6052337,6131140,6205997,6303840,6385179,6453714,6526093,6619021,6704847,6786377,6868987,6954897,7040030,7119777,7194803,7277138,7354049,7433075,7521434,7597419,7684324,7765009,7843397,7925009,7999984}|0.99998283||||||
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O        PIDS
+2cf19af6c3f8   jsonbench-grafana-1    0.86%     74.09MiB / 27.2GiB   0.27%     514kB / 871kB     422kB / 1.43MB   23
+850a33b3c11e   prometheus             0.00%     99.17MiB / 27.2GiB   0.36%     96.3MB / 1.98MB   483kB / 12.3kB   13
+6fd576903404   jsonbench-postgres-1   0.01%     1.859GiB / 9GiB      20.65%    4.36GB / 3.08GB   0B / 38.6GB      6
+b915f2e24ef7   jsonbench-mongodb-1    0.32%     1.318GiB / 9GiB      14.65%    2.6GB / 890MB     0B / 8.12GB      33
+714a14a86e94   cadvisor               2.67%     58.8MiB / 27.2GiB    0.21%     1.78MB / 96.3MB   0B / 0B          17

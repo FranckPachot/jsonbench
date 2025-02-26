@@ -1,0 +1,293 @@
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2cf19af6c3f8   jsonbench-grafana-1    1.06%     77.23MiB / 27.2GiB   0.28%     21.4MB / 80.8MB   1.45MB / 13.3MB   23
+850a33b3c11e   prometheus             0.00%     95.1MiB / 27.2GiB    0.34%     396MB / 20.3MB    614kB / 88.2MB    14
+6fd576903404   jsonbench-postgres-1   0.00%     117.7MiB / 9GiB      1.28%     1.28kB / 1.61kB   0B / 262kB        6
+b915f2e24ef7   jsonbench-mongodb-1    0.33%     181.6MiB / 9GiB      1.97%     5.43kB / 7.84kB   0B / 1.22MB       33
+714a14a86e94   cadvisor               2.21%     59.09MiB / 27.2GiB   0.21%     7.21MB / 392MB    0B / 0B           17
+mongodb-init-1  | Current Mongosh Log ID:	67bf5fb6de44de767dda748a
+mongodb-init-1  | Connecting to:		mongodb://mongodb:27017/?directConnection=true&appName=mongosh+2.0.2
+mongodb-init-1  | Using MongoDB:		7.0.16
+mongodb-init-1  | Using Mongosh:		2.0.2
+mongodb-init-1  | 
+mongodb-init-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+mongodb-init-1  | 
+mongodb-init-1  | 
+mongodb-init-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+mongodb-init-1  | You can opt-out by running the disableTelemetry() command.
+mongodb-init-1  | 
+mongodb-init-1  | ------
+mongodb-init-1  |    The server generated these startup warnings when booting
+mongodb-init-1  |    2025-02-26T18:38:46.533+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+mongodb-init-1  |    2025-02-26T18:38:46.534+00:00: vm.max_map_count is too low
+mongodb-init-1  | ------
+mongodb-init-1  | 
+mongodb-init-1  | Loading file: /dir/init.js
+time="2025-02-26T18:48:48Z" level=warning msg="The \"BENCH_OPERATION\" variable is not set. Defaulting to a blank string."
+ Container jsonbench-postgres-1  Running
+ Container jsonbench-mongodb-1  Running
+ Container jsonbench-client-1  Creating
+ Container jsonbench-client-8  Creating
+ Container jsonbench-client-2  Creating
+ Container jsonbench-client-5  Creating
+ Container jsonbench-client-6  Creating
+ Container jsonbench-client-4  Creating
+ Container jsonbench-client-3  Creating
+ Container jsonbench-client-7  Creating
+ Container jsonbench-client-2  Created
+ Container jsonbench-client-8  Created
+ Container jsonbench-client-4  Created
+ Container jsonbench-client-7  Created
+ Container jsonbench-client-3  Created
+ Container jsonbench-client-5  Created
+ Container jsonbench-client-1  Created
+ Container jsonbench-client-6  Created
+Attaching to client-1, client-2, client-3, client-4, client-5, client-6, client-7, client-8
+client-4  | Current Mongosh Log ID:	67bf62126143afb2e6a32349
+client-4  | Using Mongosh:		2.0.2
+client-4  | 
+client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-4  | 
+client-4  | 
+client-4  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-4  | You can opt-out by running the disableTelemetry() command.
+client-4  | 
+client-4  | Loading file: /dir/lib.js
+client-6  | Current Mongosh Log ID:	67bf6213f54c31d9d00e1e99
+client-6  | Using Mongosh:		2.0.2
+client-6  | 
+client-6  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-6  | 
+client-6  | 
+client-6  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-6  | You can opt-out by running the disableTelemetry() command.
+client-6  | 
+client-6  | Loading file: /dir/lib.js
+client-2  | Current Mongosh Log ID:	67bf62133e0cbf122524a95b
+client-4  | Environment Variables:
+client-4  | BENCH_DOCS: 1000000
+client-4  | DB_URI: mongodb://mongodb:27017
+client-4  | [2025-02-26T18:48:52.577Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-2  | Using Mongosh:		2.0.2
+client-2  | 
+client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-2  | 
+client-2  | 
+client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-2  | You can opt-out by running the disableTelemetry() command.
+client-2  | 
+client-2  | Loading file: /dir/lib.js
+client-4  | [e4edbcc901d1] MongoDB (  0%) - delete throughput:     22 docs/sec - 1 documents
+client-1  | Current Mongosh Log ID:	67bf6214c0e322a90f9731a1
+client-6  | Environment Variables:
+client-6  | BENCH_DOCS: 1000000
+client-6  | DB_URI: mongodb://mongodb:27017
+client-6  | [2025-02-26T18:48:53.435Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-6  | [ae38f9078fd7] MongoDB (  0%) - delete throughput:     28 docs/sec - 1 documents
+client-1  | Loading file: /dir/lib.js
+client-5  | Current Mongosh Log ID:	67bf621584e9a659d596c5ae
+client-7  | Current Mongosh Log ID:	67bf6216d196c5142ee133c2
+client-5  | Using Mongosh:		2.0.2
+client-5  | 
+client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-5  | 
+client-5  | 
+client-5  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-5  | You can opt-out by running the disableTelemetry() command.
+client-5  | 
+client-5  | Loading file: /dir/lib.js
+client-2  | Environment Variables:
+client-2  | BENCH_DOCS: 1000000
+client-2  | DB_URI: mongodb://mongodb:27017
+client-2  | [2025-02-26T18:48:55.098Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-7  | Using Mongosh:		2.0.2
+client-7  | 
+client-7  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-7  | 
+client-7  | 
+client-7  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-7  | You can opt-out by running the disableTelemetry() command.
+client-7  | 
+client-2  | [4f45c5ab59cd] MongoDB (  0%) - delete throughput:     18 docs/sec - 1 documents
+client-7  | Loading file: /dir/lib.js
+client-3  | Current Mongosh Log ID:	67bf6217ed033f57736f409d
+client-1  | Environment Variables:
+client-1  | BENCH_DOCS: 1000000
+client-1  | DB_URI: mongodb://mongodb:27017
+client-1  | [2025-02-26T18:48:55.941Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-1  | [7be755f3b269] MongoDB (  0%) - delete throughput:     24 docs/sec - 1 documents
+client-3  | Using Mongosh:		2.0.2
+client-3  | 
+client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-3  | 
+client-3  | 
+client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-3  | You can opt-out by running the disableTelemetry() command.
+client-3  | 
+client-3  | Loading file: /dir/lib.js
+client-8  | Current Mongosh Log ID:	67bf6218bcc344ef0810c468
+client-5  | Environment Variables:
+client-5  | BENCH_DOCS: 1000000
+client-5  | DB_URI: mongodb://mongodb:27017
+client-5  | [2025-02-26T18:48:57.187Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-8  | Using Mongosh:		2.0.2
+client-8  | 
+client-8  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-8  | 
+client-8  | 
+client-8  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-8  | You can opt-out by running the disableTelemetry() command.
+client-8  | 
+client-8  | Loading file: /dir/lib.js
+client-5  | [5adfa594b200] MongoDB (  0%) - delete throughput:     27 docs/sec - 1 documents
+client-7  | Environment Variables:
+client-7  | BENCH_DOCS: 1000000
+client-7  | DB_URI: mongodb://mongodb:27017
+client-7  | [2025-02-26T18:48:57.981Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-7  | [404758ec8d50] MongoDB (  0%) - delete throughput:     26 docs/sec - 1 documents
+client-3  | Environment Variables:
+client-3  | BENCH_DOCS: 1000000
+client-3  | DB_URI: mongodb://mongodb:27017
+client-3  | [2025-02-26T18:48:59.187Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-3  | [a6fcbbb1e045] MongoDB (  0%) - delete throughput:      0 docs/sec - 0 documents
+client-8  | Environment Variables:
+client-8  | BENCH_DOCS: 1000000
+client-8  | DB_URI: mongodb://mongodb:27017
+client-8  | [2025-02-26T18:48:59.911Z] 🚀 Starting delete from mongodb://mongodb:27017 for 1000000 calls
+client-8  | [c8dbde3605b7] MongoDB (  0%) - delete throughput:      0 docs/sec - 0 documents
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+e4edbcc901d1   jsonbench-client-4     58.94%    223.4MiB / 27.2GiB   0.80%     12.2MB / 20.2MB   0B / 8.19kB       11
+ae38f9078fd7   jsonbench-client-6     51.60%    146.1MiB / 27.2GiB   0.52%     12.1MB / 20.1MB   0B / 8.19kB       11
+4f45c5ab59cd   jsonbench-client-2     55.73%    213.8MiB / 27.2GiB   0.77%     12.1MB / 20.1MB   0B / 8.19kB       11
+7be755f3b269   jsonbench-client-1     46.69%    166.6MiB / 27.2GiB   0.60%     12.1MB / 20.2MB   0B / 8.19kB       11
+5adfa594b200   jsonbench-client-5     63.56%    199.2MiB / 27.2GiB   0.72%     12MB / 19.9MB     0B / 8.19kB       11
+404758ec8d50   jsonbench-client-7     62.81%    194.2MiB / 27.2GiB   0.70%     12.1MB / 20MB     0B / 8.19kB       11
+a6fcbbb1e045   jsonbench-client-3     58.64%    130.5MiB / 27.2GiB   0.47%     11.9MB / 19.7MB   0B / 8.19kB       11
+c8dbde3605b7   jsonbench-client-8     57.75%    232.2MiB / 27.2GiB   0.83%     11.8MB / 19.7MB   0B / 8.19kB       11
+2cf19af6c3f8   jsonbench-grafana-1    1.56%     76.92MiB / 27.2GiB   0.28%     21.4MB / 80.8MB   1.45MB / 13.3MB   23
+850a33b3c11e   prometheus             0.00%     98.05MiB / 27.2GiB   0.35%     398MB / 20.3MB    614kB / 88.2MB    14
+6fd576903404   jsonbench-postgres-1   0.00%     118.2MiB / 9GiB      1.28%     1.62kB / 1.61kB   0B / 262kB        6
+b915f2e24ef7   jsonbench-mongodb-1    287.22%   1.623GiB / 9GiB      18.03%    160MB / 96.3MB    160kB / 2.16GB    57
+714a14a86e94   cadvisor               7.76%     69.8MiB / 27.2GiB    0.25%     7.26MB / 395MB    0B / 0B           17
+client-7  | [404758ec8d50] MongoDB ( 10%) - delete throughput:    150 docs/sec - 94176 documents
+client-1  | [7be755f3b269] MongoDB ( 10%) - delete throughput:    149 docs/sec - 94255 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 10%) - delete throughput:    147 docs/sec - 94128 documents
+client-4  | [e4edbcc901d1] MongoDB ( 10%) - delete throughput:    146 docs/sec - 94106 documents
+client-5  | [5adfa594b200] MongoDB ( 10%) - delete throughput:    147 docs/sec - 94290 documents
+client-6  | [ae38f9078fd7] MongoDB ( 10%) - delete throughput:    146 docs/sec - 94089 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 10%) - delete throughput:    147 docs/sec - 94114 documents
+client-8  | [c8dbde3605b7] MongoDB ( 10%) - delete throughput:    147 docs/sec - 94211 documents
+client-7  | [404758ec8d50] MongoDB ( 20%) - delete throughput:    151 docs/sec - 188495 documents
+client-1  | [7be755f3b269] MongoDB ( 20%) - delete throughput:    150 docs/sec - 188448 documents
+client-4  | [e4edbcc901d1] MongoDB ( 20%) - delete throughput:    148 docs/sec - 188097 documents
+client-5  | [5adfa594b200] MongoDB ( 20%) - delete throughput:    149 docs/sec - 188530 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 20%) - delete throughput:    148 docs/sec - 188375 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 20%) - delete throughput:    148 docs/sec - 188293 documents
+client-8  | [c8dbde3605b7] MongoDB ( 20%) - delete throughput:    148 docs/sec - 188440 documents
+client-6  | [ae38f9078fd7] MongoDB ( 20%) - delete throughput:    147 docs/sec - 188219 documents
+client-7  | [404758ec8d50] MongoDB ( 30%) - delete throughput:    152 docs/sec - 282829 documents
+client-1  | [7be755f3b269] MongoDB ( 30%) - delete throughput:    150 docs/sec - 282595 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 30%) - delete throughput:    149 docs/sec - 282452 documents
+client-4  | [e4edbcc901d1] MongoDB ( 30%) - delete throughput:    149 docs/sec - 282240 documents
+client-5  | [5adfa594b200] MongoDB ( 30%) - delete throughput:    149 docs/sec - 282607 documents
+client-8  | [c8dbde3605b7] MongoDB ( 30%) - delete throughput:    149 docs/sec - 282711 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 30%) - delete throughput:    148 docs/sec - 282536 documents
+client-6  | [ae38f9078fd7] MongoDB ( 30%) - delete throughput:    147 docs/sec - 282264 documents
+client-7  | [404758ec8d50] MongoDB ( 40%) - delete throughput:    152 docs/sec - 377061 documents
+client-1  | [7be755f3b269] MongoDB ( 40%) - delete throughput:    151 docs/sec - 376798 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 40%) - delete throughput:    150 docs/sec - 376692 documents
+client-5  | [5adfa594b200] MongoDB ( 40%) - delete throughput:    150 docs/sec - 376752 documents
+client-4  | [e4edbcc901d1] MongoDB ( 40%) - delete throughput:    149 docs/sec - 376330 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 40%) - delete throughput:    149 docs/sec - 376520 documents
+client-8  | [c8dbde3605b7] MongoDB ( 40%) - delete throughput:    149 docs/sec - 376783 documents
+client-6  | [ae38f9078fd7] MongoDB ( 40%) - delete throughput:    148 docs/sec - 376323 documents
+client-7  | [404758ec8d50] MongoDB ( 50%) - delete throughput:    153 docs/sec - 471193 documents
+client-1  | [7be755f3b269] MongoDB ( 50%) - delete throughput:    152 docs/sec - 471047 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 50%) - delete throughput:    151 docs/sec - 470872 documents
+client-5  | [5adfa594b200] MongoDB ( 50%) - delete throughput:    150 docs/sec - 470970 documents
+client-4  | [e4edbcc901d1] MongoDB ( 50%) - delete throughput:    150 docs/sec - 470326 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 50%) - delete throughput:    150 docs/sec - 470728 documents
+client-8  | [c8dbde3605b7] MongoDB ( 50%) - delete throughput:    150 docs/sec - 470977 documents
+client-6  | [ae38f9078fd7] MongoDB ( 50%) - delete throughput:    149 docs/sec - 470336 documents
+client-7  | [404758ec8d50] MongoDB ( 60%) - delete throughput:    154 docs/sec - 565508 documents
+client-1  | [7be755f3b269] MongoDB ( 60%) - delete throughput:    153 docs/sec - 565381 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 60%) - delete throughput:    152 docs/sec - 564932 documents
+client-5  | [5adfa594b200] MongoDB ( 60%) - delete throughput:    151 docs/sec - 565248 documents
+client-4  | [e4edbcc901d1] MongoDB ( 60%) - delete throughput:    151 docs/sec - 564489 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 60%) - delete throughput:    150 docs/sec - 564753 documents
+client-8  | [c8dbde3605b7] MongoDB ( 60%) - delete throughput:    151 docs/sec - 565053 documents
+client-6  | [ae38f9078fd7] MongoDB ( 60%) - delete throughput:    149 docs/sec - 564429 documents
+client-7  | [404758ec8d50] MongoDB ( 70%) - delete throughput:    154 docs/sec - 659629 documents
+client-1  | [7be755f3b269] MongoDB ( 70%) - delete throughput:    153 docs/sec - 659595 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 70%) - delete throughput:    152 docs/sec - 659045 documents
+client-5  | [5adfa594b200] MongoDB ( 70%) - delete throughput:    152 docs/sec - 659434 documents
+client-4  | [e4edbcc901d1] MongoDB ( 70%) - delete throughput:    151 docs/sec - 658592 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 70%) - delete throughput:    151 docs/sec - 658924 documents
+client-8  | [c8dbde3605b7] MongoDB ( 70%) - delete throughput:    151 docs/sec - 659191 documents
+client-6  | [ae38f9078fd7] MongoDB ( 70%) - delete throughput:    150 docs/sec - 658441 documents
+client-7  | [404758ec8d50] MongoDB ( 80%) - delete throughput:    155 docs/sec - 753794 documents
+client-1  | [7be755f3b269] MongoDB ( 80%) - delete throughput:    154 docs/sec - 753696 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 80%) - delete throughput:    153 docs/sec - 753316 documents
+client-5  | [5adfa594b200] MongoDB ( 80%) - delete throughput:    153 docs/sec - 753683 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 80%) - delete throughput:    152 docs/sec - 753054 documents
+client-4  | [e4edbcc901d1] MongoDB ( 80%) - delete throughput:    152 docs/sec - 752751 documents
+client-8  | [c8dbde3605b7] MongoDB ( 80%) - delete throughput:    152 docs/sec - 753308 documents
+client-6  | [ae38f9078fd7] MongoDB ( 80%) - delete throughput:    151 docs/sec - 752516 documents
+client-7  | [404758ec8d50] MongoDB ( 90%) - delete throughput:    155 docs/sec - 847966 documents
+client-1  | [7be755f3b269] MongoDB ( 90%) - delete throughput:    155 docs/sec - 847826 documents
+client-3  | [a6fcbbb1e045] MongoDB ( 90%) - delete throughput:    154 docs/sec - 847481 documents
+client-5  | [5adfa594b200] MongoDB ( 90%) - delete throughput:    153 docs/sec - 847836 documents
+client-2  | [4f45c5ab59cd] MongoDB ( 90%) - delete throughput:    153 docs/sec - 847064 documents
+client-4  | [e4edbcc901d1] MongoDB ( 90%) - delete throughput:    152 docs/sec - 846776 documents
+client-8  | [c8dbde3605b7] MongoDB ( 90%) - delete throughput:    153 docs/sec - 847422 documents
+client-6  | [ae38f9078fd7] MongoDB ( 90%) - delete throughput:    151 docs/sec - 846513 documents
+client-7  | [2025-02-26T20:29:32.900Z] 🏁 delete workload completed in 6034.92 seconds (942159 documents)
+client-1  | [2025-02-26T20:30:04.462Z] 🏁 delete workload completed in 6068.52 seconds (941964 documents)
+client-3  | [2025-02-26T20:30:32.210Z] 🏁 delete workload completed in 6093.02 seconds (941836 documents)
+client-5  | [2025-02-26T20:30:48.508Z] 🏁 delete workload completed in 6111.32 seconds (942120 documents)
+client-2  | [2025-02-26T20:30:59.804Z] 🏁 delete workload completed in 6124.71 seconds (941412 documents)
+client-4  | [2025-02-26T20:31:04.630Z] 🏁 delete workload completed in 6132.05 seconds (941229 documents)
+client-8  | [2025-02-26T20:31:08.446Z] 🏁 delete workload completed in 6128.54 seconds (941956 documents)
+client-6  | [2025-02-26T20:31:24.873Z] 🏁 delete workload completed in 6151.44 seconds (941273 documents)
+[Kclient-7 exited with code 0
+[Kclient-1 exited with code 0
+[Kclient-3 exited with code 0
+[Kclient-5 exited with code 0
+[Kclient-2 exited with code 0
+[Kclient-4 exited with code 0
+[Kclient-8 exited with code 0
+[Kclient-6 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+ 9,712,280,313,344      instructions:u            docker/b915f2e24ef7707ccbf45c30198d5e06038a6f5a77d3388cd6258cdadc5b7f3e                                   
+
+    7156.297280678 seconds time elapsed
+
+time="2025-02-26T20:48:05Z" level=warning msg="The \"BENCH_OPERATION\" variable is not set. Defaulting to a blank string."
+MongoDB count: 466051 size: 59 MB
+[
+  { _id: ObjectId('67bed286f8f6af4ece653c91') },
+  { _id: ObjectId('67bed286f8f6af4ece653c9b') },
+  { _id: ObjectId('67bed286f8f6af4ece653ca0') },
+  { _id: ObjectId('67bed286f8f6af4ece653cc1') },
+  { _id: ObjectId('67bed286f8f6af4ece653cd9') },
+  { _id: ObjectId('67bed286f8f6af4ece653d00') },
+  { _id: ObjectId('67bed286f8f6af4ece653d07') },
+  { _id: ObjectId('67bed287f8f6af4ece653d66') },
+  { _id: ObjectId('67bed287f8f6af4ece653da5') },
+  { _id: ObjectId('67bed287f8f6af4ece653da6') }
+]
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2cf19af6c3f8   jsonbench-grafana-1    0.97%     77.34MiB / 27.2GiB   0.28%     22.4MB / 82.8MB   1.45MB / 15.7MB   23
+850a33b3c11e   prometheus             3.17%     103.5MiB / 27.2GiB   0.37%     471MB / 22.2MB    614kB / 97.2MB    14
+6fd576903404   jsonbench-postgres-1   0.00%     118.3MiB / 9GiB      1.28%     1.66kB / 1.61kB   0B / 262kB        6
+b915f2e24ef7   jsonbench-mongodb-1    0.36%     949.7MiB / 9GiB      10.30%    4.06GB / 2.44GB   160kB / 35.6GB    33
+714a14a86e94   cadvisor               29.10%    61.33MiB / 27.2GiB   0.22%     8.58MB / 467MB    0B / 0B           17

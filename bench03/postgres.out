@@ -1,0 +1,283 @@
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2cf19af6c3f8   jsonbench-grafana-1    1.12%     76.98MiB / 27.2GiB   0.28%     20.6MB / 69.9MB   1.45MB / 11.2MB   23
+850a33b3c11e   prometheus             0.00%     102MiB / 27.2GiB     0.37%     327MB / 18.7MB    614kB / 88.2MB    14
+6fd576903404   jsonbench-postgres-1   0.00%     118.6MiB / 9GiB      1.29%     1.66kB / 1.61kB   0B / 274kB        6
+b915f2e24ef7   jsonbench-mongodb-1    0.34%     103.9MiB / 9GiB      1.13%     4.36GB / 2.56GB   0B / 2.02GB       33
+714a14a86e94   cadvisor               2.28%     58.68MiB / 27.2GiB   0.21%     5.95MB / 324MB    0B / 0B           17
+postgres-init-1  | explain select * from jsonbench where data->>'attr1' > 'M' order by data->>'attr1' limit 20;
+postgres-init-1  |                                               QUERY PLAN                                               
+postgres-init-1  | -------------------------------------------------------------------------------------------------------
+postgres-init-1  |  Limit  (cost=0.43..4.64 rows=20 width=160)
+postgres-init-1  |    ->  Index Scan using jsonbench_expr_idx on jsonbench  (cost=0.43..758030.29 rows=3601478 width=160)
+postgres-init-1  |          Index Cond: ((data ->> 'attr1'::text) > 'M'::text)
+postgres-init-1  | (3 rows)
+postgres-init-1  | 
+time="2025-02-26T17:04:19Z" level=warning msg="The \"BENCH_OPERATION\" variable is not set. Defaulting to a blank string."
+ Container jsonbench-postgres-1  Running
+ Container jsonbench-mongodb-1  Running
+ Container jsonbench-client-3  Recreate
+ Container jsonbench-client-4  Recreate
+ Container jsonbench-client-6  Recreate
+ Container jsonbench-client-5  Recreate
+ Container jsonbench-client-8  Recreate
+ Container jsonbench-client-7  Recreate
+ Container jsonbench-client-1  Recreate
+ Container jsonbench-client-2  Recreate
+ Container jsonbench-client-5  Recreated
+ Container jsonbench-client-1  Recreated
+ Container jsonbench-client-7  Recreated
+ Container jsonbench-client-4  Recreated
+ Container jsonbench-client-8  Recreated
+ Container jsonbench-client-2  Recreated
+ Container jsonbench-client-3  Recreated
+ Container jsonbench-client-6  Recreated
+Attaching to client-1, client-2, client-3, client-4, client-5, client-6, client-7, client-8
+client-4  | Current Mongosh Log ID:	67bf499433ddc102e23130b7
+client-4  | Using Mongosh:		2.0.2
+client-4  | 
+client-4  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-4  | 
+client-4  | 
+client-4  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-4  | You can opt-out by running the disableTelemetry() command.
+client-4  | 
+client-4  | Loading file: /dir/lib.js
+client-8  | Current Mongosh Log ID:	67bf499562a7efbc086e9346
+client-8  | Using Mongosh:		2.0.2
+client-8  | 
+client-8  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-8  | 
+client-8  | 
+client-8  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-8  | You can opt-out by running the disableTelemetry() command.
+client-8  | 
+client-8  | Loading file: /dir/lib.js
+client-3  | Current Mongosh Log ID:	67bf499654980bb868d75f43
+client-4  | Environment Variables:
+client-4  | BENCH_DOCS: 1000000
+client-4  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-4  | [2025-02-26T17:04:22.848Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-3  | Using Mongosh:		2.0.2
+client-3  | 
+client-3  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-3  | 
+client-3  | 
+client-3  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-3  | You can opt-out by running the disableTelemetry() command.
+client-3  | 
+client-3  | Loading file: /dir/lib.js
+client-4  | [df5774f6c62e] PostgreSQL (  0%) - update throughput:     52 docs/sec - 1 documents
+client-1  | Current Mongosh Log ID:	67bf49975c4fb0a9ff1048c9
+client-1  | Using Mongosh:		2.0.2
+client-1  | 
+client-1  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-1  | 
+client-1  | 
+client-1  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-1  | You can opt-out by running the disableTelemetry() command.
+client-1  | 
+client-1  | Loading file: /dir/lib.js
+client-7  | Current Mongosh Log ID:	67bf49971713190e09ae4da8
+client-8  | Environment Variables:
+client-8  | BENCH_DOCS: 1000000
+client-8  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-8  | [2025-02-26T17:04:24.006Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-8  | [f49397a3b96d] PostgreSQL (  0%) - update throughput:     87 docs/sec - 1 documents
+client-7  | Using Mongosh:		2.0.2
+client-7  | 
+client-7  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-7  | 
+client-7  | 
+client-7  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-7  | You can opt-out by running the disableTelemetry() command.
+client-7  | 
+client-7  | Loading file: /dir/lib.js
+client-2  | Current Mongosh Log ID:	67bf49989dfc4aedabd52fbc
+client-3  | Environment Variables:
+client-3  | BENCH_DOCS: 1000000
+client-3  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-3  | [2025-02-26T17:04:25.108Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-3  | [ef56fa76d4e6] PostgreSQL (  0%) - update throughput:     75 docs/sec - 1 documents
+client-2  | Using Mongosh:		2.0.2
+client-2  | 
+client-2  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-2  | 
+client-2  | 
+client-2  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-2  | You can opt-out by running the disableTelemetry() command.
+client-2  | 
+client-2  | Loading file: /dir/lib.js
+client-6  | Current Mongosh Log ID:	67bf49990d638c6dda19aed0
+client-1  | Environment Variables:
+client-1  | BENCH_DOCS: 1000000
+client-1  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-1  | [2025-02-26T17:04:26.400Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-6  | Using Mongosh:		2.0.2
+client-6  | 
+client-6  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-6  | 
+client-6  | 
+client-6  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-6  | You can opt-out by running the disableTelemetry() command.
+client-6  | 
+client-6  | Loading file: /dir/lib.js
+client-1  | [6571a5ac67de] PostgreSQL (  0%) - update throughput:     60 docs/sec - 1 documents
+client-5  | Current Mongosh Log ID:	67bf499a625a96a728baabfe
+client-5  | Using Mongosh:		2.0.2
+client-5  | 
+client-5  | For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+client-5  | 
+client-5  | 
+client-5  | To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+client-5  | You can opt-out by running the disableTelemetry() command.
+client-5  | 
+client-5  | Loading file: /dir/lib.js
+client-7  | Environment Variables:
+client-7  | BENCH_DOCS: 1000000
+client-7  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-7  | [2025-02-26T17:04:27.328Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-7  | [00261662291d] PostgreSQL (  0%) - update throughput:     54 docs/sec - 1 documents
+client-2  | Environment Variables:
+client-2  | BENCH_DOCS: 1000000
+client-2  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-2  | [2025-02-26T17:04:27.790Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-2  | [48892ad321be] PostgreSQL (  0%) - update throughput:     56 docs/sec - 1 documents
+client-6  | Environment Variables:
+client-6  | BENCH_DOCS: 1000000
+client-6  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-6  | [2025-02-26T17:04:28.735Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-6  | [3063b4bb30e0] PostgreSQL (  0%) - update throughput:     72 docs/sec - 1 documents
+client-5  | Environment Variables:
+client-5  | BENCH_DOCS: 1000000
+client-5  | DB_URI: postgres://postgres:xxx@postgres:5432/postgres
+client-5  | [2025-02-26T17:04:29.470Z] 🚀 Starting update from postgres://postgres:xxx@postgres:5432/postgres for 1000000 calls
+client-5  | [6bbeb1a9d828] PostgreSQL (  0%) - update throughput:     65 docs/sec - 1 documents
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+df5774f6c62e   jsonbench-client-4     45.23%    98.28MiB / 27.2GiB   0.35%     29.1MB / 63.6MB   0B / 8.19kB       11
+f49397a3b96d   jsonbench-client-8     47.23%    99.08MiB / 27.2GiB   0.36%     28.9MB / 63.5MB   0B / 8.19kB       11
+ef56fa76d4e6   jsonbench-client-3     32.58%    102.7MiB / 27.2GiB   0.37%     28.8MB / 63.1MB   0B / 8.19kB       11
+6571a5ac67de   jsonbench-client-1     48.76%    99.33MiB / 27.2GiB   0.36%     28.5MB / 62.9MB   0B / 8.19kB       11
+00261662291d   jsonbench-client-7     32.98%    102.9MiB / 27.2GiB   0.37%     28.6MB / 62.8MB   0B / 8.19kB       11
+48892ad321be   jsonbench-client-2     33.09%    102.1MiB / 27.2GiB   0.37%     28.6MB / 62.7MB   0B / 8.19kB       11
+3063b4bb30e0   jsonbench-client-6     33.10%    100.4MiB / 27.2GiB   0.36%     28.5MB / 62.6MB   0B / 8.19kB       11
+6bbeb1a9d828   jsonbench-client-5     33.04%    102.5MiB / 27.2GiB   0.37%     28.4MB / 62.5MB   0B / 8.19kB       11
+2cf19af6c3f8   jsonbench-grafana-1    1.79%     77.01MiB / 27.2GiB   0.28%     20.6MB / 69.9MB   1.45MB / 11.2MB   23
+850a33b3c11e   prometheus             0.00%     115.6MiB / 27.2GiB   0.41%     330MB / 18.7MB    614kB / 88.2MB    14
+6fd576903404   jsonbench-postgres-1   190.69%   150.9MiB / 9GiB      1.64%     504MB / 229MB     0B / 2.33GB       14
+b915f2e24ef7   jsonbench-mongodb-1    0.67%     103.9MiB / 9GiB      1.13%     4.36GB / 2.56GB   0B / 2.02GB       33
+714a14a86e94   cadvisor               5.48%     60.17MiB / 27.2GiB   0.22%     6.01MB / 327MB    0B / 0B           17
+client-4  | [df5774f6c62e] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 10%) - update throughput:    246 docs/sec - 100001 documents
+client-7  | [00261662291d] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-2  | [48892ad321be] PostgreSQL ( 10%) - update throughput:    245 docs/sec - 100001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 10%) - update throughput:    246 docs/sec - 100001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 20%) - update throughput:    247 docs/sec - 200001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-7  | [00261662291d] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-2  | [48892ad321be] PostgreSQL ( 20%) - update throughput:    246 docs/sec - 200001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 20%) - update throughput:    247 docs/sec - 200001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 30%) - update throughput:    246 docs/sec - 300001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 30%) - update throughput:    247 docs/sec - 300001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 30%) - update throughput:    246 docs/sec - 300001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 30%) - update throughput:    246 docs/sec - 300001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 30%) - update throughput:    247 docs/sec - 300001 documents
+client-7  | [00261662291d] PostgreSQL ( 30%) - update throughput:    247 docs/sec - 300001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 30%) - update throughput:    247 docs/sec - 300001 documents
+client-2  | [48892ad321be] PostgreSQL ( 30%) - update throughput:    246 docs/sec - 300001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 40%) - update throughput:    246 docs/sec - 400001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-7  | [00261662291d] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-2  | [48892ad321be] PostgreSQL ( 40%) - update throughput:    247 docs/sec - 400001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 50%) - update throughput:    248 docs/sec - 500001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-7  | [00261662291d] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-2  | [48892ad321be] PostgreSQL ( 50%) - update throughput:    247 docs/sec - 500001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 60%) - update throughput:    248 docs/sec - 600001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-7  | [00261662291d] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-2  | [48892ad321be] PostgreSQL ( 60%) - update throughput:    247 docs/sec - 600001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 70%) - update throughput:    248 docs/sec - 700001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-7  | [00261662291d] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 70%) - update throughput:    248 docs/sec - 700001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-2  | [48892ad321be] PostgreSQL ( 70%) - update throughput:    247 docs/sec - 700001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 80%) - update throughput:    248 docs/sec - 800001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-7  | [00261662291d] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 80%) - update throughput:    248 docs/sec - 800001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-2  | [48892ad321be] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 80%) - update throughput:    247 docs/sec - 800001 documents
+client-6  | [3063b4bb30e0] PostgreSQL ( 90%) - update throughput:    248 docs/sec - 900001 documents
+client-8  | [f49397a3b96d] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-1  | [6571a5ac67de] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-5  | [6bbeb1a9d828] PostgreSQL ( 90%) - update throughput:    248 docs/sec - 900001 documents
+client-7  | [00261662291d] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-4  | [df5774f6c62e] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-2  | [48892ad321be] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-3  | [ef56fa76d4e6] PostgreSQL ( 90%) - update throughput:    247 docs/sec - 900001 documents
+client-6  | [2025-02-26T18:11:38.492Z] 🏁 update workload completed in 4029.76 seconds (1000000 documents)
+client-8  | [2025-02-26T18:11:43.888Z] 🏁 update workload completed in 4039.88 seconds (1000000 documents)
+client-1  | [2025-02-26T18:11:46.092Z] 🏁 update workload completed in 4039.69 seconds (1000000 documents)
+client-5  | [2025-02-26T18:11:46.467Z] 🏁 update workload completed in 4037.00 seconds (1000000 documents)
+client-7  | [2025-02-26T18:11:46.837Z] 🏁 update workload completed in 4039.51 seconds (1000000 documents)
+client-4  | [2025-02-26T18:11:47.962Z] 🏁 update workload completed in 4045.11 seconds (1000000 documents)
+client-2  | [2025-02-26T18:11:48.246Z] 🏁 update workload completed in 4040.46 seconds (1000000 documents)
+client-3  | [2025-02-26T18:11:48.373Z] 🏁 update workload completed in 4043.27 seconds (1000000 documents)
+[Kclient-6 exited with code 0
+[Kclient-8 exited with code 0
+[Kclient-1 exited with code 0
+[Kclient-5 exited with code 0
+[Kclient-7 exited with code 0
+[Kclient-4 exited with code 0
+[Kclient-2 exited with code 0
+[Kclient-3 exited with code 0
+
+ Performance counter stats for 'system wide':
+
+ 4,290,516,051,053      instructions:u            docker/6fd576903404453e6b76a63c3bbd7c0d2ce05a76a84bca24c517b6a40bb76bb9                                   
+
+    5049.773557876 seconds time elapsed
+
+time="2025-02-26T18:28:28Z" level=warning msg="The \"BENCH_OPERATION\" variable is not set. Defaulting to a blank string."
+VACUUM
+PostgreSQL count: 7.999183e+06 size: 1238 MB index: 544 MB
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+public|jsonbench|id|f|0|8|-1|||{2193,85426,165794,237324,317045,392179,468364,555560,631133,710787,788182,870900,951090,1037655,1114364,1191175,1280989,1361758,1438119,1516309,1599714,1678838,1761580,1859367,1939190,2036777,2110573,2187914,2261643,2349812,2425324,2513711,2594935,2675567,2749911,2829259,2904454,2991149,3063936,3139844,3209334,3293384,3367334,3438860,3525709,3603418,3678903,3749932,3843566,3922852,4007525,4091523,4172503,4247746,4334492,4416458,4492683,4570071,4646522,4721206,4815577,4888619,4966511,5047853,5134375,5215834,5302974,5382256,5464587,5546591,5626206,5698123,5788437,5864542,5947847,6028857,6102236,6179472,6253108,6331192,6411616,6497243,6586859,6668523,6747155,6816816,6895868,6970969,7055017,7139552,7224370,7306134,7395997,7474967,7549342,7622637,7690353,7767827,7837469,7913560,7999993}|0.99997216||||||
+CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2cf19af6c3f8   jsonbench-grafana-1    0.97%     77.39MiB / 27.2GiB   0.28%     21.4MB / 80.8MB   1.45MB / 12.7MB   23
+850a33b3c11e   prometheus             0.00%     116.9MiB / 27.2GiB   0.42%     385MB / 20.1MB    614kB / 88.2MB    14
+6fd576903404   jsonbench-postgres-1   0.02%     197.7MiB / 9GiB      2.15%     7.8GB / 3.55GB    0B / 36.2GB       6
+b915f2e24ef7   jsonbench-mongodb-1    0.32%     101.9MiB / 9GiB      1.11%     4.36GB / 2.56GB   0B / 2.03GB       33
+714a14a86e94   cadvisor               4.16%     66.26MiB / 27.2GiB   0.24%     7.01MB / 382MB    0B / 0B           17
