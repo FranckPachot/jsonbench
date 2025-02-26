@@ -10,14 +10,18 @@ docker info || alias docker=podman
 
 export SLEEP=600 # sleep between execution to see some deferred background activity
 export CLIENTS=8
-export BENCH_DOCS=10000 # number of documents inserted by each thread
-export BENCH_NUM=100      # number of attributes in the document
-export BENCH_BYTES=1000   # size of each attributes in bytes
+export BENCH_DOCS=1000000 # number of documents inserted by each thread
+# large documents
+export BENCH_NUM=40       # number of attributes in the document
+export BENCH_BYTES=400    # size of each attributes in bytes
+# small documents
+export BENCH_NUM=10       # number of attributes in the document
+export BENCH_BYTES=100    # size of each attributes in bytes
 
 # for quick tests
-  #export SLEEP=1
-  #export CLIENTS=1
-  #export BENCH_DOCS=100
+ # export SLEEP=1
+ # export CLIENTS=1
+ # export BENCH_DOCS=100
 
 # reset all
 docker compose -p jsonbench down --remove-orphans --volumes
@@ -50,7 +54,7 @@ docker compose -p jsonbench logs mongodb-init
 (
 sleep 120 ; perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "mongod"
-) sleep 120 | perf script -F +pid > $DIR/mongodb.perf ; sleep 120 ; docker stats --no-stream
+) sleep 30 | perf script -F +pid | awk '!/^\t/{c=c+1}c>10000{exit}{print}' > $DIR/mongodb.perf ; sleep 120 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
@@ -81,7 +85,7 @@ docker compose -p jsonbench logs postgres-init
 (
 sleep 120 ; perf record -o - --call-graph fp -F99 -e cpu-cycles -p $(
 pgrep -d, "postgres"
-) sleep 120 | perf script -F +pid > $DIR/postgres.perf ; sleep 120 ; docker stats --no-stream
+) sleep 30 | perf script -F +pid | awk '!/^\t/{c=c+1}c>10000{exit}{print}' > $DIR/postgres.perf ; sleep 120 ; docker stats --no-stream
 ) &
 
 perf stat -e instructions:u -G docker/$(
