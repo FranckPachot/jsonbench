@@ -39,6 +39,7 @@ services:
    replicas: 1
    resources:
     limits:
+      # set the same limit for mongodb and postgres for a fair comparison
       memory: 9G  
   volumes:
   - mongodb_data:/data/db/var/lib/postgresql/data
@@ -55,12 +56,13 @@ services:
 
  postgres:
   image: postgres
-  # define same memory and cache behavior (40% of RAM, checkpoints every 2GB)
+  # define same memory and cache behavior (40% of RAM, checkpoints every 2GB) - adapt to your system
   command: postgres -c shared_buffers=4GB -c max_wal_size=2GB -c wal_sync_method=open_datasync -c checkpoint_completion_target=0.9 
   deploy:
    replicas: 1
    resources:
     limits:
+      # set the same limit for mongodb and postgres for a fair comparison
       memory: 9G  
   environment:
    - POSTGRES_PASSWORD=xxx
