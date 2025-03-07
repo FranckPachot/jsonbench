@@ -21,5 +21,4 @@ create table if not exists products (
     stock       int not null default 0
 );
 insert into products select generate_series(1,10000), random_string(30), 0;
-select * from products;
 

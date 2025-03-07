@@ -25,7 +25,7 @@ async function mainOperation(count, connectionString) {
         for (let i = 0; i < count; i++) {
                 let id=Math.floor(Math.random() * 10000) + 1;
                 if (pgClient) {
-                        const updateQuery = `UPDATE products SET stock = stock+1 WHERE id = $1`;
+                        const updateQuery = `UPDATE products SET stock = stock-1 WHERE id = $1`;
                         const updateRes = await pgClient.query(updateQuery, [id]);
                         successCount += 1
                 } else if (client) {
