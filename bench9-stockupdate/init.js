@@ -13,11 +13,11 @@ function generateRandomString(length) {
 
 // Create a collection and insert documents
 // In MongoDB, collections are created automatically upon insert
-for (let i = 1; i <= 1000; i++) {
+for (let i = 1; i <= 10000; i++) {
     db.products.insertOne({
         "_id": i,
         description: generateRandomString(30), // generate and insert random string
-        stock: 10000
+        stock: 0
     });
 }
 db.products.find()
