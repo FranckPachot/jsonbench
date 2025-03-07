@@ -11,12 +11,22 @@ docker info || alias docker=podman
 export SLEEP=600 # sleep between execution to see some deferred background activity
 export CLIENTS=8
 export BENCH_DOCS=1000000 # number of documents inserted by each thread
-# large documents
-export BENCH_NUM=40       # number of attributes in the document
-export BENCH_BYTES=400    # size of each attributes in bytes
-# small documents
-export BENCH_BYTES=10    # size of each attributes in bytes
+
+# very small documents
 export BENCH_NUM=5       # number of attributes in the document
+export BENCH_BYTES=10    # size of each attributes in bytes
+# very large documents 
+export BENCH_NUM=20       # number of attributes in the document
+export BENCH_BYTES=1000    # size of each attributes in bytes
+# medium documents
+export BENCH_NUM=20       # number of attributes in the document
+export BENCH_BYTES=100    # size of each attributes in bytes
+# small documents
+export BENCH_NUM=10       # number of attributes in the document
+export BENCH_BYTES=100    # size of each attributes in bytes
+# large documents
+export BENCH_NUM=20       # number of attributes in the document
+export BENCH_BYTES=400    # size of each attributes in bytes
 
 # for quick tests
  # export SLEEP=1
@@ -49,6 +59,8 @@ sleep ${SLEEP}
 export DB_URI=mongodb://mongodb:27017
 
 docker stats --no-stream
+free -h && echo 3 > /proc/sys/vm/drop_caches && free -h
+docker stats --no-stream
 docker compose -p jsonbench logs mongodb-init
 
 (
@@ -67,6 +79,8 @@ docker compose -p jsonbench run -i --rm mongodb mongosh --host mongodb --eval '
 '
 
 docker stats --no-stream
+free -h && echo 3 > /proc/sys/vm/drop_caches && free -h
+docker stats --no-stream
 
 } 2>&1 | tee $DIR/mongodb.out
 
@@ -79,6 +93,8 @@ sleep ${SLEEP}
 
 export DB_URI=postgres://postgres:xxx@postgres:5432/postgres
 
+docker stats --no-stream
+free -h && echo 3 > /proc/sys/vm/drop_caches && free -h
 docker stats --no-stream
 docker compose -p jsonbench logs postgres-init
 
@@ -101,6 +117,8 @@ docker compose -p jsonbench run -i --rm -e PGPASSWORD=xxx postgres psql -h postg
  select * from pg_stats where tablename='jsonbench' and attname='id';
  " 
 
+docker stats --no-stream
+free -h && echo 3 > /proc/sys/vm/drop_caches && free -h
 docker stats --no-stream
 
 } 2>&1 | tee $DIR/postgres.out
