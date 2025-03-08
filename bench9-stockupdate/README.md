@@ -29,9 +29,54 @@ IOPS: 1260 IOPS for MongoDB, 2530 IOPS for PostgreSQL (to compare to 3000 and 35
 CPU: similar usage, more system CPU for PostgreSQL, more user CPU for MongoDB
 <img width="1125" alt="image" src="https://github.com/user-attachments/assets/c80486f7-669f-4408-bb43-e8816edf3008" />
 
-- PostgreSQL backend: network, query planning, execute, WAL sync on commit
+- CPU on the PostgreSQL backend: network, query planning, execute, WAL sync on commit
+
+Note: same throughput with server-side prepared statement ([flamegraph](https://share.firefox.dev/4kAMTCQ))
+
+Note: I don't know why ExecComputeStoredGenerated ([question](https://x.com/FranckPachot/status/1898447300038373654))
+
 <img width="1426" alt="image" src="https://github.com/user-attachments/assets/2c959b41-415a-4fc8-af6d-08ecb7ad3edb" />
 
-- MongoDB connection: network + execute update
+
+- CPU on the MongoDB connection: network + execute update
+
 <img width="1428" alt="image" src="https://github.com/user-attachments/assets/dd7dc6de-31f3-4328-890a-34630ada4f58" />
 
+Quick interpretation: updates in PostgreSQL copy the whole row. Here it is small, so the consequence on CPU and RAM is limited, but it has a huge consequence on Write-Ahead Logging (WAL) generated:
+```
+postgres=# prepare q(int) as UPDATE products SET stock = stock-1 WHERE id = $1;                                                               
+PREPARE
+
+postgres=# explain (analyze, verbose, buffers, wal, costs off) execute q(5);                                                                  
+                                            QUERY PLAN                                                                                        
+---------------------------------------------------------------------------------------------------                                           
+ Update on public.products (actual time=0.051..0.052 rows=0 loops=1)
+   Buffers: shared hit=5
+   WAL: records=2 bytes=133
+   ->  Index Scan using products_pkey on public.products (actual time=0.031..0.033 rows=1 loops=1)                                            
+         Output: (stock - 1), ctid
+         Index Cond: (products.id = $1)
+         Buffers: shared hit=3
+         WAL: records=1 bytes=62
+ Planning Time: 0.010 ms
+ Execution Time: 0.076 ms
+```
+Two WAL records (while reading because of previous update) generating 133 bytes, or more after a checkpoint:
+```
+postgres=# checkpoint;
+CHECKPOINT
+postgres=# explain (analyze, verbose, buffers, wal, costs off)
+UPDATE products SET stock = stock-1 WHERE id = 42;
+                                            QUERY PLAN                                             
+---------------------------------------------------------------------------------------------------
+ Update on public.products (actual time=0.099..0.100 rows=0 loops=1)
+   Buffers: shared hit=5 dirtied=1
+   WAL: records=3 fpi=1 bytes=8146
+   ->  Index Scan using products_pkey on public.products (actual time=0.074..0.075 rows=1 loops=1)
+         Output: (stock - 1), ctid
+         Index Cond: (products.id = 42)
+         Buffers: shared hit=3 dirtied=1
+         WAL: records=2 fpi=1 bytes=8075
+ Planning Time: 0.090 ms
+ Execution Time: 0.126 ms
+```
