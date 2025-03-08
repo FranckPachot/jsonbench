@@ -10,7 +10,7 @@ CONTAINER ID   NAME                   CPU %     MEM USAGE / LIMIT    MEM %     N
 a6ab26e1207e   jsonbench-postgres-1   182.36%   144MiB / 9GiB        1.56%     401MB / 197MB     31.9MB / 3.16GB   14
 ```
 
-Thoughput (from 8 client threads)
+Throughput (from 8 client threads)
 - MongoDB     throughput:    365 docs/sec per thread - 8 x 1 million documents in 45 minutes, 1,235,994,679,533 CPU instructions
 - PostgreSQL  throughput:    443 docs/sec per thread - 8 x 1 million documents in 37 minutes, 1,474,150,556,519 CPU instructions
 
@@ -29,9 +29,9 @@ IOPS: 1260 IOPS for MongoDB, 2530 IOPS for PostgreSQL (to compare to 3000 and 35
 CPU: similar usage, more system CPU for PostgreSQL, more user CPU for MongoDB
 <img width="1125" alt="image" src="https://github.com/user-attachments/assets/c80486f7-669f-4408-bb43-e8816edf3008" />
 
-PostgreSQL backend: network, get cached plan for prepared statement, execute, WAL log
+- PostgreSQL backend: network, query planning, execute, WAL sync on commit
 <img width="1426" alt="image" src="https://github.com/user-attachments/assets/2c959b41-415a-4fc8-af6d-08ecb7ad3edb" />
 
-MongoDB connection: network + execute update
+- MongoDB connection: network + execute update
 <img width="1428" alt="image" src="https://github.com/user-attachments/assets/dd7dc6de-31f3-4328-890a-34630ada4f58" />
 
