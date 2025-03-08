@@ -22,11 +22,12 @@ async function mainOperation(count, connectionString) {
 
         const startTime = performance.now();
 
+        const updateQuery = `UPDATE products SET stock = stock-1 WHERE id = $1`;
         for (let i = 0; i < count; i++) {
                 let id=Math.floor(Math.random() * 10000) + 1;
                 if (pgClient) {
-                        const updateQuery = `UPDATE products SET stock = stock-1 WHERE id = $1`;
-                        const updateRes = await pgClient.query(updateQuery, [id]);
+                        //const updateRes = await pgClient.query(updateQuery, [id]);
+                        const updateRes = await pgClient.query({ name: 'decrement-product-stock', text: updateQuery, values: [id], });
                         successCount += 1
                 } else if (client) {
                         let updateRes = await client.db().collection("products").updateOne( { _id: id } , { $inc: { stock: -1 } });
